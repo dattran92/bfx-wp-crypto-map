@@ -10,6 +10,7 @@ License: GPL2
 */
 
 include_once(plugin_dir_path( __FILE__ ) . './translations.php');
+include_once(plugin_dir_path( __FILE__ ) . './rest.php');
 
 // [bfx_crypto_map width="100%" height="100%" mode="desktop"]
 function bfx_crypto_map_handler( $atts ) {
@@ -27,7 +28,7 @@ function bfx_crypto_map_handler( $atts ) {
   $lang = $mapped_atts['lang'];
   $map_mobile_w = $mapped_atts['mobile_width'];
   $map_mobile_h = $mapped_atts['mobile_height'];
-  $merchants_data_url = plugin_dir_url(__FILE__) . 'assets/merchants.json';
+  $merchants_data_url = '/wp-json/bfx-crypto-map/v1/merchants';
   $asset_url = plugin_dir_url(__FILE__) . 'assets';
 
   $translator = new BfxTranslations($lang);
@@ -410,7 +411,7 @@ function bfx_crypto_map_handler( $atts ) {
       };
     }
 
-    jQuery('#bfx-crypto-search-input').keyup(debounce(function() {
+    jQuery('#bfx-crypto-search-input').on('input', debounce(function() {
       filterMarkers();
     }, 300));
 
@@ -437,7 +438,10 @@ function bfx_crypto_map_handler( $atts ) {
     });
 
     jQuery
-      .ajax({ url: '$merchants_data_url' })
+      .ajax({
+        method: 'POST',
+        url: '$merchants_data_url'
+      })
       .done(function(data) {
         MERCHANT_DATA = data;
         renderMarkers(data);
