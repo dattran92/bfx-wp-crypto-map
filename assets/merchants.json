@@ -654,27 +654,6 @@
     "id": 32
   },
   {
-    "address": "Piazza Indipendenza 1 - 6900 Lugano",
-    "phone": "",
-    "logo_url": "",
-    "website": "https://www.buddhaloungelugano.com",
-    "description": "",
-    "gocryptoId": 2517,
-    "title": "Buddha Experience Lugano",
-    "vat": "CHE-292.726.790",
-    "lat": 46.007206,
-    "lng": 8.953923,
-    "tags": [
-      "food_and_drink"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 33
-  },
-  {
     "address": "Piazza Cioccaro 7 - 6900 Lugano",
     "phone": "",
     "logo_url": "",
@@ -7065,5 +7044,47 @@
       "LVGA"
     ],
     "id": 350
+  },
+  {
+    "address": "Vicolo dei Pini 2 - 6962 Viganello",
+    "phone": "41 78 258 19 17",
+    "logo_url": "",
+    "website": "https://monsterhouse.ch/",
+    "description": "MyLugano Card (residents): 10% Cashback in LVGA\nMyLugano Pass (non-residents): 5% cashback in LVGA",
+    "gocryptoId": "",
+    "title": "Monster House Tattoo & Piercing",
+    "vat": "CHE-220.325.245",
+    "lat": 46.0153019,
+    "lng": 8.9699829,
+    "tags": [
+      "services"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 351
+  },
+  {
+    "address": "Via Canonica 5 - 6900 Lugano",
+    "phone": "41 78 258 19 17",
+    "logo_url": "",
+    "website": "https://monsterhouse.ch/",
+    "description": "MyLugano Card (residents): 10% Cashback in LVGA\nMyLugano Pass (non-residents): 5% cashback in LVGA",
+    "gocryptoId": "",
+    "title": "Monster House Tattoo & Piercing",
+    "vat": "CHE-220.325.245",
+    "lat": 46.0068366,
+    "lng": 8.9567497,
+    "tags": [
+      "services"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 352
   }
 ]
