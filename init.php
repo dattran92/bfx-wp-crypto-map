@@ -216,20 +216,11 @@ function bfx_crypto_map_handler( $atts ) {
       })
       .setView([46.005314, 8.953802], 17);
 
-    map.attributionControl.setPrefix('<a href="https://leafletjs.com" title="A JavaScript library for interactive maps">Leaflet</a>');
+    map.attributionControl.setPrefix('© <a href="https://www.mapbox.com/feedback/">Mapbox</a> © <a href="https://leafletjs.com" title="A JavaScript library for interactive maps">Leaflet</a>');
 
     L.control.zoom({ position: 'topright' }).addTo(map);
 
-    const mapboxKey = 'pk.eyJ1IjoiZGF0dHJhbmJmeCIsImEiOiJjbG5reWZrdTkwMHl2MmxwMWU5cnhvYWlwIn0.EJZHlAejSqAgVLt3pbf2lQ';
-
-    // const tiles = L
-    //   .tileLayer('https://api.mapbox.com/styles/v1/dattranbfx/clnauuxex03k001pb41chaqoh/tiles/{z}/{x}/{y}?access_token=' + mapboxKey, {
-    //     maxZoom: 19,
-    //     tileSize: 512,
-    //     zoomOffset: -1,
-    //     attribution: '© <a href="https://www.mapbox.com/feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    //   })
-    //   .addTo(map);
+    const mapboxKey = 'pk.eyJ1IjoiZGF0dHJhbmJmeCIsImEiOiJjbG5reXVoYjEwenF4MmlzMzlmOWhpZ3J6In0.y3REJgotRpiNyo_tYAx2yQ';
 
     const gl = L
       .mapboxGL({
