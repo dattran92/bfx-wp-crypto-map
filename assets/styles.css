@@ -333,6 +333,34 @@
     max-height: calc(100vh - 300px);
   }
 }
+
+#bfx-crypto-store-list-popup ul {
+  list-style: none;
+  padding: 0;
+}
+
+#bfx-crypto-store-list-popup ul li {
+  display: flex;
+  gap: 10px;
+  font-size: 12px;
+  border-bottom: 1px solid rgba(65, 102, 188, 0.06);
+  cursor: pointer;
+}
+
+#bfx-crypto-store-list-popup ul li img {
+  width: 32px;
+  height: 32px;
+  margin-top: 10px;
+}
+
+#bfx-crypto-store-list-popup ul li .title {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#bfx-crypto-store-list-popup ul li p {
+  margin-bottom: 10px;
+}
 /* end store list */
 
 /* start leaflet reset */

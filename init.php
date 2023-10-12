@@ -246,7 +246,7 @@ function bfx_crypto_map_handler( $atts ) {
       })
       .addTo(map);
 
-    const markerGroup = L.markerClusterGroup();
+    const markerGroup = L.markerClusterGroup({ disableClusteringAtZoom: 19 });
 
     const markerIcon = L.icon({
       iconUrl: '$asset_url/marker-pin-inactive.png',
@@ -447,7 +447,13 @@ function bfx_crypto_map_handler( $atts ) {
 
     function showStoreList(filteredData) {
       const list = filteredData.map(function(merchant) {
-        return '<li>' + merchant.title +'</li>';
+        const logoUrl = merchant.logo_url || logoPlaceholder;
+        const logo = '<img src="' + logoUrl + '" width="32" height="32" />';
+        const titleStr = '<div class="title">' + merchant.title + '</div>';
+        const description = merchant.address ? '<p>' + merchant.address + '</p>' : '';
+        const right = '<div>' + titleStr + description + '</div>';
+        const inner = logo + right;
+        return '<li onClick="storeClick(' + merchant.id + ')">' + inner +'</li>';
       });
       const html = '<ul>' + list.join('') + '</ul';
 
@@ -463,6 +469,23 @@ function bfx_crypto_map_handler( $atts ) {
     function showBfxCryptoPopup(selector) {
       jQuery(selector).toggleClass('active');
       jQuery('#bfx-crypto-popup-overlay').toggleClass('active');
+    }
+
+    function storeClick(merchantId) {
+      const markers = markerGroup.getLayers();
+      const foundMarker = markers.find(function(marker) {
+        return marker?.options?.merchantId === merchantId;
+      });
+
+      if (foundMarker) {
+        hideAllBfxCryptoPopup();
+        const latLngs = [ foundMarker.getLatLng() ];
+        const markerBounds = L.latLngBounds(latLngs);
+        map.fitBounds(markerBounds);
+        setTimeout(() => {
+          foundMarker.fire('click');
+        }, 500);
+      }
     }
 
     jQuery('#bfx-crypto-search-input').keyup(debounce(function() {
