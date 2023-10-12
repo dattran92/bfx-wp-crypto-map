@@ -114,7 +114,7 @@
   }
 
   .bfx-crypto-filter, .bfx-crypto-filter-bar, .bfx-crypto-filter-clear-all {
-    width: 280px;
+    width: calc(100% - 10px);
   }
 
   .bfx-crypto-filter .bfx-crypto-filter-clear-all .filter-btn {
@@ -205,7 +205,7 @@
   display: block;
 }
 
-#bfx-crypto-filter-popup-overlay {
+#bfx-crypto-popup-overlay {
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -215,7 +215,7 @@
   display: none;
 }
 
-#bfx-crypto-filter-popup-overlay.active {
+#bfx-crypto-popup-overlay.active {
   display: block;
 }
 
@@ -270,7 +270,7 @@
 
 .bfx-crypto-filter .filter-btn {
   background: rgba(200, 82, 99, 0.06);
-  color: rgba(23, 45, 62, 0.5);
+  color: rgba(200, 82, 99, 1);
   border: 0;
   border-radius: 6px;
   height: 40px;
@@ -279,6 +279,7 @@
   gap: 10px;
   cursor: pointer;
   align-items: center;
+  padding: 5px 18px;
 }
 
 .bfx-crypto-filter .filter-btn .arrow {
@@ -302,6 +303,37 @@
   }
 }
 /* end filter */
+
+/* start store list */
+#bfx-crypto-store-list-popup {
+  left: 0;
+  display: none;
+}
+
+#bfx-crypto-store-list-popup.active {
+  left: 0;
+  display: block;
+}
+
+#bfx-crypto-store-list-mobile-btn {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  #bfx-crypto-store-list-mobile-btn {
+    display: block;
+  }
+
+  .bfx-crypto-filter-store-list {
+    display: none;
+  }
+
+  #bfx-crypto-store-list-popup {
+    width: calc(100% - 10px);
+    max-height: calc(100vh - 300px);
+  }
+}
+/* end store list */
 
 /* start leaflet reset */
 .leaflet-popup-tip-container {
@@ -342,3 +374,24 @@
   color: #fff;
 }
 /* end customize leaflet marker cluster */
+
+
+/* start zoom customization */
+#bfx-crypto-map .leaflet-control-zoom  {
+  border: 0;
+}
+
+#bfx-crypto-map .leaflet-control-zoom span {
+  color: rgba(200, 82, 99, 1);
+}
+
+#bfx-crypto-map .leaflet-control-zoom .leaflet-control-zoom-in {
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+#bfx-crypto-map .leaflet-control-zoom .leaflet-control-zoom-out {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+/* end zoom customization */

@@ -35,11 +35,23 @@ function bfx_crypto_map_handler( $atts ) {
   $html = <<<HTML
   <div class="bfx-crypto-container">
     <div class="bfx-crypto-filter">
+      <div class="bfx-crypto-filter-store-list bfx-crypto-filter-box">
+        <button type="button" class="filter-btn" id="bfx-crypto-store-list-btn">
+          <img src="$asset_url/list-icon.png" />
+          <span>{$translator->translate('store_list')}</span>
+          <div class="arrow">
+            <img src="$asset_url/arrow-down.png" />
+          </div>
+        </button>
+      </div>
       <div class="bfx-crypto-filter-bar bfx-crypto-filter-box">
         <div class="search-container">
           <img src="$asset_url/search.png" width="14" height="13" />
           <input id="bfx-crypto-search-input" type="search" placeholder="{$translator->translate('search')}" />
         </div>
+        <button type="button" class="filter-btn" id="bfx-crypto-store-list-mobile-btn">
+          <img src="$asset_url/list-icon.png" />
+        </button>
         <button type="button" class="filter-btn" id="bfx-crypto-filter-btn">
           <div class="filter-icon-wrapper">
             <img src="$asset_url/filter.png" />
@@ -58,6 +70,10 @@ function bfx_crypto_map_handler( $atts ) {
           </div>
           <span>{$translator->translate('clear_filters')}</span>
         </button>
+      </div>
+      <div id="bfx-crypto-store-list-popup" class="bfx-crypto-filter-popup">
+        <div class="filter-container">
+        </div>
       </div>
       <div id="bfx-crypto-filter-popup" class="bfx-crypto-filter-popup">
         <div class="filter-container">
@@ -141,7 +157,7 @@ function bfx_crypto_map_handler( $atts ) {
         </div>
       </div>
     </div>
-    <div id="bfx-crypto-filter-popup-overlay"></div>
+    <div id="bfx-crypto-popup-overlay"></div>
     <div id="bfx-crypto-map"></div>
   </div>
 
@@ -182,7 +198,6 @@ function bfx_crypto_map_handler( $atts ) {
         width: $map_mobile_w;
       }
     }
-
   </style>
   <script>
     let MERCHANT_DATA = [];
@@ -218,7 +233,9 @@ function bfx_crypto_map_handler( $atts ) {
 
     map.attributionControl.setPrefix('© <a href="https://www.mapbox.com/feedback/">Mapbox</a> © <a href="https://leafletjs.com" title="A JavaScript library for interactive maps">Leaflet</a>');
 
-    L.control.zoom({ position: 'topright' }).addTo(map);
+    if (!isMobile) {
+      L.control.zoom({ position: 'bottomright' }).addTo(map);
+    }
 
     const mapboxKey = 'pk.eyJ1IjoiZGF0dHJhbmJmeCIsImEiOiJjbG5reXVoYjEwenF4MmlzMzlmOWhpZ3J6In0.y3REJgotRpiNyo_tYAx2yQ';
 
@@ -363,7 +380,7 @@ function bfx_crypto_map_handler( $atts ) {
       map.addLayer(markerGroup);
     }
 
-    function filterMarkers() {
+    function getFilterData() {
       const searchValue = jQuery('#bfx-crypto-search-input').val().toLowerCase().trim();
       const formValues = jQuery('#bfx-crypto-filter-form').serializeArray();
       const categories = formValues
@@ -383,14 +400,6 @@ function bfx_crypto_map_handler( $atts ) {
 
       const numberOfFilter = categories.length + acceptedCryptos.length;
 
-      if (numberOfFilter > 0) {
-        jQuery('#filter-number').html(numberOfFilter + '').addClass('active');
-        jQuery('.bfx-crypto-filter-clear-all').removeClass('hidden');
-      } else {
-        jQuery('#filter-number').html('').removeClass('active');
-        jQuery('.bfx-crypto-filter-clear-all').addClass('hidden');
-      }
-
       const filteredData = MERCHANT_DATA.filter(function (merchant) {
         const matchedSearch = !searchValue || searchValue === '' || merchant.title.toLowerCase().includes(searchValue);
         const hasCategory = categories.length === 0 || categories.some(function (category) {
@@ -402,7 +411,30 @@ function bfx_crypto_map_handler( $atts ) {
         return matchedSearch && hasCategory && hasAcceptedCryptos;
       });
 
+      return {
+        numberOfFilter,
+        filteredData,
+      };
+    }
+
+    function filterMarkers() {
+      const filterData = getFilterData();
+      const numberOfFilter = filterData.numberOfFilter;
+      const filteredData = filterData.filteredData;
+
+      if (numberOfFilter > 0) {
+        jQuery('#filter-number').html(numberOfFilter + '').addClass('active');
+        jQuery('.bfx-crypto-filter-clear-all').removeClass('hidden');
+      } else {
+        jQuery('#filter-number').html('').removeClass('active');
+        jQuery('.bfx-crypto-filter-clear-all').addClass('hidden');
+      }
+
       renderMarkers(filteredData);
+
+      if (jQuery('#bfx-crypto-store-list-popup').hasClass('active')) {
+        showStoreList(filteredData);
+      }
     }
 
     function debounce(func, timeout = 300){
@@ -413,6 +445,26 @@ function bfx_crypto_map_handler( $atts ) {
       };
     }
 
+    function showStoreList(filteredData) {
+      const list = filteredData.map(function(merchant) {
+        return '<li>' + merchant.title +'</li>';
+      });
+      const html = '<ul>' + list.join('') + '</ul';
+
+      jQuery('#bfx-crypto-store-list-popup .filter-container').html(html);
+    }
+
+    function hideAllBfxCryptoPopup() {
+      jQuery('#bfx-crypto-filter-popup').removeClass('active');
+      jQuery('#bfx-crypto-store-list-popup').removeClass('active');
+      jQuery('#bfx-crypto-popup-overlay').removeClass('active');
+    }
+
+    function showBfxCryptoPopup(selector) {
+      jQuery(selector).toggleClass('active');
+      jQuery('#bfx-crypto-popup-overlay').toggleClass('active');
+    }
+
     jQuery('#bfx-crypto-search-input').keyup(debounce(function() {
       filterMarkers();
     }, 300));
@@ -420,16 +472,28 @@ function bfx_crypto_map_handler( $atts ) {
     jQuery('#bfx-crypto-filter-form .filter-checkbox input')
       .on('change', filterMarkers);
 
+    jQuery('#bfx-crypto-store-list-btn, #bfx-crypto-store-list-mobile-btn').on('click', function () {
+      const isActive = jQuery('#bfx-crypto-store-list-popup').hasClass('active');
+      hideAllBfxCryptoPopup();
+      if (!isActive) {
+        const filterData = getFilterData();
+        const filteredData = filterData.filteredData;
+        showStoreList(filteredData);
+        showBfxCryptoPopup('#bfx-crypto-store-list-popup');
+      }
+    });
+
     jQuery('#bfx-crypto-filter-btn').on('click', function () {
-      jQuery('#bfx-crypto-filter-popup').toggleClass('active');
-      jQuery('#bfx-crypto-filter-popup-overlay').toggleClass('active');
+      const isActive = jQuery('#bfx-crypto-filter-popup').hasClass('active');
+      hideAllBfxCryptoPopup();
+      if (!isActive) {
+        showBfxCryptoPopup('#bfx-crypto-filter-popup');
+      }
     });
 
-    jQuery('#bfx-crypto-filter-popup-overlay').on('click', function () {
-      jQuery('#bfx-crypto-filter-popup').removeClass('active');
-      jQuery('#bfx-crypto-filter-popup-overlay').removeClass('active');
+    jQuery('#bfx-crypto-popup-overlay').on('click', function () {
+      hideAllBfxCryptoPopup();
     });
-
 
     jQuery('#bfx-crypto-clear-filter-btn').on('click', function () {
       jQuery('.filter-checkbox input')
