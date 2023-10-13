@@ -3,7 +3,7 @@
 Plugin Name: BFX crypto map
 Plugin URI: https://bitfinex.com
 description: BFX crypto map
-Version: 1.1.9
+Version: 1.1.10
 Author: BFX
 Author URI: https://bitfinex.com
 License: GPL2
@@ -11,8 +11,15 @@ License: GPL2
 
 include_once(plugin_dir_path( __FILE__ ) . './translations.php');
 
+function bfx_crypto_map_version() {
+  $plugin_data = get_plugin_data(__FILE__, array('Version'));
+  return $plugin_data['Version'];
+}
+
+
 // [bfx_crypto_map width="100%" height="100%" mode="desktop"]
 function bfx_crypto_map_handler( $atts ) {
+  $plugin_version = bfx_crypto_map_version();
   $mapped_atts = shortcode_atts( array(
     'width' => '500px',
     'height' => '500px',
@@ -27,7 +34,7 @@ function bfx_crypto_map_handler( $atts ) {
   $lang = $mapped_atts['lang'];
   $map_mobile_w = $mapped_atts['mobile_width'];
   $map_mobile_h = $mapped_atts['mobile_height'];
-  $merchants_data_url = plugin_dir_url(__FILE__) . 'assets/merchants.json?v=1';
+  $merchants_data_url = plugin_dir_url(__FILE__) . 'assets/merchants.json?ver=' . $plugin_version;
   $asset_url = plugin_dir_url(__FILE__) . 'assets';
 
   $translator = new BfxTranslations($lang);
@@ -557,6 +564,7 @@ function add_script_attributes( $html, $handle ) {
 function bfx_crypto_map_shortcode_scripts() {
   global $post;
   if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'bfx_crypto_map') ) {
+    $plugin_version = bfx_crypto_map_version();
     wp_enqueue_script('leaflet', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js', array(), null);
     wp_enqueue_script('leaflet-marker-cluster', 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js', array('leaflet'), null);
     wp_enqueue_script('mapbox-gl', 'https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js', array(), null);
@@ -565,7 +573,7 @@ function bfx_crypto_map_shortcode_scripts() {
     wp_enqueue_style( 'leaflet-marker-cluster', 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css', array('leaflet'), null);
     wp_enqueue_style( 'leaflet-marker-cluster-default', 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css', array('leaflet', 'leaflet-marker-cluster'), null);
     wp_enqueue_style( 'mapbox-gl', 'https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css', array('leaflet'), null);
-    wp_enqueue_style( 'leaflet-custom', plugin_dir_url(__FILE__) . 'assets/styles.css', array('leaflet'));
+    wp_enqueue_style( 'leaflet-custom', plugin_dir_url(__FILE__) . 'assets/styles.css', array('leaflet'), $plugin_version);
   }
 }
 
