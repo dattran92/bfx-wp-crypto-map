@@ -230,7 +230,6 @@ function bfx_crypto_map_handler( $atts ) {
         icon: '$asset_url/LVGA.png',
       },
     };
-
     const map = L
       .map('bfx-crypto-map', {
         zoomControl: false,
@@ -244,12 +243,19 @@ function bfx_crypto_map_handler( $atts ) {
       L.control.zoom({ position: 'bottomright' }).addTo(map);
     }
 
-    const mapboxKey = 'pk.eyJ1IjoiZGF0dHJhbmJmeCIsImEiOiJjbG5reXVoYjEwenF4MmlzMzlmOWhpZ3J6In0.y3REJgotRpiNyo_tYAx2yQ';
+    // const mapboxKey = 'pk.eyJ1IjoiZGF0dHJhbmJmeCIsImEiOiJjbG5reXVoYjEwenF4MmlzMzlmOWhpZ3J6In0.y3REJgotRpiNyo_tYAx2yQ';
 
-    const gl = L
-      .mapboxGL({
-        style: 'mapbox://styles/dattranbfx/clnaw7jkh01rl01qn3llp3wur',
-        accessToken: mapboxKey,
+    // const gl = L
+    //   .mapboxGL({
+    //     style: 'mapbox://styles/dattranbfx/clnaw7jkh01rl01qn3llp3wur',
+    //     accessToken: mapboxKey,
+    //   })
+    //   .addTo(map);
+
+    const tiles = L
+      .tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>' ,
       })
       .addTo(map);
 
@@ -567,12 +573,12 @@ function bfx_crypto_map_shortcode_scripts() {
     $plugin_version = bfx_crypto_map_version();
     wp_enqueue_script('leaflet', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js', array(), null);
     wp_enqueue_script('leaflet-marker-cluster', 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js', array('leaflet'), null);
-    wp_enqueue_script('mapbox-gl', 'https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js', array(), null);
-    wp_enqueue_script('mapbox-gl-leaflet', 'https://unpkg.com/mapbox-gl-leaflet/leaflet-mapbox-gl.js', array('leaflet', 'mapbox-gl'), null);
+    // wp_enqueue_script('mapbox-gl', 'https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js', array(), null);
+    // wp_enqueue_script('mapbox-gl-leaflet', 'https://unpkg.com/mapbox-gl-leaflet/leaflet-mapbox-gl.js', array('leaflet', 'mapbox-gl'), null);
     wp_enqueue_style( 'leaflet', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css', array(), null);
     wp_enqueue_style( 'leaflet-marker-cluster', 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css', array('leaflet'), null);
     wp_enqueue_style( 'leaflet-marker-cluster-default', 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css', array('leaflet', 'leaflet-marker-cluster'), null);
-    wp_enqueue_style( 'mapbox-gl', 'https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css', array('leaflet'), null);
+    // wp_enqueue_style( 'mapbox-gl', 'https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css', array('leaflet'), null);
     wp_enqueue_style( 'leaflet-custom', plugin_dir_url(__FILE__) . 'assets/styles.css', array('leaflet'), $plugin_version);
   }
 }
