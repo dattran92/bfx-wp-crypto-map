@@ -353,7 +353,7 @@
   margin-top: 10px;
 }
 
-#bfx-crypto-store-list-popup ul li .title {
+#bfx-crypto-store-list-popup ul li .bfx-crypto-title {
   font-size: 14px;
   font-weight: bold;
 }
