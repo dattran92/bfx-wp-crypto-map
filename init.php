@@ -370,23 +370,27 @@ function bfx_crypto_map_handler( $atts ) {
         closeButton: false,
       };
 
-      const markers = data.map(function (merchant) {
-        const marker = L
-          .marker(
-            [merchant.lat, merchant.lng],
-            {
-              merchantId: merchant.id,
-              icon: markerIcon,
-            },
-          )
-          .on('click', onMarkerClick);
+      const markers = data
+        .filter(function(merchant) {
+          return merchant.lat && merchant.lng;
+        })
+        .map(function(merchant) {
+          const marker = L
+            .marker(
+              [merchant.lat, merchant.lng],
+              {
+                merchantId: merchant.id,
+                icon: markerIcon,
+              },
+            )
+            .on('click', onMarkerClick);
 
-        if (!isMobile) {
-          marker.bindPopup('', popupOptions)
-        }
+          if (!isMobile) {
+            marker.bindPopup('', popupOptions)
+          }
 
-        return marker;
-      });
+          return marker;
+        });
 
       markerGroup.addLayers(markers);
 
@@ -501,8 +505,16 @@ function bfx_crypto_map_handler( $atts ) {
       }
     }
 
+    function showStoreListPopup() {
+      const filterData = getFilterData();
+      const filteredData = filterData.filteredData;
+      showStoreList(filteredData);
+      showBfxCryptoPopup('#bfx-crypto-store-list-popup');
+    }
+
     jQuery('#bfx-crypto-search-input').keyup(debounce(function() {
       filterMarkers();
+      showStoreListPopup();
     }, 300));
 
     jQuery('#bfx-crypto-filter-form .filter-checkbox input')
@@ -512,10 +524,7 @@ function bfx_crypto_map_handler( $atts ) {
       const isActive = jQuery('#bfx-crypto-store-list-popup').hasClass('active');
       hideAllBfxCryptoPopup();
       if (!isActive) {
-        const filterData = getFilterData();
-        const filteredData = filterData.filteredData;
-        showStoreList(filteredData);
-        showBfxCryptoPopup('#bfx-crypto-store-list-popup');
+        showStoreListPopup();
       }
     });
 
