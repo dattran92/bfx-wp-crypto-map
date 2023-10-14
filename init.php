@@ -463,6 +463,12 @@ function bfx_crypto_map_handler( $atts ) {
     }
 
     function showStoreList(filteredData) {
+      if (!filteredData || filteredData.length === 0) {
+        const html = '<div class="center">{$translator->translate('no_store')}</div>';
+        jQuery('#bfx-crypto-store-list-popup .filter-container').html(html);
+        return;
+      }
+
       const list = filteredData.map(function(merchant) {
         const logoUrl = merchant.logo_url || logoPlaceholder;
         const logo = '<img src="' + logoUrl + '" width="32" height="32" />';
@@ -484,8 +490,8 @@ function bfx_crypto_map_handler( $atts ) {
     }
 
     function showBfxCryptoPopup(selector) {
-      jQuery(selector).toggleClass('active');
-      jQuery('#bfx-crypto-popup-overlay').toggleClass('active');
+      jQuery(selector).addClass('active');
+      jQuery('#bfx-crypto-popup-overlay').addClass('active');
     }
 
     function storeClick(merchantId) {
@@ -514,6 +520,7 @@ function bfx_crypto_map_handler( $atts ) {
 
     jQuery('#bfx-crypto-search-input').keyup(debounce(function() {
       filterMarkers();
+      hideAllBfxCryptoPopup();
       showStoreListPopup();
     }, 300));
 
