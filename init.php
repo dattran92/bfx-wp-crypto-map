@@ -237,7 +237,8 @@ function bfx_crypto_map_handler( $atts ) {
       })
       .setView([46.005314, 8.953802], 17);
 
-    map.attributionControl.setPrefix('© <a href="https://www.mapbox.com/feedback/">Mapbox</a> © <a href="https://leafletjs.com" title="A JavaScript library for interactive maps">Leaflet</a>');
+    // map.attributionControl.setPrefix('© <a href="https://www.mapbox.com/feedback/">Mapbox</a> © <a href="https://leafletjs.com" title="A JavaScript library for interactive maps">Leaflet</a>');
+    map.attributionControl.setPrefix('<a href="https://leafletjs.com" title="A JavaScript library for interactive maps">Leaflet</a>');
 
     if (!isMobile) {
       L.control.zoom({ position: 'bottomright' }).addTo(map);
