@@ -451,6 +451,8 @@
     "gocryptoId": 2843,
     "title": "Bar Corallo",
     "vat": "CHE-463.387.149",
+    "lat": 46.00673366992053,
+    "lng": 8.941904323545455,
     "tags": [
       "food_and_drink"
     ],
@@ -4651,6 +4653,8 @@
     "gocryptoId": null,
     "title": "Mister Bike",
     "vat": "CHE-112.082.270",
+    "lat": 46.01192831694164,
+    "lng": 8.955250826816052,
     "tags": [
       "retail"
     ],
