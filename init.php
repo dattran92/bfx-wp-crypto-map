@@ -431,6 +431,7 @@ function bfx_crypto_map_handler( $atts ) {
 
       return {
         numberOfFilter,
+        searchValue,
         filteredData,
       };
     }
@@ -512,10 +513,30 @@ function bfx_crypto_map_handler( $atts ) {
       }
     }
 
+    function getVisibleMarkers() {
+      const markerList = [];
+      const bounds = map.getBounds();
+      const markers = markerGroup.getLayers();
+      return markers.filter(function(marker) {
+        return bounds.contains(marker.getLatLng());
+      });
+    }
+
     function showStoreListPopup() {
       const filterData = getFilterData();
-      const filteredData = filterData.filteredData;
-      showStoreList(filteredData);
+      const { filteredData, numberOfFilter, searchValue } = filterData;
+
+      // if no filter/search, only show inbound the map
+      if (!searchValue || numberOfFilter > 0) {
+        const inboundList = getVisibleMarkers()
+        const merchantIds = inboundList.map(function(marker) {
+          return marker?.options?.merchantId;
+        });
+        const inboundMerchant = MERCHANT_DATA.filter((merchant) => merchantIds.includes(merchant.id));
+        showStoreList(inboundMerchant);
+      } else {
+        showStoreList(filteredData);
+      }
       showBfxCryptoPopup('#bfx-crypto-store-list-popup');
     }
 
