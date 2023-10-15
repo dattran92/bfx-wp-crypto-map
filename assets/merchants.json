@@ -1383,7 +1383,8 @@
     ],
     "accepted_cryptos": [
       "BTC",
-      "UST"
+      "UST",
+      "LVGA"
     ],
     "id": 68
   },
@@ -4767,6 +4768,8 @@
     "gocryptoId": null,
     "title": "Raw Excellence",
     "vat": "CHE-115.753.988",
+    "lat": 45.9906777,
+    "lng": 8.9464368,
     "tags": [
       "retail"
     ],
@@ -5682,27 +5685,6 @@
     "id": 287
   },
   {
-    "address": "Via Maggio 1 - 6900 Lugano",
-    "phone": "41 78 240 24 40",
-    "logo_url": "",
-    "website": "",
-    "description": "MyLugano Card (residents): 10% Cashback in LVGA\nMyLugano Pass (non-residents): 5% cashback in LVGA",
-    "gocryptoId": "",
-    "title": "iWash",
-    "vat": "",
-    "lat": 46.0084341,
-    "lng": 8.9612121,
-    "tags": [
-      "auto_and_moto"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 288
-  },
-  {
     "address": "6963 Pregassona - Lugano",
     "phone": "41 79 961 00 25",
     "logo_url": "",
@@ -6204,27 +6186,6 @@
       "LVGA"
     ],
     "id": 312
-  },
-  {
-    "address": "Piazza Indipendenza 1 - Lugano",
-    "phone": "41 91 921 44 77",
-    "logo_url": "",
-    "website": "",
-    "description": "MyLugano Card (residents): 10% Cashback in LVGA\nMyLugano Pass (non-residents): 5% cashback in LVGA",
-    "gocryptoId": "",
-    "title": "Viva Restaurant",
-    "vat": "CHE-292.726.790",
-    "lat": 46.004752,
-    "lng": 8.9547259,
-    "tags": [
-      "food_and_drink"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 313
   },
   {
     "address": "Via Zurigo 2 - 6900 Lugano",
