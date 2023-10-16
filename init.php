@@ -387,7 +387,7 @@ function bfx_crypto_map_handler( $atts ) {
             .on('click', onMarkerClick);
 
           if (!isMobile) {
-            marker.bindPopup('', popupOptions)
+            marker.bindPopup('', popupOptions);
           }
 
           return marker;
