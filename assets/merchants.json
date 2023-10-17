@@ -906,27 +906,6 @@
     "id": 45
   },
   {
-    "address": "Via centro scolastico 5 - 6965 Cadro",
-    "phone": "",
-    "logo_url": "https://s3.eu-central-1.amazonaws.com/public.elipay.com/live-3514d179aac2/source/images/e093b89581ee4c938872634a0598cee8.jpg",
-    "website": "https://dalfasport.ch",
-    "description": "",
-    "gocryptoId": 2581,
-    "title": "DalfaSport",
-    "vat": "CHE-437.269.863",
-    "tags": [
-      "sports_and_leisure"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 46,
-    "lat": 46.0441332,
-    "lng": 8.9814245
-  },
-  {
     "address": "Piazza Riforma 12 - 6900 Lugano",
     "phone": "",
     "logo_url": "https://s3.eu-central-1.amazonaws.com/public.elipay.com/live-3514d179aac2/source/images/b1a9a249b3dd4c2db49faf9da74855c9.png",
@@ -1681,8 +1660,8 @@
       "LVGA"
     ],
     "id": 82,
-    "lat": 46.0054714,
-    "lng": 8.9566653
+    "lat": 46.00647397973825,
+    "lng": 8.957172631699681
   },
   {
     "address": "Via Besso 57 - 6900 Lugano",
@@ -2375,8 +2354,8 @@
       "LVGA"
     ],
     "id": 118,
-    "lat": 46.0061237,
-    "lng": 8.9527925
+    "lat": 46.005613190152054, 
+    "lng": 8.954733120506699
   },
   {
     "address": "Via Carona 62 - 6900 Lugano",
@@ -4774,8 +4753,8 @@
     "gocryptoId": null,
     "title": "Raw Excellence",
     "vat": "CHE-115.753.988",
-    "lat": 45.9906777,
-    "lng": 8.9464368,
+    "lat": 46.006257602017634, 
+    "lng": 8.966892224140324,
     "tags": [
       "retail"
     ],
@@ -6515,8 +6494,8 @@
     "gocryptoId": "",
     "title": "Love is in the Hair",
     "vat": "CHE-184.485.477",
-    "lat": 45.99023589999999,
-    "lng": 8.9464343,
+    "lat": 46.006184437547724,
+    "lng": 8.96655185797656,
     "tags": [
       "services"
     ],
@@ -7097,8 +7076,8 @@
     "gocryptoId": null,
     "title": "Amalo momento italiano",
     "vat": "CHE-456.592.632",
-    "lat": 46.00598859999999,
-    "lng": 8.9673742,
+    "lat": 46.00588784146962,
+    "lng": 8.967372386887604,
     "tags": [
       "food_and_drink"
     ],
@@ -7198,8 +7177,8 @@
     "gocryptoId": null,
     "title": "Maros Art Jewelry",
     "vat": "CHE-259.088.234",
-    "lat": 46.0047806,
-    "lng": 8.95326,
+    "lat": 46.00490734498417,
+    "lng": 8.953292363056196,
     "tags": [
       "retail"
     ],
@@ -7219,8 +7198,8 @@
     "gocryptoId": null,
     "title": "Promax Communication Fiere e Eventi",
     "vat": "CHE-103.262.643",
-    "lat": 45.9725064,
-    "lng": 8.854987200000002,
+    "lat": 45.97198898665679,
+    "lng": 8.855259024003773,
     "tags": [
       "services"
     ],

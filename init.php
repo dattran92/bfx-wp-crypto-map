@@ -3,7 +3,7 @@
 Plugin Name: BFX crypto map
 Plugin URI: https://bitfinex.com
 description: BFX crypto map
-Version: 1.1.13
+Version: 1.1.15
 Author: BFX
 Author URI: https://bitfinex.com
 License: GPL2
@@ -526,8 +526,9 @@ function bfx_crypto_map_handler( $atts ) {
       const filterData = getFilterData();
       const { filteredData, numberOfFilter, searchValue } = filterData;
 
-      // if no filter/search, only show inbound the map
-      if (!searchValue || numberOfFilter > 0) {
+      // TODO: add this filter in the future
+      const showInbound = false 
+      if (showInbound) {
         const inboundList = getVisibleMarkers()
         const merchantIds = inboundList.map(function(marker) {
           return marker?.options?.merchantId;
