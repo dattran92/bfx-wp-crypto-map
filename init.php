@@ -3,7 +3,7 @@
 Plugin Name: BFX crypto map
 Plugin URI: https://bitfinex.com
 description: BFX crypto map
-Version: 1.1.7
+Version: 1.1.24
 Author: BFX
 Author URI: https://bitfinex.com
 License: GPL2
@@ -11,8 +11,15 @@ License: GPL2
 
 include_once(plugin_dir_path( __FILE__ ) . './translations.php');
 
+function bfx_crypto_map_version() {
+  $plugin_data = get_plugin_data(__FILE__, array('Version'));
+  return $plugin_data['Version'];
+}
+
+
 // [bfx_crypto_map width="100%" height="100%" mode="desktop"]
 function bfx_crypto_map_handler( $atts ) {
+  $plugin_version = bfx_crypto_map_version();
   $mapped_atts = shortcode_atts( array(
     'width' => '500px',
     'height' => '500px',
@@ -27,7 +34,7 @@ function bfx_crypto_map_handler( $atts ) {
   $lang = $mapped_atts['lang'];
   $map_mobile_w = $mapped_atts['mobile_width'];
   $map_mobile_h = $mapped_atts['mobile_height'];
-  $merchants_data_url = plugin_dir_url(__FILE__) . 'assets/merchants.json';
+  $merchants_data_url = plugin_dir_url(__FILE__) . 'assets/merchants.json?ver=' . $plugin_version;
   $asset_url = plugin_dir_url(__FILE__) . 'assets';
 
   $translator = new BfxTranslations($lang);
@@ -35,11 +42,23 @@ function bfx_crypto_map_handler( $atts ) {
   $html = <<<HTML
   <div class="bfx-crypto-container">
     <div class="bfx-crypto-filter">
+      <div class="bfx-crypto-filter-store-list bfx-crypto-filter-box">
+        <button type="button" class="filter-btn" id="bfx-crypto-store-list-btn">
+          <img src="$asset_url/list-icon.png" />
+          <span>{$translator->translate('store_list')}</span>
+          <div class="arrow">
+            <img src="$asset_url/arrow-down.png" />
+          </div>
+        </button>
+      </div>
       <div class="bfx-crypto-filter-bar bfx-crypto-filter-box">
         <div class="search-container">
           <img src="$asset_url/search.png" width="14" height="13" />
           <input id="bfx-crypto-search-input" type="search" placeholder="{$translator->translate('search')}" />
         </div>
+        <button type="button" class="filter-btn" id="bfx-crypto-store-list-mobile-btn">
+          <img src="$asset_url/list-icon.png" />
+        </button>
         <button type="button" class="filter-btn" id="bfx-crypto-filter-btn">
           <div class="filter-icon-wrapper">
             <img src="$asset_url/filter.png" />
@@ -58,6 +77,10 @@ function bfx_crypto_map_handler( $atts ) {
           </div>
           <span>{$translator->translate('clear_filters')}</span>
         </button>
+      </div>
+      <div id="bfx-crypto-store-list-popup" class="bfx-crypto-filter-popup">
+        <div class="filter-container">
+        </div>
       </div>
       <div id="bfx-crypto-filter-popup" class="bfx-crypto-filter-popup">
         <div class="filter-container">
@@ -141,7 +164,7 @@ function bfx_crypto_map_handler( $atts ) {
         </div>
       </div>
     </div>
-    <div id="bfx-crypto-filter-popup-overlay"></div>
+    <div id="bfx-crypto-popup-overlay"></div>
     <div id="bfx-crypto-map"></div>
   </div>
 
@@ -182,7 +205,6 @@ function bfx_crypto_map_handler( $atts ) {
         width: $map_mobile_w;
       }
     }
-
   </style>
   <script>
     let MERCHANT_DATA = [];
@@ -208,25 +230,37 @@ function bfx_crypto_map_handler( $atts ) {
         icon: '$asset_url/LVGA.png',
       },
     };
-
     const map = L
       .map('bfx-crypto-map', {
         zoomControl: false,
+        maxZoom: 19,
       })
       .setView([46.005314, 8.953802], 17);
 
+    // map.attributionControl.setPrefix('© <a href="https://www.mapbox.com/feedback/">Mapbox</a> © <a href="https://leafletjs.com" title="A JavaScript library for interactive maps">Leaflet</a>');
     map.attributionControl.setPrefix('<a href="https://leafletjs.com" title="A JavaScript library for interactive maps">Leaflet</a>');
 
-    L.control.zoom({ position: 'topright' }).addTo(map);
+    if (!isMobile) {
+      L.control.zoom({ position: 'bottomright' }).addTo(map);
+    }
+
+    // const mapboxKey = 'pk.eyJ1IjoiZGF0dHJhbmJmeCIsImEiOiJjbG5reXVoYjEwenF4MmlzMzlmOWhpZ3J6In0.y3REJgotRpiNyo_tYAx2yQ';
+
+    // const gl = L
+    //   .mapboxGL({
+    //     style: 'mapbox://styles/dattranbfx/clnaw7jkh01rl01qn3llp3wur',
+    //     accessToken: mapboxKey,
+    //   })
+    //   .addTo(map);
 
     const tiles = L
       .tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       })
       .addTo(map);
 
-    const markerGroup = L.markerClusterGroup();
+    const markerGroup = L.markerClusterGroup({ disableClusteringAtZoom: 19 });
 
     const markerIcon = L.icon({
       iconUrl: '$asset_url/marker-pin-inactive.png',
@@ -337,30 +371,34 @@ function bfx_crypto_map_handler( $atts ) {
         closeButton: false,
       };
 
-      const markers = data.map(function (merchant) {
-        const marker = L
-          .marker(
-            [merchant.lat, merchant.lng],
-            {
-              merchantId: merchant.id,
-              icon: markerIcon,
-            },
-          )
-          .on('click', onMarkerClick);
+      const markers = data
+        .filter(function(merchant) {
+          return merchant.lat && merchant.lng;
+        })
+        .map(function(merchant) {
+          const marker = L
+            .marker(
+              [merchant.lat, merchant.lng],
+              {
+                merchantId: merchant.id,
+                icon: markerIcon,
+              },
+            )
+            .on('click', onMarkerClick);
 
-        if (!isMobile) {
-          marker.bindPopup('', popupOptions)
-        }
+          if (!isMobile) {
+            marker.bindPopup('', popupOptions);
+          }
 
-        return marker;
-      });
+          return marker;
+        });
 
       markerGroup.addLayers(markers);
 
       map.addLayer(markerGroup);
     }
 
-    function filterMarkers() {
+    function getFilterData() {
       const searchValue = jQuery('#bfx-crypto-search-input').val().toLowerCase().trim();
       const formValues = jQuery('#bfx-crypto-filter-form').serializeArray();
       const categories = formValues
@@ -380,14 +418,6 @@ function bfx_crypto_map_handler( $atts ) {
 
       const numberOfFilter = categories.length + acceptedCryptos.length;
 
-      if (numberOfFilter > 0) {
-        jQuery('#filter-number').html(numberOfFilter + '').addClass('active');
-        jQuery('.bfx-crypto-filter-clear-all').removeClass('hidden');
-      } else {
-        jQuery('#filter-number').html('').removeClass('active');
-        jQuery('.bfx-crypto-filter-clear-all').addClass('hidden');
-      }
-
       const filteredData = MERCHANT_DATA.filter(function (merchant) {
         const matchedSearch = !searchValue || searchValue === '' || merchant.title.toLowerCase().includes(searchValue);
         const hasCategory = categories.length === 0 || categories.some(function (category) {
@@ -399,7 +429,31 @@ function bfx_crypto_map_handler( $atts ) {
         return matchedSearch && hasCategory && hasAcceptedCryptos;
       });
 
+      return {
+        numberOfFilter,
+        searchValue,
+        filteredData,
+      };
+    }
+
+    function filterMarkers() {
+      const filterData = getFilterData();
+      const numberOfFilter = filterData.numberOfFilter;
+      const filteredData = filterData.filteredData;
+
+      if (numberOfFilter > 0) {
+        jQuery('#filter-number').html(numberOfFilter + '').addClass('active');
+        jQuery('.bfx-crypto-filter-clear-all').removeClass('hidden');
+      } else {
+        jQuery('#filter-number').html('').removeClass('active');
+        jQuery('.bfx-crypto-filter-clear-all').addClass('hidden');
+      }
+
       renderMarkers(filteredData);
+
+      if (jQuery('#bfx-crypto-store-list-popup').hasClass('active')) {
+        showStoreList(filteredData);
+      }
     }
 
     function debounce(func, timeout = 300){
@@ -410,23 +464,111 @@ function bfx_crypto_map_handler( $atts ) {
       };
     }
 
+    function showStoreList(filteredData) {
+      if (!filteredData || filteredData.length === 0) {
+        const html = '<div class="center">{$translator->translate('no_store')}</div>';
+        jQuery('#bfx-crypto-store-list-popup .filter-container').html(html);
+        return;
+      }
+
+      const list = filteredData.map(function(merchant) {
+        const logoUrl = merchant.logo_url || logoPlaceholder;
+        const logo = '<img src="' + logoUrl + '" width="32" height="32" />';
+        const titleStr = '<div class="bfx-crypto-title">' + merchant.title + '</div>';
+        const description = merchant.address ? '<p>' + merchant.address + '</p>' : '';
+        const right = '<div>' + titleStr + description + '</div>';
+        const inner = logo + right;
+        return '<li onClick="storeClick(' + merchant.id + ')">' + inner +'</li>';
+      });
+      const html = '<ul>' + list.join('') + '</ul';
+
+      jQuery('#bfx-crypto-store-list-popup .filter-container').html(html);
+    }
+
+    function hideAllBfxCryptoPopup() {
+      jQuery('#bfx-crypto-filter-popup').removeClass('active');
+      jQuery('#bfx-crypto-store-list-popup').removeClass('active');
+      jQuery('#bfx-crypto-popup-overlay').removeClass('active');
+    }
+
+    function showBfxCryptoPopup(selector) {
+      jQuery(selector).addClass('active');
+      jQuery('#bfx-crypto-popup-overlay').addClass('active');
+    }
+
+    function storeClick(merchantId) {
+      const markers = markerGroup.getLayers();
+      const foundMarker = markers.find(function(marker) {
+        return marker?.options?.merchantId === merchantId;
+      });
+
+      if (foundMarker) {
+        hideAllBfxCryptoPopup();
+        const latLngs = [ foundMarker.getLatLng() ];
+        const markerBounds = L.latLngBounds(latLngs);
+        map.fitBounds(markerBounds);
+        setTimeout(() => {
+          foundMarker.fire('click');
+        }, 500);
+      }
+    }
+
+    function getVisibleMarkers() {
+      const markerList = [];
+      const bounds = map.getBounds();
+      const markers = markerGroup.getLayers();
+      return markers.filter(function(marker) {
+        return bounds.contains(marker.getLatLng());
+      });
+    }
+
+    function showStoreListPopup() {
+      const filterData = getFilterData();
+      const { filteredData, numberOfFilter, searchValue } = filterData;
+
+      // TODO: add this filter in the future
+      const showInbound = false 
+      if (showInbound) {
+        const inboundList = getVisibleMarkers()
+        const merchantIds = inboundList.map(function(marker) {
+          return marker?.options?.merchantId;
+        });
+        const inboundMerchant = MERCHANT_DATA.filter((merchant) => merchantIds.includes(merchant.id));
+        showStoreList(inboundMerchant);
+      } else {
+        showStoreList(filteredData);
+      }
+      showBfxCryptoPopup('#bfx-crypto-store-list-popup');
+    }
+
     jQuery('#bfx-crypto-search-input').keyup(debounce(function() {
       filterMarkers();
+      hideAllBfxCryptoPopup();
+      showStoreListPopup();
     }, 300));
 
     jQuery('#bfx-crypto-filter-form .filter-checkbox input')
       .on('change', filterMarkers);
 
+    jQuery('#bfx-crypto-store-list-btn, #bfx-crypto-store-list-mobile-btn').on('click', function () {
+      const isActive = jQuery('#bfx-crypto-store-list-popup').hasClass('active');
+      hideAllBfxCryptoPopup();
+      if (!isActive) {
+        showStoreListPopup();
+      }
+    });
+
     jQuery('#bfx-crypto-filter-btn').on('click', function () {
-      jQuery('#bfx-crypto-filter-popup').toggleClass('active');
-      jQuery('#bfx-crypto-filter-popup-overlay').toggleClass('active');
+      const isActive = jQuery('#bfx-crypto-filter-popup').hasClass('active');
+      hideAllBfxCryptoPopup();
+      if (!isActive) {
+        showBfxCryptoPopup('#bfx-crypto-filter-popup');
+      }
     });
 
-    jQuery('#bfx-crypto-filter-popup-overlay').on('click', function () {
-      jQuery('#bfx-crypto-filter-popup').removeClass('active');
-      jQuery('#bfx-crypto-filter-popup-overlay').removeClass('active');
+    jQuery('#bfx-crypto-popup-overlay').on('click', function () {
+      hideAllBfxCryptoPopup();
     });
-
 
     jQuery('#bfx-crypto-clear-filter-btn').on('click', function () {
       jQuery('.filter-checkbox input')
@@ -467,12 +609,16 @@ function add_script_attributes( $html, $handle ) {
 function bfx_crypto_map_shortcode_scripts() {
   global $post;
   if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'bfx_crypto_map') ) {
+    $plugin_version = bfx_crypto_map_version();
     wp_enqueue_script('leaflet', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js', array(), null);
     wp_enqueue_script('leaflet-marker-cluster', 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js', array('leaflet'), null);
+    // wp_enqueue_script('mapbox-gl', 'https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js', array(), null);
+    // wp_enqueue_script('mapbox-gl-leaflet', 'https://unpkg.com/mapbox-gl-leaflet/leaflet-mapbox-gl.js', array('leaflet', 'mapbox-gl'), null);
     wp_enqueue_style( 'leaflet', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css', array(), null);
     wp_enqueue_style( 'leaflet-marker-cluster', 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css', array('leaflet'), null);
     wp_enqueue_style( 'leaflet-marker-cluster-default', 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css', array('leaflet', 'leaflet-marker-cluster'), null);
-    wp_enqueue_style( 'leaflet-custom', plugin_dir_url(__FILE__) . 'assets/styles.css', array('leaflet'));
+    // wp_enqueue_style( 'mapbox-gl', 'https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css', array('leaflet'), null);
+    wp_enqueue_style( 'leaflet-custom', plugin_dir_url(__FILE__) . 'assets/styles.css', array('leaflet'), $plugin_version);
   }
 }
 
