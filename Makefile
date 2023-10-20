@@ -6,7 +6,7 @@ test:
 	./vendor/bin/phpunit test.php
 
 build: 
-	cd ../ && zip -r ~/wp-bfx-crypto-map.zip wp-bfx-crypto-map -x "wp-bfx-crypto-map/.git/*"
+	cd ../ && zip -r ~/bfx-wp-crypto-map.zip bfx-wp-crypto-map -x "bfx-wp-crypto-map/.git/*"
 
 clean:
-	rm -f ~/wp-bfx-crypto-map.zip
+	rm -f ~/bfx-wp-crypto-map.zip
