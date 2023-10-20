@@ -1,1 +1,0 @@
-{"version":1,"defects":{"EmailTest::testCanBeCreatedFromValidEmail":8,"EmailTest::testCannotBeCreatedFromInvalidEmail":7,"BfxCryptoMapTest::test_add_leaflet_script":7},"times":{"EmailTest::testCanBeCreatedFromValidEmail":0.006,"EmailTest::testCannotBeCreatedFromInvalidEmail":0.002,"BfxCryptoMapTest::test_add_leaflet_script":0.016}}
