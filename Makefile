@@ -3,7 +3,7 @@
 all: test build
 
 test:
-	php test.php
+	./vendor/bin/phpunit test.php
 
 build: 
 	cd ../ && zip -r ~/wp-bfx-crypto-map.zip wp-bfx-crypto-map -x "wp-bfx-crypto-map/.git/*"
