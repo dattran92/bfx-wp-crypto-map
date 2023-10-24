@@ -372,6 +372,20 @@
 }
 /* end store list */
 
+/* start current pin */
+#bfx-crypto-map .current-pin-area {
+  border: 0;
+} 
+
+#bfx-crypto-map .current-pin-btn {
+  border-radius: 6px;
+}
+
+#bfx-crypto-map .current-pin-btn img {
+  margin-top: 5px;
+}
+/* end current pin */
+
 /* start leaflet reset */
 .leaflet-popup-tip-container {
   display: none;
@@ -432,3 +446,4 @@
   border-bottom-right-radius: 6px;
 }
 /* end zoom customization */
+

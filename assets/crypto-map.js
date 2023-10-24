@@ -25,6 +25,7 @@ function BfxCryptoMap(configuration) {
   this.containerId = containerId;
   this.translations = translations;
 
+  this.currentPin = null;
   this.MERCHANT_DATA = [];
   this.logoPlaceholder = assetUrl + '/placeholder.png';
   this.tokenMap = {
@@ -54,6 +55,7 @@ BfxCryptoMap.prototype.translate = function(text) {
 }
 
 BfxCryptoMap.prototype.setup = function() {
+  const self = this;
   const map = L
     .map(this.containerId, {
       zoomControl: false,
@@ -63,16 +65,14 @@ BfxCryptoMap.prototype.setup = function() {
 
   map.attributionControl.setPrefix('© <a href="https://www.mapbox.com/feedback/">Mapbox</a> © <a href="https://leafletjs.com" title="A JavaScript library for interactive maps">Leaflet</a>');
 
+  map.on('locationfound', this.onLocationFound.bind(self));
+
   const gl = L
     .mapboxGL({
       style: 'mapbox://styles/dattranbfx/clnaw7jkh01rl01qn3llp3wur',
       accessToken: this.mapboxKey,
     })
     .addTo(map);
-
-  if (!this.isMobile) {
-    L.control.zoom({ position: 'bottomright' }).addTo(map);
-  }
 
   const markerIcon = L.icon({
     iconUrl: this.assetUrl + '/marker-pin-inactive.png',
@@ -88,15 +88,60 @@ BfxCryptoMap.prototype.setup = function() {
     popupAnchor: [1, -20],
   });
 
+  const currentPinIcon = L.icon({
+    iconUrl: this.assetUrl + '/current-pin.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 16],
+  });
+
   const markerGroup = L.markerClusterGroup({ disableClusteringAtZoom: 19 });
+
+  // Start Setup current position control
+  L.Control.CurrentPosition = L.Control.extend({
+    onAdd: function(map) {
+      const control = L.DomUtil.create('div', 'leaflet-bar current-pin-area');
+      const button = L.DomUtil.create('a', 'current-pin-btn', control);
+      const img = L.DomUtil.create('img', '', button);
+
+      L.DomEvent.on(
+        button, 
+        'click', 
+        function () {
+          self.map.locate({ setView: true, watch: true, maxZoom: 17 });
+        },
+      );
+
+      img.src = self.assetUrl + '/location.png';
+      img.style.width = '18px';
+      img.style.height = '18px';
+
+      return control;
+    },
+
+    onRemove: function(map) {
+      // Nothing to do here
+    }
+  });
+
+  L.control.currentPosition = function(opts) {
+    return new L.Control.CurrentPosition(opts);
+  }
+  // End Setup current position control
+
+  if (!this.isMobile) {
+    L.control.zoom({ position: 'bottomright' }).addTo(map);
+  }
+
+  L.control.currentPosition({ position: 'bottomright' }).addTo(map);
 
   this.map = map;
   this.gl = gl;
   this.markerGroup = markerGroup;
   this.markerIcon = markerIcon;
   this.activeMarkerIcon = activeMarkerIcon;
+  this.currentPinIcon = currentPinIcon;
 
-  this.setupListener()
+  this.setupListener();
 }
 
 BfxCryptoMap.prototype.setupListener = function() {
@@ -143,6 +188,21 @@ BfxCryptoMap.prototype.clearMarkers = function() {
   if (this.markerGroup) {
     this.markerGroup.clearLayers();
   }
+}
+
+BfxCryptoMap.prototype.onLocationFound = function(ev) {
+  const { latitude, longitude } = ev;
+  if (this.currentPin) {
+    this.map.removeLayer(this.currentPin);
+  }
+  this.currentPin = L
+    .marker(
+      [latitude, longitude],
+      {
+        icon: this.currentPinIcon,
+      },
+    )
+    .addTo(this.map);
 }
 
 BfxCryptoMap.prototype.renderMarkers = function(data) {
