@@ -26,6 +26,7 @@ function BfxCryptoMap(configuration) {
   this.translations = translations;
 
   this.currentPin = null;
+  this.needRelocate = false;
   this.MERCHANT_DATA = [];
   this.logoPlaceholder = assetUrl + '/placeholder.png';
   this.tokenMap = {
@@ -69,7 +70,7 @@ BfxCryptoMap.prototype.setup = function() {
 
   const gl = L
     .mapboxGL({
-      style: 'mapbox://styles/dattranbfx/clnaw7jkh01rl01qn3llp3wur',
+      style: 'mapbox://styles/planbmap/clo4gke3m00ey01qx79wmdtot',
       accessToken: this.mapboxKey,
     })
     .addTo(map);
@@ -107,7 +108,14 @@ BfxCryptoMap.prototype.setup = function() {
         button, 
         'click', 
         function () {
-          self.map.locate({ setView: true, watch: true, maxZoom: 17 });
+          self.map.locate({ watch: true });
+          if (self.currentPin) {
+            const { lat, lng } = self.currentPin.getLatLng();
+            self.map.flyTo([lat, lng], 17);
+          } else {
+            // wait until first time located
+            self.needRelocate = true;
+          }
         },
       );
 
@@ -203,6 +211,11 @@ BfxCryptoMap.prototype.onLocationFound = function(ev) {
       },
     )
     .addTo(this.map);
+
+  if (this.needRelocate) {
+    this.needRelocate = false;
+    this.map.flyTo([latitude, longitude], 17);
+  }
 }
 
 BfxCryptoMap.prototype.renderMarkers = function(data) {

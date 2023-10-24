@@ -211,7 +211,7 @@ function bfx_crypto_map_handler( $atts ) {
   <script>
     jQuery(function() { 
       const isMobile = document.body.clientWidth < 768;
-      const mapboxKey = 'pk.eyJ1IjoiZGF0dHJhbmJmeCIsImEiOiJjbG5reXVoYjEwenF4MmlzMzlmOWhpZ3J6In0.y3REJgotRpiNyo_tYAx2yQ';
+      const mapboxKey = 'pk.eyJ1IjoicGxhbmJtYXAiLCJhIjoiY2xvNGd2ZnJqMDF2ZTJsbzJua3dyNzJ2YSJ9.tbgNNQ5wehycZSJyeSRCuA';
 
       const bfxCryptoMap = new BfxCryptoMap({
         isMobile: isMobile,
