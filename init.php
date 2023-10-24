@@ -12,10 +12,12 @@ License: GPL2
 include_once(plugin_dir_path( __FILE__ ) . './translations.php');
 
 function bfx_crypto_map_version() {
+  if(!function_exists('get_plugin_data') ){
+    require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+  }
   $plugin_data = get_plugin_data(__FILE__, array('Version'));
   return $plugin_data['Version'];
 }
-
 
 // [bfx_crypto_map width="100%" height="100%" mode="desktop"]
 function bfx_crypto_map_handler( $atts ) {
