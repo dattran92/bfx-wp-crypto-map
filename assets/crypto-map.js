@@ -331,6 +331,7 @@ BfxCryptoMap.prototype.filterMarkers = function() {
 }
 
 BfxCryptoMap.prototype.showStoreList = function(filteredData) {
+  const self = this
   if (!filteredData || filteredData.length === 0) {
     const html = '<div class="center">' + this.translate('no_store') + '</div>';
     jQuery('#bfx-crypto-store-list-popup .filter-container').html(html);
@@ -338,17 +339,23 @@ BfxCryptoMap.prototype.showStoreList = function(filteredData) {
   }
 
   const list = filteredData.map(function(merchant) {
-    const logoUrl = merchant.logo_url || this.logoPlaceholder;
+    const logoUrl = merchant.logo_url || self.logoPlaceholder;
     const logo = '<img src="' + logoUrl + '" width="32" height="32" />';
     const titleStr = '<div class="bfx-crypto-title">' + merchant.title + '</div>';
     const description = merchant.address ? '<p>' + merchant.address + '</p>' : '';
     const right = '<div>' + titleStr + description + '</div>';
     const inner = logo + right;
-    return '<li onClick="storeClick(' + merchant.id + ')">' + inner +'</li>';
+    return '<li class="merchant-item" data-merchant-id="' + merchant.id + '">' + inner +'</li>';
   });
   const html = '<ul>' + list.join('') + '</ul';
 
   jQuery('#bfx-crypto-store-list-popup .filter-container').html(html);
+
+  jQuery('#bfx-crypto-store-list-popup .filter-container .merchant-item')
+    .on('click', function(e) {
+      const merchantId = jQuery(this).data('merchant-id');
+      self.storeClick(merchantId);
+    })
 }
 
 BfxCryptoMap.prototype.storeClick = function(merchantId) {
@@ -361,7 +368,7 @@ BfxCryptoMap.prototype.storeClick = function(merchantId) {
     BfxCryptoMap.hideAllBfxCryptoPopup();
     const latLngs = [ foundMarker.getLatLng() ];
     const markerBounds = L.latLngBounds(latLngs);
-    map.fitBounds(markerBounds);
+    this.map.fitBounds(markerBounds);
     setTimeout(() => {
       foundMarker.fire('click');
     }, 500);
