@@ -15,6 +15,7 @@ function BfxCryptoMap(configuration) {
     mapboxKey,
     merchantDataUrl,
     containerId = 'bfx-crypto-map',
+    translations,
   } = configuration;
 
   this.isMobile = isMobile;
@@ -22,6 +23,7 @@ function BfxCryptoMap(configuration) {
   this.mapboxKey = mapboxKey;
   this.merchantDataUrl = merchantDataUrl;
   this.containerId = containerId;
+  this.translations = translations;
 
   this.MERCHANT_DATA = [];
   this.logoPlaceholder = assetUrl + '/placeholder.png';
@@ -48,7 +50,7 @@ function BfxCryptoMap(configuration) {
 }
 
 BfxCryptoMap.prototype.translate = function(text) {
-  return text;
+  return this.translations[text] || text;
 }
 
 BfxCryptoMap.prototype.setup = function() {

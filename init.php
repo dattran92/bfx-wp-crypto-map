@@ -218,6 +218,9 @@ function bfx_crypto_map_handler( $atts ) {
         assetUrl: '$asset_url',
         mapboxKey: mapboxKey,
         merchantDataUrl: '$merchants_data_url',
+        translations: {
+          no_store: "{$translator->translate('no_store')}",
+        }
       });
 
       bfxCryptoMap.setup();
