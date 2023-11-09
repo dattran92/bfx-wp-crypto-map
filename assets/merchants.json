@@ -1660,7 +1660,7 @@
       "LVGA"
     ],
     "id": 82,
-    "lat": 46.00579145261844, 
+    "lat": 46.00579145261844,
     "lng": 8.957203346015872
   },
   {
@@ -1957,27 +1957,6 @@
       "LVGA"
     ],
     "id": 96
-  },
-  {
-    "address": "Via Emilio Riva 12 - 6962 Viganello",
-    "phone": "",
-    "logo_url": "https://s3.eu-central-1.amazonaws.com/public.elipay.com/live-3514d179aac2/source/images/0f93812b1aa845b9a2bab62edf05c5f4.jpg",
-    "website": "",
-    "description": "",
-    "gocryptoId": 2827,
-    "title": "La pasticceria di Flavio, Viganello",
-    "vat": "CHE-379.666.436",
-    "lat": 46.012368,
-    "lng": 8.969115,
-    "tags": [
-      "food_and_drink"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 97
   },
   {
     "address": "Via Cattedrale 6 - 6900 Lugano",
@@ -2631,27 +2610,6 @@
     "id": 131
   },
   {
-    "address": "Strada di Pregassona 40d - 6963 Pregassona",
-    "phone": "",
-    "logo_url": "https://s3.eu-central-1.amazonaws.com/public.elipay.com/live-3514d179aac2/source/images/4b65b68168d941dfa418652f6e18a09f.png",
-    "website": "https://pegasus-ticino.ch",
-    "description": "",
-    "gocryptoId": 2691,
-    "title": "Pegasus Delivery",
-    "vat": "CHE-179.569.536",
-    "lat": 46.022821,
-    "lng": 8.976335,
-    "tags": [
-      "services"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 132
-  },
-  {
     "address": "Via Pioda 4 - 6900 Lugano",
     "phone": "",
     "logo_url": "https://s3.eu-central-1.amazonaws.com/public.elipay.com/live-3514d179aac2/source/images/72374e028fe74dbe9eaa01f3ead24be7.jpg",
@@ -2881,27 +2839,6 @@
       "LVGA"
     ],
     "id": 144
-  },
-  {
-    "address": "Piazza dra Stazzion 6 - 6967 Dino",
-    "phone": "",
-    "logo_url": "https://s3.eu-central-1.amazonaws.com/public.elipay.com/live-3514d179aac2/source/images/db9c1dacb6434529add8829c4c825e18.png",
-    "website": "https://ristorantemiramonti.ch",
-    "description": "",
-    "gocryptoId": 2696,
-    "title": "Ristorante Miramonti",
-    "vat": "CHE-305.328.314",
-    "lat": 46.052421,
-    "lng": 8.983194,
-    "tags": [
-      "food_and_drink"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 145
   },
   {
     "address": "Via Trevano 19 - 6900 Lugano",
@@ -4753,7 +4690,7 @@
     "gocryptoId": null,
     "title": "Raw Excellence",
     "vat": "CHE-115.753.988",
-    "lat": 46.006257602017634, 
+    "lat": 46.006257602017634,
     "lng": 8.966892224140324,
     "tags": [
       "retail"
@@ -7272,5 +7209,110 @@
       "LVGA"
     ],
     "id": 368
+  },
+  {
+    "address": "Via Rinaldo Simen 1 - 6900 Lugano",
+    "phone": "41 79 296 87 09",
+    "logo_url": "",
+    "website": "",
+    "description": "MyLugano Card (residents): 10% Cashback in LVGA\nMyLugano Pass (non-residents): 5% cashback in LVGA",
+    "gocryptoId": "",
+    "title": "PaneLento Lievito Madre",
+    "vat": "CHE-106.633.061",
+    "lat": "46.011960240728726",
+    "lng": "8.956036854904974",
+    "tags": [
+      "food_and_drink"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 369
+  },
+  {
+    "address": "Via al Chioso 28 - 6900 Lugano",
+    "phone": "41 91 225 70 25",
+    "logo_url": "",
+    "website": "",
+    "description": "MyLugano Card (residents): 10% Cashback in LVGA\nMyLugano Pass (non-residents): 5% cashback in LVGA",
+    "gocryptoId": "",
+    "title": "Le Charme Estetica e Benessere",
+    "vat": "CHE-350.589.039",
+    "lat": "46.00973476286337",
+    "lng": "8.962777236336041",
+    "tags": [
+      "services"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 370
+  },
+  {
+    "address": "Via Zurigo 1 - 6900 Lugano",
+    "phone": "41 91 921 05 06",
+    "logo_url": "",
+    "website": "",
+    "description": "MyLugano Card (residents): 10% Cashback in LVGA\nMyLugano Pass (non-residents): 5% cashback in LVGA",
+    "gocryptoId": "",
+    "title": "Edicola Molino Nuovo",
+    "vat": "CHE-468.453.032",
+    "lat": "46.01170159586413",
+    "lng": "8.956314984241516",
+    "tags": [
+      "retail"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 371
+  },
+  {
+    "address": "Via Cadepiano 2 - Centro Pianscari - 6916 Grancia",
+    "phone": "41 91 226 21 50",
+    "logo_url": "",
+    "website": "",
+    "description": "MyLugano Card (residents): 10% Cashback in LVGA\nMyLugano Pass (non-residents): 5% cashback in LVGA",
+    "gocryptoId": "",
+    "title": "Customycar - Wrapping car, boat and interior",
+    "vat": "CHE-195.589.129",
+    "lat": "45.96748105314677",
+    "lng": "8.924188419565501",
+    "tags": [
+      "auto_and_moto",
+      "services",
+      "home_and_garden"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 372
+  },
+  {
+    "address": "Via Ferruccio Pelli  - 6901 Lugano",
+    "phone": "41 91 911 15 15",
+    "logo_url": "",
+    "website": "",
+    "description": "",
+    "gocryptoId": "",
+    "title": "AXA - Agenzia generale Davide Pilotti",
+    "vat": "CHE-475.909.037",
+    "lat": "46.007055701157505",
+    "lng": "8.950304941852274",
+    "tags": [
+      "services"
+    ],
+    "accepted_cryptos": [
+      "LVGA"
+    ],
+    "id": 373
   }
 ]
