@@ -15,6 +15,7 @@ function BfxCryptoMap(configuration) {
     mapboxKey,
     merchantDataUrl,
     containerId = 'bfx-crypto-map',
+    translations,
   } = configuration;
 
   this.isMobile = isMobile;
@@ -22,7 +23,10 @@ function BfxCryptoMap(configuration) {
   this.mapboxKey = mapboxKey;
   this.merchantDataUrl = merchantDataUrl;
   this.containerId = containerId;
+  this.translations = translations;
 
+  this.currentPin = null;
+  this.needRelocate = false;
   this.MERCHANT_DATA = [];
   this.logoPlaceholder = assetUrl + '/placeholder.png';
   this.tokenMap = {
@@ -48,10 +52,11 @@ function BfxCryptoMap(configuration) {
 }
 
 BfxCryptoMap.prototype.translate = function(text) {
-  return text;
+  return this.translations[text] || text;
 }
 
 BfxCryptoMap.prototype.setup = function() {
+  const self = this;
   const map = L
     .map(this.containerId, {
       zoomControl: false,
@@ -61,16 +66,14 @@ BfxCryptoMap.prototype.setup = function() {
 
   map.attributionControl.setPrefix('© <a href="https://www.mapbox.com/feedback/">Mapbox</a> © <a href="https://leafletjs.com" title="A JavaScript library for interactive maps">Leaflet</a>');
 
+  map.on('locationfound', this.onLocationFound.bind(self));
+
   const gl = L
     .mapboxGL({
-      style: 'mapbox://styles/dattranbfx/clnaw7jkh01rl01qn3llp3wur',
+      style: 'mapbox://styles/planbmap/clo4gke3m00ey01qx79wmdtot',
       accessToken: this.mapboxKey,
     })
     .addTo(map);
-
-  if (!this.isMobile) {
-    L.control.zoom({ position: 'bottomright' }).addTo(map);
-  }
 
   const markerIcon = L.icon({
     iconUrl: this.assetUrl + '/marker-pin-inactive.png',
@@ -86,31 +89,83 @@ BfxCryptoMap.prototype.setup = function() {
     popupAnchor: [1, -20],
   });
 
+  const currentPinIcon = L.icon({
+    iconUrl: this.assetUrl + '/current-pin.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 16],
+  });
+
   const markerGroup = L.markerClusterGroup({ disableClusteringAtZoom: 19 });
+
+  // Start Setup current position control
+  L.Control.CurrentPosition = L.Control.extend({
+    onAdd: function(map) {
+      const control = L.DomUtil.create('div', 'leaflet-bar current-pin-area');
+      const button = L.DomUtil.create('a', 'current-pin-btn', control);
+      const img = L.DomUtil.create('img', '', button);
+
+      L.DomEvent.on(
+        button, 
+        'click', 
+        function () {
+          self.map.locate({ watch: true });
+          if (self.currentPin) {
+            const { lat, lng } = self.currentPin.getLatLng();
+            self.map.flyTo([lat, lng], 17);
+          } else {
+            // wait until first time located
+            self.needRelocate = true;
+          }
+        },
+      );
+
+      img.src = self.assetUrl + '/location.png';
+      img.style.width = '18px';
+      img.style.height = '18px';
+
+      return control;
+    },
+
+    onRemove: function(map) {
+      // Nothing to do here
+    }
+  });
+
+  L.control.currentPosition = function(opts) {
+    return new L.Control.CurrentPosition(opts);
+  }
+  // End Setup current position control
+
+  if (!this.isMobile) {
+    L.control.zoom({ position: 'bottomright' }).addTo(map);
+  }
+
+  L.control.currentPosition({ position: 'bottomright' }).addTo(map);
 
   this.map = map;
   this.gl = gl;
   this.markerGroup = markerGroup;
   this.markerIcon = markerIcon;
   this.activeMarkerIcon = activeMarkerIcon;
+  this.currentPinIcon = currentPinIcon;
 
-  this.setupListener()
+  this.setupListener();
 }
 
 BfxCryptoMap.prototype.setupListener = function() {
   const self = this;
   jQuery('#bfx-crypto-search-input').keyup(BfxCryptoUtils.debounce(function() {
     self.filterMarkers();
-    self.hideAllBfxCryptoPopup();
+    BfxCryptoMap.hideAllBfxCryptoPopup();
     self.showStoreListPopup();
   }, 300));
 
   jQuery('#bfx-crypto-filter-form .filter-checkbox input')
-    .on('change', self.filterMarkers);
+    .on('change', self.filterMarkers.bind(self));
 
   jQuery('#bfx-crypto-store-list-btn, #bfx-crypto-store-list-mobile-btn').on('click', function () {
     const isActive = jQuery('#bfx-crypto-store-list-popup').hasClass('active');
-    self.hideAllBfxCryptoPopup();
+    BfxCryptoMap.hideAllBfxCryptoPopup();
     if (!isActive) {
       self.showStoreListPopup();
     }
@@ -118,14 +173,14 @@ BfxCryptoMap.prototype.setupListener = function() {
 
   jQuery('#bfx-crypto-filter-btn').on('click', function () {
     const isActive = jQuery('#bfx-crypto-filter-popup').hasClass('active');
-    self.hideAllBfxCryptoPopup();
+    BfxCryptoMap.hideAllBfxCryptoPopup();
     if (!isActive) {
-      self.showBfxCryptoPopup('#bfx-crypto-filter-popup');
+      BfxCryptoMap.showBfxCryptoPopup('#bfx-crypto-filter-popup');
     }
   });
 
   jQuery('#bfx-crypto-popup-overlay').on('click', function () {
-    self.hideAllBfxCryptoPopup();
+    BfxCryptoMap.hideAllBfxCryptoPopup();
   });
 
   jQuery('#bfx-crypto-clear-filter-btn').on('click', function () {
@@ -143,7 +198,28 @@ BfxCryptoMap.prototype.clearMarkers = function() {
   }
 }
 
+BfxCryptoMap.prototype.onLocationFound = function(ev) {
+  const { latitude, longitude } = ev;
+  if (this.currentPin) {
+    this.map.removeLayer(this.currentPin);
+  }
+  this.currentPin = L
+    .marker(
+      [latitude, longitude],
+      {
+        icon: this.currentPinIcon,
+      },
+    )
+    .addTo(this.map);
+
+  if (this.needRelocate) {
+    this.needRelocate = false;
+    this.map.flyTo([latitude, longitude], 17);
+  }
+}
+
 BfxCryptoMap.prototype.renderMarkers = function(data) {
+  const self = this;
   this.clearMarkers();
   const popupOptions = {
     autoPanPadding: L.point(70, 70),
@@ -162,12 +238,12 @@ BfxCryptoMap.prototype.renderMarkers = function(data) {
           [merchant.lat, merchant.lng],
           {
             merchantId: merchant.id,
-            icon: markerIcon,
+            icon: self.markerIcon,
           },
         )
-        .on('click', this.onMarkerClick);
+        .on('click', self.onMarkerClick.bind(self));
 
-      if (!isMobile) {
+      if (!self.isMobile) {
         marker.bindPopup('', popupOptions);
       }
 
@@ -175,32 +251,34 @@ BfxCryptoMap.prototype.renderMarkers = function(data) {
     });
 
   this.markerGroup.addLayers(markers);
-  this.map.addLayer(markerGroup);
+  this.map.addLayer(this.markerGroup);
 }
 
 BfxCryptoMap.prototype.fetchData = function() {
+  const self = this;
   jQuery
-  .ajax({ url: this.merchantDataUrl })
-  .done(function(data) {
-    this.MERCHANT_DATA = data;
-    this.renderMarkers(data);
-  });
+    .ajax({ url: this.merchantDataUrl })
+    .done(function(data) {
+      self.MERCHANT_DATA = data;
+      self.renderMarkers(data);
+    });
 }
 
 BfxCryptoMap.prototype.onMarkerClick = function(e) {
-  const merchant = this.MERCHANT_DATA.find(function (merchant) {
+  const self = this;
+  const merchant = self.MERCHANT_DATA.find(function (merchant) {
     return merchant.id === e.target.options.merchantId;
   });
 
   if (merchant) {
-    e.target.setIcon(this.activeMarkerIcon);
+    e.target.setIcon(self.activeMarkerIcon);
 
     const tags = (merchant.tags || []).map(function (tag) {
       const tag_name = jQuery('#bfx_filter_' + tag).next().html() || tag;
       return '<span class="tag">' + tag_name + '</span>';
     }).join('');
     const tokens = (merchant.accepted_cryptos || []).map(function (token) {
-      const tokenInfo = this.tokenMap[token];
+      const tokenInfo = self.tokenMap[token];
       if (tokenInfo) {
         const img = '<img src="' + tokenInfo.icon + '" width="' + tokenInfo.width +'" height="' + tokenInfo.height + '" />';
         const label = '<span>' + tokenInfo.name + '</span>';
@@ -209,17 +287,17 @@ BfxCryptoMap.prototype.onMarkerClick = function(e) {
       return '';
     }).join('');
 
-    const logoUrl = merchant.logo_url || logoPlaceholder;
+    const logoUrl = merchant.logo_url || self.logoPlaceholder;
     const logo = '<img src="' + logoUrl + '" width="44" height="44" />';
     const titleStr = merchant.title || '';
     const title = '<h3>' + titleStr + '</h3>' + tags;
     const description = merchant.address ? '<p>' + merchant.address + '</p>' : '';
     const website = merchant.website
-      ? '<a href="' + merchant.website + '" target="_blank"><img src="$asset_url/globe.png" /></a>'
+      ? '<a href="' + merchant.website + '" target="_blank"><img src="' + self.assetUrl + '/globe.png" /></a>'
       : '';
 
     const latLng = merchant.lat + ',' + merchant.lng;
-    const direction = '<a href="https://maps.google.com/?q=' + latLng +'" target="_blank"><img src="$asset_url/direction.png" /></a>';
+    const direction = '<a href="https://maps.google.com/?q=' + latLng +'" target="_blank"><img src="' + self.assetUrl + '/direction.png" /></a>';
     const websiteInner = website + direction;
 
     const popupTemplate = document.getElementById('bfx-crypto-popup-template');
@@ -229,12 +307,12 @@ BfxCryptoMap.prototype.onMarkerClick = function(e) {
     popupTemplate.querySelector('.tokens').innerHTML = tokens;
     popupTemplate.querySelector('.website').innerHTML = websiteInner;
 
-    const popup = this.setPopupContent(e, popupTemplate.innerHTML);
+    const popup = self.setPopupContent(e, popupTemplate.innerHTML);
 
     popup.on('remove', function () {
       // silly work-around to avoid race-condition made by leaflet marker cluster
       setTimeout(function () {
-        e.target.setIcon(markerIcon);
+        e.target.setIcon(self.markerIcon);
       }, 1000);
     });
   }
@@ -326,6 +404,7 @@ BfxCryptoMap.prototype.filterMarkers = function() {
 }
 
 BfxCryptoMap.prototype.showStoreList = function(filteredData) {
+  const self = this
   if (!filteredData || filteredData.length === 0) {
     const html = '<div class="center">' + this.translate('no_store') + '</div>';
     jQuery('#bfx-crypto-store-list-popup .filter-container').html(html);
@@ -333,17 +412,23 @@ BfxCryptoMap.prototype.showStoreList = function(filteredData) {
   }
 
   const list = filteredData.map(function(merchant) {
-    const logoUrl = merchant.logo_url || logoPlaceholder;
+    const logoUrl = merchant.logo_url || self.logoPlaceholder;
     const logo = '<img src="' + logoUrl + '" width="32" height="32" />';
     const titleStr = '<div class="bfx-crypto-title">' + merchant.title + '</div>';
     const description = merchant.address ? '<p>' + merchant.address + '</p>' : '';
     const right = '<div>' + titleStr + description + '</div>';
     const inner = logo + right;
-    return '<li onClick="storeClick(' + merchant.id + ')">' + inner +'</li>';
+    return '<li class="merchant-item" data-merchant-id="' + merchant.id + '">' + inner +'</li>';
   });
   const html = '<ul>' + list.join('') + '</ul';
 
   jQuery('#bfx-crypto-store-list-popup .filter-container').html(html);
+
+  jQuery('#bfx-crypto-store-list-popup .filter-container .merchant-item')
+    .on('click', function(e) {
+      const merchantId = jQuery(this).data('merchant-id');
+      self.storeClick(merchantId);
+    })
 }
 
 BfxCryptoMap.prototype.storeClick = function(merchantId) {
@@ -356,7 +441,7 @@ BfxCryptoMap.prototype.storeClick = function(merchantId) {
     BfxCryptoMap.hideAllBfxCryptoPopup();
     const latLngs = [ foundMarker.getLatLng() ];
     const markerBounds = L.latLngBounds(latLngs);
-    map.fitBounds(markerBounds);
+    this.map.fitBounds(markerBounds);
     setTimeout(() => {
       foundMarker.fire('click');
     }, 500);

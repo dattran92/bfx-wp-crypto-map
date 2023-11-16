@@ -211,13 +211,16 @@ function bfx_crypto_map_handler( $atts ) {
   <script>
     jQuery(function() { 
       const isMobile = document.body.clientWidth < 768;
-      const mapboxKey = 'pk.eyJ1IjoiZGF0dHJhbmJmeCIsImEiOiJjbG5reXVoYjEwenF4MmlzMzlmOWhpZ3J6In0.y3REJgotRpiNyo_tYAx2yQ';
+      const mapboxKey = 'pk.eyJ1IjoicGxhbmJtYXAiLCJhIjoiY2xvNGd2ZnJqMDF2ZTJsbzJua3dyNzJ2YSJ9.tbgNNQ5wehycZSJyeSRCuA';
 
       const bfxCryptoMap = new BfxCryptoMap({
         isMobile: isMobile,
         assetUrl: '$asset_url',
         mapboxKey: mapboxKey,
         merchantDataUrl: '$merchants_data_url',
+        translations: {
+          no_store: "{$translator->translate('no_store')}",
+        }
       });
 
       bfxCryptoMap.setup();
@@ -249,6 +252,7 @@ function bfx_crypto_map_shortcode_scripts() {
   global $post;
   if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'bfx_crypto_map') ) {
     $plugin_version = bfx_crypto_map_version();
+    wp_enqueue_script("jquery");
     wp_enqueue_script('leaflet', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js', array(), null);
     wp_enqueue_script('leaflet-marker-cluster', 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js', array('leaflet'), null);
     wp_enqueue_script('mapbox-gl', 'https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js', array(), null);
