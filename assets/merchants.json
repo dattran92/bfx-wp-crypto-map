@@ -7280,8 +7280,6 @@
       "services"
     ],
     "accepted_cryptos": [
-      "BTC",
-      "UST",
       "LVGA"
     ],
     "id": 381
@@ -7390,27 +7388,6 @@
       "LVGA"
     ],
     "id": 386
-  },
-  {
-    "address": "Corso Elvezia 10 - Lugano",
-    "phone": "41 91 921 27 54",
-    "logo_url": "",
-    "website": "https://www.isoladelbenessere.ch/",
-    "description": "MyLugano Card (residents): 10% Cashback in LVGA\nMyLugano Pass (non-residents): 5% cashback in LVGA",
-    "gocryptoId": "",
-    "title": "Isola del benessere",
-    "vat": "CHE-397.075.718",
-    "lat": "46.007754380852944",
-    "lng": "8.956110579452137",
-    "tags": [
-      "service"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 387
   },
   {
     "address": "Via Cristallina 48 - 6720 Campo Blenio",
