@@ -2589,27 +2589,6 @@
     "id": 130
   },
   {
-    "address": "Via Pioda 4 - 6900 Lugano",
-    "phone": "",
-    "logo_url": "https://s3.eu-central-1.amazonaws.com/public.elipay.com/live-3514d179aac2/source/images/72374e028fe74dbe9eaa01f3ead24be7.jpg",
-    "website": "",
-    "description": "",
-    "gocryptoId": 2486,
-    "title": "Pescheria Belvga",
-    "vat": "CHE-350.509.299",
-    "lat": 46.006079,
-    "lng": 8.953925,
-    "tags": [
-      "food_and_drink"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 133
-  },
-  {
     "address": "Via Marco Da Carona 2 - 6900 Lugano",
     "phone": "",
     "logo_url": "https://s3.eu-central-1.amazonaws.com/public.elipay.com/live-3514d179aac2/source/images/271a99d0744c44d0b8b1da2ce286d508.png",
