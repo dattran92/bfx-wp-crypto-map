@@ -168,27 +168,6 @@
     "id": 8
   },
   {
-    "address": "Via Carlo Maderno 23 - 6900 Lugano",
-    "phone": "",
-    "logo_url": "",
-    "website": "https://www.amalo.ch",
-    "description": "",
-    "gocryptoId": 2490,
-    "title": "Amalo momento Italiano",
-    "vat": "CHE-440.347.156",
-    "lat": 46.010899,
-    "lng": 8.955325,
-    "tags": [
-      "food_and_drink"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 9
-  },
-  {
     "address": "Via Pelli 3 - 6900 Lugano",
     "phone": "",
     "logo_url": "https://s3.eu-central-1.amazonaws.com/public.elipay.com/live-3514d179aac2/source/images/00956a9dfbea4a2e8d8ef5f55c616f90.png",
