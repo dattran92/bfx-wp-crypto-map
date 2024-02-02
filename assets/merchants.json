@@ -6680,6 +6680,27 @@
     "id": 358
   },
   {
+    "address": "Viale Castagnola 25 - 6900 Lugano",
+    "phone": "41 76 346 41 70",
+    "logo_url": "",
+    "website": "https://amalo.ch/",
+    "description": "MyLugano Card (residents): 10% Cashback in LVGA\nMyLugano Pass (non-residents): 5% cashback in LVGA",
+    "gocryptoId": null,
+    "title": "Amalo momento italiano",
+    "vat": "CHE-456.592.632",
+    "lat": 46.00588784146962,
+    "lng": 8.967372386887604,
+    "tags": [
+      "food_and_drink"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 359
+  },
+  {
     "address": "Via Fontana 1 - 6780 Airolo",
     "phone": "41 91 873 80 40",
     "logo_url": "",
