@@ -7222,27 +7222,6 @@
     "id": 385
   },
   {
-    "address": "Via Sonvico 8 - 6900 Lugano",
-    "phone": "41 91 935 04 40",
-    "logo_url": "",
-    "website": "http://www.garbani.ch/",
-    "description": "MyLugano Card (residents): 10% Cashback in LVGA\nMyLugano Pass (non-residents): 5% cashback in LVGA",
-    "gocryptoId": "",
-    "title": "Cartoleria Garbani",
-    "vat": "",
-    "lat": "46.028653606147536",
-    "lng": "8.967662440387038",
-    "tags": [
-      "retail"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 386
-  },
-  {
     "address": "Via Cristallina 48 - 6720 Campo Blenio",
     "phone": "41 91 872 21 15",
     "logo_url": "",
