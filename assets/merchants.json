@@ -6535,27 +6535,6 @@
     "id": 350
   },
   {
-    "address": "Vicolo dei Pini 2 - 6962 Viganello",
-    "phone": "41 78 258 19 17",
-    "logo_url": "",
-    "website": "https://monsterhouse.ch/",
-    "description": "MyLugano Card (residents): 10% Cashback in LVGA\nMyLugano Pass (non-residents): 5% cashback in LVGA",
-    "gocryptoId": "",
-    "title": "Monster House Tattoo & Piercing",
-    "vat": "CHE-220.325.245",
-    "lat": 46.0153019,
-    "lng": 8.9699829,
-    "tags": [
-      "services"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 351
-  },
-  {
     "address": "Via Canonica 5 - 6900 Lugano",
     "phone": "41 78 258 19 17",
     "logo_url": "",
@@ -7365,5 +7344,130 @@
       "LVGA"
     ],
     "id": 392
+  },
+  {
+    "address": "Piazza Cioccaro 10 - 6900 Lugano",
+    
+    "phone": "",
+    "logo_url": "",
+    "website": "",
+    "description": "",
+    "gocryptoId": "",
+    "title": "David Glamour",
+    "vat": "",
+    "lat": "46.005027865981205",
+    "lng": "8.949756664643461",
+    "tags": [
+      "retail"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 393
+  },
+  {
+    "address": "Vicolo dei Pini 2 - 6962 Viganello ",
+    "phone": "",
+    "logo_url": "",
+    "website": "https://www.bohtattoo.com/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "BOH! TATTOO STUDIO",
+    "vat": "",
+    "lat": "46.015469543332536",
+    "lng": "8.969961442261287",
+    "tags": [
+      "services"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 394
+  },
+  {
+    "address": "Via Canova 7 - 6900 Lugano",
+    "phone": "",
+    "logo_url": "",
+    "website": "https://barportici.ch/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Snack Bar Portici",
+    "vat": "CHE-318.150.385",
+    "lat": "46.00495540671895",
+    "lng": "8.95274677933413",
+    "tags": [
+      "food_and_drink"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 395
+  },
+  {
+    "address": "Corso Pestalozzi 4 - 6900 Lugano",
+    "phone": "",
+    "logo_url": "",
+    "website": "https://wespeak.ch/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "WeSpeak - Scuola di lingue e soggiorni linguistici",
+    "vat": "CHE-465.513.672",
+    "lat": "46.006712859618474",
+    "lng": "8.950971905218505",
+    "tags": [
+      "services"
+    ],
+    "accepted_cryptos": [
+      "LVGA"
+    ],
+    "id": 396
+  },
+  {
+    "address": "Via Sonvico 8 - 6952 Lugano",
+    "phone": "",
+    "logo_url": "",
+    "website": "http://www.garbani.ch/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Cartoleria Garbani",
+    "vat": "CHE-105.752.993",
+    "lat": "46.028072518365825",
+    "lng": "8.96807015127938",
+    "tags": [
+      "retail",
+      "",
+      ""
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 397
+  },
+  {
+    "address": "Via Balestra 9 - 6900 Lugano",
+    "phone": "",
+    "logo_url": "",
+    "website": "",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Hair L'Essenza",
+    "vat": "",
+    "lat": "46.00922807699895",
+    "lng": "8.954219831866748",
+    "tags": [],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 398
   }
 ]
