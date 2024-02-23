@@ -7326,7 +7326,6 @@
   },
   {
     "address": "Piazza Cioccaro 10 - 6900 Lugano",
-    
     "phone": "",
     "logo_url": "",
     "website": "",
@@ -7448,5 +7447,175 @@
       "LVGA"
     ],
     "id": 398
+  },
+  {
+    "address": "Via Maderno 24 - 6900 Lugano",
+    "phone": "41 91 923 74 21",
+    "logo_url": "",
+    "website": "",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Bar Oops",
+    "vat": "CHE-109.296.480",
+    "lat": "46.01146683384235",
+    "lng": "8.95540442055107",
+    "tags": [
+      "food_and_drink"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 399
+  },
+  {
+    "address": "Via Concordia 17 - 6900 Lugano",
+    "phone": "41 91 222 90 00",
+    "logo_url": "",
+    "website": "http://www.casalibanesemenu.byethost31.com/?i=1",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Casa Libanese",
+    "vat": "CHE-145.712.623",
+    "lat": "46.007950170587236",
+    "lng": "8.968166615869439",
+    "tags": [
+      "food_and_drink"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 400
+  },
+  {
+    "address": "Via Besso 31 - 6900 Lugano",
+    "phone": "41 78 812 24 27",
+    "logo_url": "",
+    "website": "",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Supermarket Asia",
+    "vat": "CHE-404.583.637",
+    "lat": "46.00895971438478",
+    "lng": "8.94032196291053",
+    "tags": [
+      "food_and_drink"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 401
+  },
+  {
+    "address": "Via Balestra 39 A - 6900 Lugano",
+    "phone": "41 79 621 76 50",
+    "logo_url": "",
+    "website": "https://www.kmoto.ch/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "K Moto Lugano",
+    "vat": "CHE-108.523.822",
+    "lat": "46.00813346554991",
+    "lng": "8.96005694434472",
+    "tags": [
+      "auto_and_moto"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 402
+  },
+  {
+    "address": "Via Marconi 4 - 6900 Lugano",
+    "phone": "",
+    "logo_url": "",
+    "website": "https://yes-swiss.ch/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Yes Swiss Global Event Services",
+    "vat": "CHE-246.514.687",
+    "lat": "46.004159977600445",
+    "lng": "8.954766544343412",
+    "tags": [
+      "services"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 403
+  },
+  {
+    "address": "Via Trevano 100 - 6900 Lugano ",
+    "phone": "41 91 922 86 72",
+    "logo_url": "",
+    "website": "https://shop.fclugano.com/?utm_source=fclugano.com&utm_medium=menu",
+    "description": "",
+    "gocryptoId": "",
+    "title": "FC Lugano - Merchandising",
+    "vat": "CHE-110.165.991",
+    "lat": "46.023930534899435",
+    "lng": "8.960262678808425",
+    "tags": [
+      "retail",
+      "sports_and_leisure"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 404
+  },
+  {
+    "address": "Via Trevano 100 - 6900 Lugano ",
+    "phone": "41 91 922 86 72",
+    "logo_url": "",
+    "website": "",
+    "description": "",
+    "gocryptoId": "",
+    "title": "FC Lugano - Food and Beverages",
+    "vat": "CHE-110.165.991",
+    "lat": "46.023930534899435",
+    "lng": "8.960262678808425",
+    "tags": [
+      "food_and_drink",
+      "sports_and_leisure"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 405
+  },
+  {
+    "address": "Corso Pestalozzi 4 - 6900 Lugano",
+    "phone": "41 91 922 03 72",
+    "logo_url": "",
+    "website": "https://www.otticomichel.ch/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Il Piccolo Principe - Ottico Michel",
+    "vat": "CHE-172.756.385",
+    "lat": "46.00632162726383",
+    "lng": "8.951229399999148",
+    "tags": [
+      "retail"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 406
   }
 ]
