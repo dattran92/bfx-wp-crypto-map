@@ -7262,27 +7262,6 @@
     "id": 389
   },
   {
-    "address": "Via Balestra 39 A - 6900 Lugano",
-    "phone": "41 79 621 76 50",
-    "logo_url": "",
-    "website": "https://www.kmoto.ch/index.html",
-    "description": "MyLugano Card (residents): 10% Cashback in LVGA\nMyLugano Pass (non-residents): 5% cashback in LVGA",
-    "gocryptoId": "",
-    "title": "K Moto ",
-    "vat": "CHE-108.523.822",
-    "lat": "46.00872599144624",
-    "lng": "8.959811652121044",
-    "tags": [
-      "auto_and_moto"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 390
-  },
-  {
     "address": "Via Maggio 43 - 6900 Lugano",
     "phone": "41 78 206 77 55",
     "logo_url": "",
