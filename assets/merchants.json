@@ -168,27 +168,6 @@
     "id": 8
   },
   {
-    "address": "Via Carlo Maderno 23 - 6900 Lugano",
-    "phone": "",
-    "logo_url": "",
-    "website": "https://www.amalo.ch",
-    "description": "",
-    "gocryptoId": 2490,
-    "title": "Amalo momento Italiano",
-    "vat": "CHE-440.347.156",
-    "lat": 46.010899,
-    "lng": 8.955325,
-    "tags": [
-      "food_and_drink"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 9
-  },
-  {
     "address": "Via Pelli 3 - 6900 Lugano",
     "phone": "",
     "logo_url": "https://s3.eu-central-1.amazonaws.com/public.elipay.com/live-3514d179aac2/source/images/00956a9dfbea4a2e8d8ef5f55c616f90.png",
@@ -568,27 +547,6 @@
       "LVGA"
     ],
     "id": 28
-  },
-  {
-    "address": "Corso Enrico Pestalozzi 10 - 6900 Lugano",
-    "phone": "",
-    "logo_url": "https://s3.eu-central-1.amazonaws.com/public.elipay.com/live-3514d179aac2/source/images/5722de3d75f344efb13cc2f9e6f5d51e.jpg",
-    "website": "https://bodynutrition.ch",
-    "description": "",
-    "gocryptoId": 2861,
-    "title": "Body Nutrition",
-    "vat": "CHE-448.102.316",
-    "lat": 46.005604,
-    "lng": 8.954006,
-    "tags": [
-      "retail"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 29
   },
   {
     "address": "Via La Santa 11 - 6962 Viganello",
@@ -3342,27 +3300,6 @@
     "id": 176
   },
   {
-    "address": "Corso Elvezia 8 - 6900 Lugano",
-    "phone": "",
-    "logo_url": "https://s3.eu-central-1.amazonaws.com/public.elipay.com/live-3514d179aac2/source/images/88ce806153774d4baa5defb3d8bc5342.jpg",
-    "website": "",
-    "description": "",
-    "gocryptoId": 2922,
-    "title": "Trattoria Bar Apollo",
-    "vat": "CHE-102.837.937",
-    "lat": 46.006837,
-    "lng": 8.955828,
-    "tags": [
-      "food_and_drink"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 177
-  },
-  {
     "address": "Via al Forte 10 - 6900 Lugano",
     "phone": "",
     "logo_url": "https://s3.eu-central-1.amazonaws.com/public.elipay.com/live-3514d179aac2/source/images/9f70a4b56c7040a88b74b7cb0a9c922d.jpg",
@@ -3403,27 +3340,6 @@
       "LVGA"
     ],
     "id": 179
-  },
-  {
-    "address": "Via Serafino Balestra 4 - 6900 Lugano",
-    "phone": "",
-    "logo_url": "https://s3.eu-central-1.amazonaws.com/public.elipay.com/live-3514d179aac2/source/images/0805edc830d04bf583d621aeb87ecc8f.jpg",
-    "website": "https://walterhairdesign.ch",
-    "description": "",
-    "gocryptoId": 2902,
-    "title": "Walter Hair Design",
-    "vat": "CHE-105.752.935",
-    "lat": 46.007652,
-    "lng": 8.953273,
-    "tags": [
-      "services"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 180
   },
   {
     "address": "Viale S. Franscini 17 - 6900 Lugano",
@@ -6619,27 +6535,6 @@
     "id": 350
   },
   {
-    "address": "Vicolo dei Pini 2 - 6962 Viganello",
-    "phone": "41 78 258 19 17",
-    "logo_url": "",
-    "website": "https://monsterhouse.ch/",
-    "description": "MyLugano Card (residents): 10% Cashback in LVGA\nMyLugano Pass (non-residents): 5% cashback in LVGA",
-    "gocryptoId": "",
-    "title": "Monster House Tattoo & Piercing",
-    "vat": "CHE-220.325.245",
-    "lat": 46.0153019,
-    "lng": 8.9699829,
-    "tags": [
-      "services"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 351
-  },
-  {
     "address": "Via Canonica 5 - 6900 Lugano",
     "phone": "41 78 258 19 17",
     "logo_url": "",
@@ -6741,27 +6636,6 @@
       "LVGA"
     ],
     "id": 356
-  },
-  {
-    "address": "Via Guisan 8 - 6962 Viganello",
-    "phone": "41 78 400 64 29",
-    "logo_url": "",
-    "website": "https://camifolla.com/",
-    "description": "MyLugano Card (residents): 10% Cashback in LVGA\nMyLugano Pass (non-residents): 5% cashback in LVGA",
-    "gocryptoId": null,
-    "title": "Camifolla Gioielli",
-    "vat": "",
-    "lat": 46.014205,
-    "lng": 8.9672052,
-    "tags": [
-      "retail"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 357
   },
   {
     "address": "Via Moncucco 3 - 6900 Lugano",
@@ -7348,27 +7222,6 @@
     "id": 385
   },
   {
-    "address": "Via Sonvico 8 - 6900 Lugano",
-    "phone": "41 91 935 04 40",
-    "logo_url": "",
-    "website": "http://www.garbani.ch/",
-    "description": "MyLugano Card (residents): 10% Cashback in LVGA\nMyLugano Pass (non-residents): 5% cashback in LVGA",
-    "gocryptoId": "",
-    "title": "Cartoleria Garbani",
-    "vat": "",
-    "lat": "46.028653606147536",
-    "lng": "8.967662440387038",
-    "tags": [
-      "retail"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 386
-  },
-  {
     "address": "Via Cristallina 48 - 6720 Campo Blenio",
     "phone": "41 91 872 21 15",
     "logo_url": "",
@@ -7409,16 +7262,245 @@
     "id": 389
   },
   {
+    "address": "Via Maggio 43 - 6900 Lugano",
+    "phone": "41 78 206 77 55",
+    "logo_url": "",
+    "website": "https://lisasommella.com/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Make up Express di Lisa Sommella",
+    "vat": "",
+    "lat": "46.009072385761954",
+    "lng": "8.96596373751519",
+    "tags": [
+      "service"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 391
+  },
+  {
+    "address": "Piazza Indipendenza 1 - 6900 Lugano",
+    "phone": "",
+    "logo_url": "",
+    "website": "",
+    "description": "",
+    "gocryptoId": "",
+    "title": "El Chid Shisha Disco Club ",
+    "vat": "",
+    "lat": "46.004900987471046",
+    "lng": "8.95470444873994",
+    "tags": [
+      "food_and_drink"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 392
+  },
+  {
+    "address": "Piazza Cioccaro 10 - 6900 Lugano",
+    "phone": "",
+    "logo_url": "",
+    "website": "",
+    "description": "",
+    "gocryptoId": "",
+    "title": "David Glamour",
+    "vat": "",
+    "lat": "46.005027865981205",
+    "lng": "8.949756664643461",
+    "tags": [
+      "retail"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 393
+  },
+  {
+    "address": "Vicolo dei Pini 2 - 6962 Viganello ",
+    "phone": "",
+    "logo_url": "",
+    "website": "https://www.bohtattoo.com/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "BOH! TATTOO STUDIO",
+    "vat": "",
+    "lat": "46.015469543332536",
+    "lng": "8.969961442261287",
+    "tags": [
+      "services"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 394
+  },
+  {
+    "address": "Via Canova 7 - 6900 Lugano",
+    "phone": "",
+    "logo_url": "",
+    "website": "https://barportici.ch/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Snack Bar Portici",
+    "vat": "CHE-318.150.385",
+    "lat": "46.00495540671895",
+    "lng": "8.95274677933413",
+    "tags": [
+      "food_and_drink"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 395
+  },
+  {
+    "address": "Corso Pestalozzi 4 - 6900 Lugano",
+    "phone": "",
+    "logo_url": "",
+    "website": "https://wespeak.ch/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "WeSpeak - Scuola di lingue e soggiorni linguistici",
+    "vat": "CHE-465.513.672",
+    "lat": "46.006712859618474",
+    "lng": "8.950971905218505",
+    "tags": [
+      "services"
+    ],
+    "accepted_cryptos": [
+      "LVGA"
+    ],
+    "id": 396
+  },
+  {
+    "address": "Via Sonvico 8 - 6952 Lugano",
+    "phone": "",
+    "logo_url": "",
+    "website": "http://www.garbani.ch/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Cartoleria Garbani",
+    "vat": "CHE-105.752.993",
+    "lat": "46.028072518365825",
+    "lng": "8.96807015127938",
+    "tags": [
+      "retail",
+      "",
+      ""
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 397
+  },
+  {
+    "address": "Via Balestra 9 - 6900 Lugano",
+    "phone": "",
+    "logo_url": "",
+    "website": "",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Hair L'Essenza",
+    "vat": "",
+    "lat": "46.00922807699895",
+    "lng": "8.954219831866748",
+    "tags": [],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 398
+  },
+  {
+    "address": "Via Maderno 24 - 6900 Lugano",
+    "phone": "41 91 923 74 21",
+    "logo_url": "",
+    "website": "",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Bar Oops",
+    "vat": "CHE-109.296.480",
+    "lat": "46.01146683384235",
+    "lng": "8.95540442055107",
+    "tags": [
+      "food_and_drink"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 399
+  },
+  {
+    "address": "Via Concordia 17 - 6900 Lugano",
+    "phone": "41 91 222 90 00",
+    "logo_url": "",
+    "website": "http://www.casalibanesemenu.byethost31.com/?i=1",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Casa Libanese",
+    "vat": "CHE-145.712.623",
+    "lat": "46.007950170587236",
+    "lng": "8.968166615869439",
+    "tags": [
+      "food_and_drink"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 400
+  },
+  {
+    "address": "Via Besso 31 - 6900 Lugano",
+    "phone": "41 78 812 24 27",
+    "logo_url": "",
+    "website": "",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Supermarket Asia",
+    "vat": "CHE-404.583.637",
+    "lat": "46.00895971438478",
+    "lng": "8.94032196291053",
+    "tags": [
+      "food_and_drink"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 401
+  },
+  {
     "address": "Via Balestra 39 A - 6900 Lugano",
     "phone": "41 79 621 76 50",
     "logo_url": "",
-    "website": "https://www.kmoto.ch/index.html",
-    "description": "MyLugano Card (residents): 10% Cashback in LVGA\nMyLugano Pass (non-residents): 5% cashback in LVGA",
+    "website": "https://www.kmoto.ch/",
+    "description": "",
     "gocryptoId": "",
-    "title": "K Moto ",
+    "title": "K Moto Lugano",
     "vat": "CHE-108.523.822",
-    "lat": "46.00872599144624",
-    "lng": "8.959811652121044",
+    "lat": "46.00813346554991",
+    "lng": "8.96005694434472",
     "tags": [
       "auto_and_moto"
     ],
@@ -7427,6 +7509,92 @@
       "UST",
       "LVGA"
     ],
-    "id": 390
+    "id": 402
+  },
+  {
+    "address": "Via Marconi 4 - 6900 Lugano",
+    "phone": "",
+    "logo_url": "",
+    "website": "https://yes-swiss.ch/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Yes Swiss Global Event Services",
+    "vat": "CHE-246.514.687",
+    "lat": "46.004159977600445",
+    "lng": "8.954766544343412",
+    "tags": [
+      "services"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 403
+  },
+  {
+    "address": "Via Trevano 100 - 6900 Lugano ",
+    "phone": "41 91 922 86 72",
+    "logo_url": "",
+    "website": "https://shop.fclugano.com/?utm_source=fclugano.com&utm_medium=menu",
+    "description": "",
+    "gocryptoId": "",
+    "title": "FC Lugano - Merchandising",
+    "vat": "CHE-110.165.991",
+    "lat": "46.023930534899435",
+    "lng": "8.960262678808425",
+    "tags": [
+      "retail",
+      "sports_and_leisure"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 404
+  },
+  {
+    "address": "Via Trevano 100 - 6900 Lugano ",
+    "phone": "41 91 922 86 72",
+    "logo_url": "",
+    "website": "",
+    "description": "",
+    "gocryptoId": "",
+    "title": "FC Lugano - Food and Beverages",
+    "vat": "CHE-110.165.991",
+    "lat": "46.023930534899435",
+    "lng": "8.960262678808425",
+    "tags": [
+      "food_and_drink",
+      "sports_and_leisure"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 405
+  },
+  {
+    "address": "Corso Pestalozzi 4 - 6900 Lugano",
+    "phone": "41 91 922 03 72",
+    "logo_url": "",
+    "website": "https://www.otticomichel.ch/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Il Piccolo Principe - Ottico Michel",
+    "vat": "CHE-172.756.385",
+    "lat": "46.00632162726383",
+    "lng": "8.951229399999148",
+    "tags": [
+      "retail"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 406
   }
 ]
