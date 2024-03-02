@@ -69,14 +69,30 @@
 }
 
 /* start filter */
-.bfx-crypto-filter {
+.bfx-crypto-filter-container {
   position: absolute;
   z-index: 450; /* on top of the map */
-  top: 8px;
-  left: 8px;
-  width: 800px;
+  top: 0;
+  left: 0;
+  width: 100%;
   display: flex;
   gap: 6px;
+  justify-content: space-between;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.bfx-crypto-filter {
+  display: flex;
+  gap: 6px;
+}
+
+.bfx-crypto-filter-left {
+  width: 800px;
+}
+
+#bfx-crypto-layer-select-mobile-btn {
+  display: none;
 }
 
 .bfx-crypto-filter-box {
@@ -113,8 +129,12 @@
     flex-direction: column;
   }
 
-  .bfx-crypto-filter, .bfx-crypto-filter-bar, .bfx-crypto-filter-clear-all {
-    width: calc(100% - 10px);
+  .bfx-crypto-filter-right {
+    display: none;
+  }
+
+  #bfx-crypto-layer-select-mobile-btn {
+    display: block;
   }
 
   .bfx-crypto-filter .bfx-crypto-filter-clear-all .filter-btn {
@@ -136,7 +156,7 @@
   position: absolute;
   background-color: #fff;
   color: #586871;
-  top: 60px;
+  top: 66px;
   right: 0;
   max-height: 400px;
   box-sizing: border-box;
@@ -197,11 +217,11 @@
   background: url('./checked.png');
 }
 
-#bfx-crypto-filter-popup {
+.bfx-crypto-filter-popup {
   display: none;
 }
 
-#bfx-crypto-filter-popup.active {
+.bfx-crypto-filter-popup.active {
   display: block;
 }
 
@@ -217,6 +237,29 @@
 
 #bfx-crypto-popup-overlay.active {
   display: block;
+}
+
+#bfx-crypto-layer-popup {
+  width: 270px;
+}
+
+#bfx-crypto-layer-popup .filter-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#bfx-crypto-layer-popup .filter-checkbox {
+  border-bottom: 1px solid rgba(65, 102, 188, 0.06);
+  display: flex;
+  gap: 10px;
+  padding-bottom: 15px;
+  align-items: center;
+  cursor: pointer;
+}
+
+#bfx-crypto-layer-popup .filter-checkbox label {
+  cursor: pointer;
 }
 
 .filter-icon-wrapper {
@@ -266,6 +309,7 @@
   font-size: 14px;
   flex: 1;
   padding: 5px 10px;
+  outline: none;
 }
 
 .bfx-crypto-filter .search-container input::-webkit-search-cancel-button {
@@ -294,7 +338,8 @@
 
 @media screen and (max-width: 768px) {
   .bfx-crypto-filter .search-container {
-    width: 200px;
+    flex-grow: 1;
+    min-width: 0;
   }
 
   .bfx-crypto-filter .filter-btn {
@@ -307,16 +352,20 @@
     display: none;
   }
 }
+
+#bfx-crypto-layer-select-btn {
+  width: 40px;
+  padding: 0 9px;
+}
 /* end filter */
 
 /* start store list */
 #bfx-crypto-store-list-popup {
-  left: 0;
+  left: 8px;
   display: none;
 }
 
 #bfx-crypto-store-list-popup.active {
-  left: 0;
   display: block;
 }
 
@@ -375,7 +424,7 @@
 /* start current pin */
 #bfx-crypto-map .current-pin-area {
   border: 0;
-} 
+}
 
 #bfx-crypto-map .current-pin-btn {
   border-radius: 6px;

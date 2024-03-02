@@ -8,16 +8,45 @@ const BfxCryptoUtils = {
   }
 }
 
+
+const BfxCryptoConstants = {
+  availableStyles: [
+    {
+      id: 'clo4gke3m00ey01qx79wmdtot',
+      key: 'Default Streetview'
+    },
+    {
+      id: 'clt720hfv003f01qs48vb8130',
+      key: 'Dark mode'
+    },
+    {
+      id: 'clt7219a300xe01pia01yg7h7',
+      key: 'Light mode'
+    },
+    {
+      id: 'clt71wf0g000u01qraqmabdh4',
+      key: 'Satellite mode'
+    },
+    {
+      id: 'clt722n01004d01qv9kc5egwk',
+      key: 'Contour mode'
+    },
+  ],
+  localstorageStyleKey: 'mapbox_style_key',
+}
+
 function BfxCryptoMap(configuration) {
   const {
     isMobile,
     assetUrl,
     mapboxKey,
+    mapboxUsername,
     merchantDataUrl,
     containerId = 'bfx-crypto-map',
     translations,
   } = configuration;
 
+  this.mapboxUsername = mapboxUsername
   this.isMobile = isMobile;
   this.assetUrl = assetUrl;
   this.mapboxKey = mapboxKey;
@@ -49,6 +78,8 @@ function BfxCryptoMap(configuration) {
       icon: assetUrl + '/LVGA.png',
     },
   };
+
+  this.activeStyle = localStorage.getItem(BfxCryptoConstants.localstorageStyleKey) || BfxCryptoConstants.availableStyles[0].id
 }
 
 BfxCryptoMap.prototype.translate = function(text) {
@@ -70,7 +101,7 @@ BfxCryptoMap.prototype.setup = function() {
 
   const gl = L
     .mapboxGL({
-      style: 'mapbox://styles/planbmap/clo4gke3m00ey01qx79wmdtot',
+      style: 'mapbox://styles/' + this.mapboxUsername  + '/' + this.activeStyle,
       accessToken: this.mapboxKey,
     })
     .addTo(map);
@@ -105,8 +136,8 @@ BfxCryptoMap.prototype.setup = function() {
       const img = L.DomUtil.create('img', '', button);
 
       L.DomEvent.on(
-        button, 
-        'click', 
+        button,
+        'click',
         function () {
           self.map.locate({ watch: true });
           if (self.currentPin) {
@@ -175,9 +206,20 @@ BfxCryptoMap.prototype.setupListener = function() {
     const isActive = jQuery('#bfx-crypto-filter-popup').hasClass('active');
     BfxCryptoMap.hideAllBfxCryptoPopup();
     if (!isActive) {
-      BfxCryptoMap.showBfxCryptoPopup('#bfx-crypto-filter-popup');
+      const left = self.isMobile ? '8px' : '166px'
+      BfxCryptoMap.showBfxCryptoPopup('#bfx-crypto-filter-popup', left);
     }
   });
+
+
+  jQuery('#bfx-crypto-layer-select-btn, #bfx-crypto-layer-select-mobile-btn').on('click', function () {
+    const isActive = jQuery('#bfx-crypto-layer-popup').hasClass('active');
+    BfxCryptoMap.hideAllBfxCryptoPopup();
+    if (!isActive) {
+      self.showLayersPopup();
+    }
+  });
+
 
   jQuery('#bfx-crypto-popup-overlay').on('click', function () {
     BfxCryptoMap.hideAllBfxCryptoPopup();
@@ -461,7 +503,7 @@ BfxCryptoMap.prototype.showStoreListPopup = function() {
   const { filteredData, numberOfFilter, searchValue } = filterData;
 
   // TODO: add this filter in the future
-  const showInbound = false 
+  const showInbound = false
   if (showInbound) {
     const inboundList = this.getVisibleMarkers()
     const merchantIds = inboundList.map(function(marker) {
@@ -475,14 +517,51 @@ BfxCryptoMap.prototype.showStoreListPopup = function() {
   BfxCryptoMap.showBfxCryptoPopup('#bfx-crypto-store-list-popup');
 }
 
+BfxCryptoMap.prototype.showLayersPopup = function() {
+  const self = this;
+  const activeStyle = this.activeStyle;
+  const listItems = BfxCryptoConstants.availableStyles.map(({ id, key }) => {
+    const icon = id === activeStyle ? 'radio-active.png' : 'radio-inactive.png';
+    const img = `<img width="18" height="18" src="${self.assetUrl}/${icon}" />`;
+    const label = `<label>${key}</label>`;
+
+    return `
+      <div class="filter-checkbox" data-id="${id}">
+        ${img}
+        ${label}
+      </div>
+    `
+  });
+
+  jQuery('#bfx-crypto-layer-popup .filter-content').html(listItems.join(''));
+
+  jQuery('#bfx-crypto-layer-popup .filter-checkbox')
+    .on('click', function(e) {
+      const id = jQuery(this).data('id');
+      self.changeLayer(id);
+      BfxCryptoMap.hideAllBfxCryptoPopup();
+    })
+
+  BfxCryptoMap.showBfxCryptoPopup('#bfx-crypto-layer-popup', '', '8px');
+}
+
+BfxCryptoMap.prototype.changeLayer = function(id) {
+  this.activeStyle = id;
+  localStorage.setItem(BfxCryptoConstants.localstorageStyleKey, id);
+  const mapbox = this.gl.getMapboxMap();
+  mapbox.setStyle('mapbox://styles/' + this.mapboxUsername  + '/' + this.activeStyle);
+
+}
+
 // static functions
 BfxCryptoMap.hideAllBfxCryptoPopup = function() {
   jQuery('#bfx-crypto-filter-popup').removeClass('active');
   jQuery('#bfx-crypto-store-list-popup').removeClass('active');
+  jQuery('#bfx-crypto-layer-popup').removeClass('active');
   jQuery('#bfx-crypto-popup-overlay').removeClass('active');
 }
 
-BfxCryptoMap.showBfxCryptoPopup = function(selector) {
-  jQuery(selector).addClass('active');
+BfxCryptoMap.showBfxCryptoPopup = function(selector, left = '', right = '') {
+  jQuery(selector).addClass('active').css('left', left).css('right', right);
   jQuery('#bfx-crypto-popup-overlay').addClass('active');
 }
