@@ -3,7 +3,7 @@
 Plugin Name: BFX crypto map
 Plugin URI: https://bitfinex.com
 description: BFX crypto map
-Version: 1.2.12
+Version: 1.2.13
 Author: BFX
 Author URI: https://bitfinex.com
 License: GPL2
@@ -209,7 +209,7 @@ function bfx_crypto_map_handler( $atts ) {
     }
   </style>
   <script>
-    jQuery(function() { 
+    jQuery(function() {
       const isMobile = document.body.clientWidth < 768;
       const mapboxKey = 'pk.eyJ1IjoicGxhbmJtYXAiLCJhIjoiY2xvNGd2ZnJqMDF2ZTJsbzJua3dyNzJ2YSJ9.tbgNNQ5wehycZSJyeSRCuA';
 
