@@ -2694,27 +2694,6 @@
     "id": 144
   },
   {
-    "address": "Via Trevano 19 - 6900 Lugano",
-    "phone": "",
-    "logo_url": "https://s3.eu-central-1.amazonaws.com/public.elipay.com/live-3514d179aac2/source/images/30f1f60c29114d15b36e6dbc243b5c78.png",
-    "website": "",
-    "description": "",
-    "gocryptoId": 2680,
-    "title": "Ristorante Pizzeria Dal Gallo",
-    "vat": "CHE-434.830.639",
-    "lat": 46.014333,
-    "lng": 8.95497,
-    "tags": [
-      "food_and_drink"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 146
-  },
-  {
     "address": "Riva Antonio Caccia 12 - 6900 Lugano",
     "phone": "",
     "logo_url": "https://s3.eu-central-1.amazonaws.com/public.elipay.com/live-3514d179aac2/source/images/bd25564aa8d54c2993ff223bd8bb9bb0.jpg",
@@ -7661,5 +7640,43 @@
       "LVGA"
     ],
     "id": 412
+  },
+  {
+    "address": "Via Cantonale 13 - 6851 Melide",
+    "phone": "41 91 640 10 60",
+    "logo_url": "",
+    "website": "https://www.swissminiatur.ch/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Swissminiatur",
+    "vat": "",
+    "lat": "45.954266857773504",
+    "lng": "8.950456804663315",
+    "tags": [
+      "sports_and_leisure"
+    ],
+    "accepted_cryptos": [
+      "LVGA"
+    ],
+    "id": 413
+  },
+  {
+    "address": "Villa Malpensata - Via Mazzini 5 - 6900 Lugano",
+    "phone": "41 58 866 69 60",
+    "logo_url": "",
+    "website": "https://www.musec.ch/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "MUSEC Museo delle Culture",
+    "vat": "",
+    "lat": "45.99641797237474",
+    "lng": "8.946594327261254",
+    "tags": [
+      "sports_and_leisure"
+    ],
+    "accepted_cryptos": [
+      "LVGA"
+    ],
+    "id": 414
   }
 ]
