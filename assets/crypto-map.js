@@ -13,23 +13,23 @@ const BfxCryptoConstants = {
   availableStyles: [
     {
       id: 'clo4gke3m00ey01qx79wmdtot',
-      key: 'Default Streetview'
+      key: 'Default'
     },
     {
       id: 'clt720hfv003f01qs48vb8130',
-      key: 'Dark mode'
+      key: 'Dark'
     },
     {
       id: 'clt7219a300xe01pia01yg7h7',
-      key: 'Light mode'
+      key: 'Light'
     },
     {
       id: 'clt71wf0g000u01qraqmabdh4',
-      key: 'Satellite mode'
+      key: 'Satellite'
     },
     {
       id: 'clt722n01004d01qv9kc5egwk',
-      key: 'Contour mode'
+      key: 'Contour'
     },
   ],
   localstorageStyleKey: 'mapbox_style_key',
