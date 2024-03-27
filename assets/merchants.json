@@ -7678,5 +7678,26 @@
       "LVGA"
     ],
     "id": 414
+  },
+  {
+    "address": "Piazza Manzoni - 6900 Lugano",
+    "phone": "41 79 930 25 82",
+    "logo_url": "",
+    "website": "https://dolcevitashop.ch/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Dolce Vita Shop",
+    "vat": "CHE-431.249.661",
+    "lat": "46.003694963285795",
+    "lng": "8.951727961959131",
+    "tags": [
+      "food_and_drink"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 415
   }
 ]

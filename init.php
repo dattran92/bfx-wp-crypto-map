@@ -3,7 +3,7 @@
 Plugin Name: BFX crypto map
 Plugin URI: https://bitfinex.com
 description: BFX crypto map
-Version: 1.2.14
+Version: 1.3.4
 Author: BFX
 Author URI: https://bitfinex.com
 License: GPL2
@@ -43,45 +43,83 @@ function bfx_crypto_map_handler( $atts ) {
 
   $html = <<<HTML
   <div class="bfx-crypto-container">
-    <div class="bfx-crypto-filter">
-      <div class="bfx-crypto-filter-store-list bfx-crypto-filter-box">
-        <button type="button" class="filter-btn" id="bfx-crypto-store-list-btn">
-          <img src="$asset_url/list-icon.png" />
-          <span>{$translator->translate('store_list')}</span>
-          <div class="arrow">
-            <img src="$asset_url/arrow-down.png" />
-          </div>
-        </button>
-      </div>
-      <div class="bfx-crypto-filter-bar bfx-crypto-filter-box">
-        <div class="search-container">
-          <img src="$asset_url/search.png" width="14" height="13" />
-          <input id="bfx-crypto-search-input" type="search" placeholder="{$translator->translate('search')}" />
+    <div class="bfx-crypto-filter-container">
+      <div class="bfx-crypto-filter bfx-crypto-filter-left">
+        <div class="bfx-crypto-filter-store-list bfx-crypto-filter-box">
+          <button type="button" class="filter-btn" id="bfx-crypto-store-list-btn">
+            <img src="$asset_url/list-icon.png" />
+            <span>{$translator->translate('store_list')}</span>
+            <div class="arrow">
+              <img src="$asset_url/arrow-down.png" />
+            </div>
+          </button>
         </div>
-        <button type="button" class="filter-btn" id="bfx-crypto-store-list-mobile-btn">
-          <img src="$asset_url/list-icon.png" />
-        </button>
-        <button type="button" class="filter-btn" id="bfx-crypto-filter-btn">
-          <div class="filter-icon-wrapper">
-            <img src="$asset_url/filter.png" />
-            <div id="filter-number"></div>
+        <div class="bfx-crypto-filter-bar bfx-crypto-filter-box">
+          <div class="search-container">
+            <img src="$asset_url/search.png" width="14" height="13" />
+            <input id="bfx-crypto-search-input" type="search" placeholder="{$translator->translate('search')}" />
           </div>
-          <span>{$translator->translate('filter_by')}</span>
-          <div class="arrow">
-            <img src="$asset_url/arrow-down.png" />
-          </div>
-        </button>
+          <button type="button" class="filter-btn" id="bfx-crypto-store-list-mobile-btn">
+            <img src="$asset_url/list-icon.png" />
+          </button>
+          <button type="button" class="filter-btn" id="bfx-crypto-filter-btn">
+            <div class="filter-icon-wrapper">
+              <img src="$asset_url/filter.png" />
+              <div id="filter-number"></div>
+            </div>
+            <span>{$translator->translate('filter_by')}</span>
+            <div class="arrow">
+              <img src="$asset_url/arrow-down.png" />
+            </div>
+          </button>
+          <button type="button" class="filter-btn" id="bfx-crypto-layer-select-mobile-btn">
+            <div class="filter-icon-wrapper">
+              <img src="$asset_url/layer.png" />
+            </div>
+          </button>
+        </div>
+        <div class="bfx-crypto-filter-clear-all bfx-crypto-filter-box hidden">
+          <button type="button" class="filter-btn" id="bfx-crypto-clear-filter-btn">
+            <div class="filter-icon-wrapper">
+              <img src="$asset_url/delete.png" />
+            </div>
+            <span>{$translator->translate('clear_filters')}</span>
+          </button>
+        </div>
       </div>
-      <div class="bfx-crypto-filter-clear-all bfx-crypto-filter-box hidden">
-        <button type="button" class="filter-btn" id="bfx-crypto-clear-filter-btn">
-          <div class="filter-icon-wrapper">
-            <img src="$asset_url/delete.png" />
-          </div>
-          <span>{$translator->translate('clear_filters')}</span>
-        </button>
+      <div class="bfx-crypto-filter bfx-crypto-filter-right">
+        <div class="bfx-crypto-filter-layer-select bfx-crypto-filter-box">
+          <button type="button" class="filter-btn" id="bfx-crypto-layer-select-btn">
+            <div class="filter-icon-wrapper">
+              <img src="$asset_url/layer.png" />
+            </div>
+          </button>
+        </div>
       </div>
       <div id="bfx-crypto-store-list-popup" class="bfx-crypto-filter-popup">
         <div class="filter-container">
+        </div>
+      </div>
+      <div id="bfx-crypto-layer-popup" class="bfx-crypto-filter-popup">
+        <div class="filter-container">
+          <form id="bfx-crypto-layer-form">
+            <div class="filter-list">
+              <div class="filter-content">
+                <div class="filter-checkbox">
+                  <img width="18" height="18" src="$asset_url/radio-inactive.png" />
+                  <label>{$translator->translate('sports_and_leisure')}</label>
+                </div>
+                <div class="filter-checkbox">
+                  <img width="18" height="18" src="$asset_url/radio-inactive.png" />
+                  <label>{$translator->translate('sports_and_leisure')}</label>
+                </div>
+                <div class="filter-checkbox">
+                  <img width="18" height="18" src="$asset_url/radio-inactive.png" />
+                  <label>{$translator->translate('sports_and_leisure')}</label>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
       <div id="bfx-crypto-filter-popup" class="bfx-crypto-filter-popup">
@@ -212,11 +250,13 @@ function bfx_crypto_map_handler( $atts ) {
     jQuery(function() {
       const isMobile = document.body.clientWidth < 768;
       const mapboxKey = 'pk.eyJ1IjoicGxhbmJtYXAiLCJhIjoiY2xvNGd2ZnJqMDF2ZTJsbzJua3dyNzJ2YSJ9.tbgNNQ5wehycZSJyeSRCuA';
+      const mapboxUsername = 'planbmap'
 
       const bfxCryptoMap = new BfxCryptoMap({
         isMobile: isMobile,
         assetUrl: '$asset_url',
         mapboxKey: mapboxKey,
+        mapboxUsername: mapboxUsername,
         merchantDataUrl: '$merchants_data_url',
         translations: {
           no_store: "{$translator->translate('no_store')}",
