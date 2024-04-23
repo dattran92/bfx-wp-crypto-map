@@ -21,27 +21,6 @@
     "id": 1
   },
   {
-    "address": "Via Carlo Maderno 9 - 6900 Lugano",
-    "phone": "",
-    "logo_url": "https://s3.eu-central-1.amazonaws.com/public.elipay.com/live-3514d179aac2/source/images/db6f138d128341f581af2a8f3c4310b5.png",
-    "website": "https://1908.ch",
-    "description": "",
-    "gocryptoId": 2745,
-    "title": "1908 Events & Catering Lugano",
-    "vat": "CHE-296.614.693",
-    "lat": 46.009681,
-    "lng": 8.954878,
-    "tags": [
-      "services"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 2
-  },
-  {
     "address": "Via Zurigo 8 - 6900 Lugano",
     "phone": "",
     "logo_url": "https://s3.eu-central-1.amazonaws.com/public.elipay.com/live-3514d179aac2/source/images/556f8aba764d4b2c953600238831dd8d.png",
@@ -1093,27 +1072,6 @@
       "LVGA"
     ],
     "id": 57
-  },
-  {
-    "address": "Via Bertaccio 1 - 6900 Lugano",
-    "phone": "",
-    "logo_url": "",
-    "website": "",
-    "description": "",
-    "gocryptoId": 2766,
-    "title": "Edicola La bella Lugano",
-    "vat": "CHE-162.389.256",
-    "lat": 46.00533,
-    "lng": 8.948625,
-    "tags": [
-      "retail"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 58
   },
   {
     "address": "Viale Franscini 23 - 6900 Lugano",
@@ -3509,25 +3467,6 @@
     "id": 190
   },
   {
-    "address": "Via Fusoni 5 - 6900 Lugano",
-    "phone": "+41 91 921 10 14",
-    "logo_url": "",
-    "website": "https://8e20.com/",
-    "description": "MyLugano Card (residents): 10% Cashback in LVGA\nMyLugano Pass (non-residents): 5% cashback in LVGA",
-    "gocryptoId": null,
-    "title": "8e20 Un'infinità di eventi",
-    "vat": "CHE-167.293.296",
-    "lat": 46.0093695,
-    "lng": 8.9588382,
-    "tags": [
-      "services"
-    ],
-    "accepted_cryptos": [
-      "LVGA"
-    ],
-    "id": 191
-  },
-  {
     "address": "Stráda dra Vall 3 - 6968 Lugano-Sonvico",
     "phone": "+41 79 240 03 24",
     "logo_url": "",
@@ -3741,25 +3680,6 @@
     "id": 202
   },
   {
-    "address": "Via Balestra 39 A - 6900 Lugano",
-    "phone": "+41 78 213 11 33",
-    "logo_url": "",
-    "website": "https://corsisoccorritori.ch/",
-    "description": "MyLugano Card (residents): 10% Cashback in LVGA\nMyLugano Pass (non-residents): 5% cashback in LVGA",
-    "gocryptoId": null,
-    "title": "Corsi Soccorritori di Nicole König",
-    "vat": "CHE-269.675.924",
-    "lat": 46.0079775,
-    "lng": 8.9596159,
-    "tags": [
-      "other"
-    ],
-    "accepted_cryptos": [
-      "LVGA"
-    ],
-    "id": 203
-  },
-  {
     "address": "Via Peri 6 - 6900 Lugano",
     "phone": "+41 79 620 54 31",
     "logo_url": "",
@@ -3969,25 +3889,6 @@
       "LVGA"
     ],
     "id": 214
-  },
-  {
-    "address": "Via Sonvico 9 - 6952 Canobbio",
-    "phone": "+41 91 941 78 66",
-    "logo_url": "",
-    "website": "http://iacma.com/",
-    "description": "MyLugano Card (residents): 10% Cashback in LVGA\nMyLugano Pass (non-residents): 5% cashback in LVGA",
-    "gocryptoId": null,
-    "title": "IACMA - International Academy of Chinese Martial Arts",
-    "vat": "CHE-107.508.406",
-    "lat": 46.0294766,
-    "lng": 8.9688953,
-    "tags": [
-      "sports_and_leisure"
-    ],
-    "accepted_cryptos": [
-      "LVGA"
-    ],
-    "id": 216
   },
   {
     "address": "Via Clemente Maraini 15 - 6900 Lugano",
@@ -4705,25 +4606,6 @@
     "id": 257
   },
   {
-    "address": "Via Probello 3 A - 6963 Pregassona",
-    "phone": "41 91 972 93 38",
-    "logo_url": "",
-    "website": "https://www.bodylooksagl.ch/",
-    "description": "MyLugano Card (residents): 10% Cashback in LVGA\nMyLugano Pass (non-residents): 5% cashback in LVGA",
-    "gocryptoId": null,
-    "title": "Centro estetico Body Look",
-    "vat": "CHE-107.545.583",
-    "lat": 46.0193471,
-    "lng": 8.977156299999999,
-    "tags": [
-      "services"
-    ],
-    "accepted_cryptos": [
-      "LVGA"
-    ],
-    "id": 258
-  },
-  {
     "address": "Via Chiosso 8 - 6948 Porza",
     "phone": "41 58 866 68 30",
     "logo_url": "",
@@ -5177,27 +5059,6 @@
       "LVGA"
     ],
     "id": 282
-  },
-  {
-    "address": "Via Besso 41 A - 6900 Lugano",
-    "phone": "41 91 220 03 18",
-    "logo_url": "",
-    "website": "https://geonika.shop/",
-    "description": "MyLugano Card (residents): 10% Cashback in LVGA\nMyLugano Pass (non-residents): 5% cashback in LVGA",
-    "gocryptoId": "",
-    "title": "Geonika Copy Shop",
-    "vat": "CHE-283.395.636",
-    "lat": 46.0091267,
-    "lng": 8.939435699999999,
-    "tags": [
-      "services"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 284
   },
   {
     "address": "Via Paolo Regazzoni 8 - 6900 Lugano",
