@@ -7539,5 +7539,110 @@
       "LVGA"
     ],
     "id": 414
+  },
+  {
+    "address": "Viale Castagnola 25 - 6900 Lugano",
+    "phone": "41 76 346 41 70",
+    "logo_url": "",
+    "website": "https://amalo.ch/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Amalo Momento italiano",
+    "vat": "CHE-456.592.632",
+    "lat": "46.005806051394885",
+    "lng": "8.967374337315547",
+    "tags": [
+      "food_and_drink"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 415
+  },
+  {
+    "address": "Via Pretorio 2 - 6900 Lugano",
+    "phone": "41 91 605 61 61",
+    "logo_url": "",
+    "website": "https://vittilugano.ch/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Vitti",
+    "vat": "CHE-112.384.989",
+    "lat": "46.005329900441346",
+    "lng": "8.951617307103172",
+    "tags": [
+      "food_and_drink"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 416
+  },
+  {
+    "address": "Via Cattedrale 6 - 6900 Lugano",
+    "phone": "091 922 00 68",
+    "logo_url": "",
+    "website": "",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Boutique Scrupoli",
+    "vat": "CHE-108.044.473",
+    "lat": "46.00491342154559",
+    "lng": "8.949391052406847",
+    "tags": [
+      "fashion"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 417
+  },
+  {
+    "address": "Via Bertaccio 1 - 6900 Lugano",
+    "phone": "41 76 795 067 1",
+    "logo_url": "",
+    "website": "https://www.smokeelab.ch/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Smoke&Lab",
+    "vat": "CHE-201.105.884",
+    "lat": "46.00529146504962",
+    "lng": "8.9486855361229",
+    "tags": [
+      "retail"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 418
+  },
+  {
+    "address": "Via Lavizzari 2 A - 6900 Lugano",
+    "phone": "41 78 711 18 88",
+    "logo_url": "",
+    "website": "https://elitzerland.ch/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Elitzerland Family Office",
+    "vat": "CHE-253.346.001",
+    "lat": "46.00615171435857",
+    "lng": "8.95843880867562",
+    "tags": [
+      "service"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 419
   }
 ]
