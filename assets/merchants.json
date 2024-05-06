@@ -7644,5 +7644,68 @@
       "LVGA"
     ],
     "id": 419
+  },
+  {
+    "address": "c/o Stage 12 - Corso Pestalozzi 12 - 6900 Lugano",
+    "phone": "41 76 386 59 59",
+    "logo_url": "",
+    "website": "",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Allure Lugano",
+    "vat": "CHE-204.538.239",
+    "lat": "46.005551173709996",
+    "lng": "8.954464412617767",
+    "tags": [
+      "fashion"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 420
+  },
+  {
+    "address": "Via Nassa 64 - 6900 Lugano",
+    "phone": "41 91 923 64 12",
+    "logo_url": "",
+    "website": "https://www.fortunyjewels.com/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Gioielleria Fortuny",
+    "vat": "CHE-109.351.995",
+    "lat": "46.000849358283894",
+    "lng": "8.949052162784197",
+    "tags": [
+      "retail"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 421
+  },
+  {
+    "address": "Viale Cattaneo 15 - 6900 Lugano",
+    "phone": "41 76 233 90 94",
+    "logo_url": "",
+    "website": "https://redsetorologilugano.ch/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Luxury Watches Lugano",
+    "vat": "CHE-303.964.864",
+    "lat": "46.005887917840596",
+    "lng": "8.95837881784925",
+    "tags": [
+      "fashion"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 422
   }
 ]
