@@ -7707,5 +7707,104 @@
       "LVGA"
     ],
     "id": 422
+  },
+  {
+    "address": "Via Giuseppe Bagutti 10 - 6900 Lugano",
+    "phone": "41 71 588 03 03",
+    "logo_url": "",
+    "website": "https://it.stagend.com/buchen/Lugano+Schweiz",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Stagend.com",
+    "vat": "CHE-464.915.772",
+    "lat": "46.014134270951246",
+    "lng": "8.956457008311158",
+    "tags": [
+      "serivce"
+    ],
+    "accepted_cryptos": [
+      "LVGA"
+    ],
+    "id": 423
+  },
+  {
+    "address": "Via Canonica 19 - 6900 Lugano",
+    "phone": "41 91 966 65 41",
+    "logo_url": "",
+    "website": "",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Trinity Irish Pub",
+    "vat": "CHE-236.887.187",
+    "lat": "46.0069151403289",
+    "lng": "8.960279755608752",
+    "tags": [
+      "food_and_drink"
+    ],
+    "accepted_cryptos": [
+      "LVGA"
+    ],
+    "id": 424
+  },
+  {
+    "address": "Via Giuseppe Bagutti 10 - 6900 Lugano",
+    "phone": "41 91 754 20 00",
+    "logo_url": "",
+    "website": "https://sicurachiave.ch/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Sicura Chiave",
+    "vat": "CHE-237.623.969",
+    "lat": "46.014134270951246",
+    "lng": "8.956457008311158",
+    "tags": [
+      "serivce"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 425
+  },
+  {
+    "address": "Via Vedeggio 1 - 6928 Manno",
+    "phone": "41 78 222 67 18",
+    "logo_url": "",
+    "website": "https://www.koerperformenticino.com/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Körperformen Manno",
+    "vat": "CHE-492.206.385",
+    "lat": "46.0369550100239",
+    "lng": "8.924440525081684",
+    "tags": [
+      "sports_and_leisure"
+    ],
+    "accepted_cryptos": [
+      "LVGA"
+    ],
+    "id": 426
+  },
+  {
+    "address": "Via Adamini 32 - 6900 Lugano",
+    "phone": "",
+    "logo_url": "",
+    "website": "https://beautyroomlugano.ch/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Beauty Room",
+    "vat": "CHE-367.002.608",
+    "lat": "45.997131662873",
+    "lng": "8.943181385806216",
+    "tags": [
+      "serivce"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 427
   }
 ]
