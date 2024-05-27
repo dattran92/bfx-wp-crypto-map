@@ -2,7 +2,6 @@
 
 // TODO: use wp_remote_get when the backend fix query params
 // TODO: recursive get until no more data
-// TODO: cache
 function request_merchants() {
   $url = 'https://api.bitfinex.com/v2/ext/merchant/map/locations/list';
   $data = array(
