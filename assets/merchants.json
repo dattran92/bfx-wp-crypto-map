@@ -7743,5 +7743,89 @@
       "LVGA"
     ],
     "id": 427
+  },
+  {
+    "address": "Riva Vela 4 - 6900 Lugano",
+    "phone": "41 91 922 01 03",
+    "logo_url": "",
+    "website": "https://www.lacucinadialice.ch/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "La Cucina di Alice",
+    "vat": "CHE-115.603.975",
+    "lat": "46.00216274874061",
+    "lng": "8.95004055326995",
+    "tags": [
+      "food_and_drink"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 428
+  },
+  {
+    "address": "Via Carducci 4 - 6900 Lugano",
+    "phone": "41 91 921 28 58",
+    "logo_url": "",
+    "website": "",
+    "description": "",
+    "gocryptoId": "",
+    "title": "MonVis Orologi",
+    "vat": "CHE-214.143.434",
+    "lat": "46.0047930480244",
+    "lng": "8.953258873237013",
+    "tags": [
+      "fashion"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 429
+  },
+  {
+    "address": "Via Carducci 1 - 6900 Lugano",
+    "phone": "41 91 922 22 16",
+    "logo_url": "",
+    "website": "https://grande-caffe-bistrot.digitalone.site/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Grande Caffè Bistrot",
+    "vat": "CHE-300.413.817",
+    "lat": "46.004844960144474",
+    "lng": "8.953516041835988",
+    "tags": [
+      "food_and_drink"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 430
+  },
+  {
+    "address": "Via Pian Scairolo 17 - 6912 Pazzallo",
+    "phone": "41 91 994 45 61",
+    "logo_url": "",
+    "website": "https://www.globocar.ch/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Globocar",
+    "vat": "CHE-108.145.128",
+    "lat": "45.9835381153904",
+    "lng": "8.931780511846398",
+    "tags": [
+      "auto_and_moto"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 431
   }
 ]
