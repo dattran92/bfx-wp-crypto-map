@@ -1286,7 +1286,7 @@
     "id": 69
   },
   {
-    "address": "Via Giuseppe Curti 17 - 6900 Lugano",
+    "address": "Via Pretorio 9 - 6900 Lugano",
     "phone": "",
     "logo_url": "https://s3.eu-central-1.amazonaws.com/public.elipay.com/live-3514d179aac2/source/images/c76f8c0d2b5d4867a30553034f90b464.png",
     "website": "https://fullyburgers.ch",
@@ -1294,8 +1294,8 @@
     "gocryptoId": 2736,
     "title": "Fully Burgers and Fries",
     "vat": "CHE-143.463.432",
-    "lat": 46.009173,
-    "lng": 8.956568,
+    "lat": 46.006248736262954,
+    "lng": 8.951768640760616,
     "tags": [
       "food_and_drink"
     ],
@@ -1557,27 +1557,6 @@
     "id": 82,
     "lat": 46.00579145261844,
     "lng": 8.957203346015872
-  },
-  {
-    "address": "Via Besso 57 - 6900 Lugano",
-    "phone": "",
-    "logo_url": "https://s3.eu-central-1.amazonaws.com/public.elipay.com/live-3514d179aac2/source/images/961b5818a7a541129dc09a06c1e35c30.jpg",
-    "website": "https://www.ilpiccolo.ch",
-    "description": "",
-    "gocryptoId": 2798,
-    "title": "Il Piccolo",
-    "vat": "CHE-427.204.483",
-    "lat": 46.00990286800682,
-    "lng": 8.937556669277102,
-    "tags": [
-      "home_and_garden"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 83
   },
   {
     "address": "Via Nassa 62 - 6900 Lugano",
@@ -3479,7 +3458,9 @@
       "food_and_drink"
     ],
     "accepted_cryptos": [
-      "LVGA"
+      "LVGA",
+      "BTC",
+      "UST"
     ],
     "id": 194
   },
@@ -3712,25 +3693,6 @@
       "LVGA"
     ],
     "id": 207
-  },
-  {
-    "address": "Piazza Dante 8 - 6900 Lugano",
-    "phone": "+41 91 220 73 56",
-    "logo_url": "",
-    "website": "https://www.etrebel.it/",
-    "description": "MyLugano Card (residents): 10% Cashback in LVGA\nMyLugano Pass (non-residents): 5% cashback in LVGA",
-    "gocryptoId": null,
-    "title": "Etrebel Lugano",
-    "vat": "CHE-194.393.635",
-    "lat": 46.0051766,
-    "lng": 8.9510225,
-    "tags": [
-      "services"
-    ],
-    "accepted_cryptos": [
-      "LVGA"
-    ],
-    "id": 208
   },
   {
     "address": "Via Ceresio 40 . 6963 Pregassona",
