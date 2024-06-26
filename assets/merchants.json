@@ -7806,5 +7806,22 @@
       "LVGA"
     ],
     "id": 435
+  },
+  {
+    "address": "Piazza Manzoni",
+    "phone": "",
+    "logo_url": "",
+    "website": "",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Buvette",
+    "vat": "",
+    "lat": "46.0035560",
+    "lng": "8.9521757",
+    "tags": [],
+    "accepted_cryptos": [
+      "LVGA"
+    ],
+    "id": 436
   }
 ]
