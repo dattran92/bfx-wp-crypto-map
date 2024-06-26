@@ -674,27 +674,6 @@
     "id": 38
   },
   {
-    "address": "Corso Elvezia 15 - 6900 Lugano",
-    "phone": "",
-    "logo_url": "https://s3.eu-central-1.amazonaws.com/public.elipay.com/live-3514d179aac2/source/images/2372ff9d163e48989398431227f808ab.jpg",
-    "website": "",
-    "description": "",
-    "gocryptoId": 2841,
-    "title": "Cesare Sarti by St-M",
-    "vat": "CHE-202.146.503",
-    "lat": 46.007824,
-    "lng": 8.955581,
-    "tags": [
-      "fashion"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 39
-  },
-  {
     "address": "Via Giuseppe Motta 12 - 6900 Lugano",
     "phone": "",
     "logo_url": "https://s3.eu-central-1.amazonaws.com/public.elipay.com/live-3514d179aac2/source/images/f9e5f67e9cb546d5adf6d0412158a80e.jpg",
