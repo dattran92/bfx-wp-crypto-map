@@ -252,27 +252,6 @@
     "id": 14
   },
   {
-    "address": "Via Ferruccio Pelli 9 - 6900 Lugano",
-    "phone": "",
-    "logo_url": "",
-    "website": "https://ashloungelugano.ch",
-    "description": "",
-    "gocryptoId": 2901,
-    "title": "ASH Food & Lounge",
-    "vat": "CHE-439.574.751",
-    "lat": 46.007826,
-    "lng": 8.950804,
-    "tags": [
-      "food_and_drink"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 15
-  },
-  {
     "address": "Via Luigi Canonica 4 - 6900 Lugano",
     "phone": "",
     "logo_url": "https://s3.eu-central-1.amazonaws.com/public.elipay.com/live-3514d179aac2/source/images/a8742b32fade471ab5fea7976f59a7a3.png",
@@ -695,27 +674,6 @@
     "id": 38
   },
   {
-    "address": "Corso Elvezia 15 - 6900 Lugano",
-    "phone": "",
-    "logo_url": "https://s3.eu-central-1.amazonaws.com/public.elipay.com/live-3514d179aac2/source/images/2372ff9d163e48989398431227f808ab.jpg",
-    "website": "",
-    "description": "",
-    "gocryptoId": 2841,
-    "title": "Cesare Sarti by St-M",
-    "vat": "CHE-202.146.503",
-    "lat": 46.007824,
-    "lng": 8.955581,
-    "tags": [
-      "fashion"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 39
-  },
-  {
     "address": "Via Giuseppe Motta 12 - 6900 Lugano",
     "phone": "",
     "logo_url": "https://s3.eu-central-1.amazonaws.com/public.elipay.com/live-3514d179aac2/source/images/f9e5f67e9cb546d5adf6d0412158a80e.jpg",
@@ -857,8 +815,6 @@
       "food_and_drink"
     ],
     "accepted_cryptos": [
-      "BTC",
-      "UST",
       "LVGA"
     ],
     "id": 48
@@ -2293,27 +2249,6 @@
       "LVGA"
     ],
     "id": 122
-  },
-  {
-    "address": "Via Casoro 14 - 6918 Figino",
-    "phone": "",
-    "logo_url": "https://s3.eu-central-1.amazonaws.com/public.elipay.com/live-3514d179aac2/source/images/e8a2e84064f84f798d2b5c703116409c.jpg",
-    "website": "https://osteriadegliamici.ch",
-    "description": "",
-    "gocryptoId": 2812,
-    "title": "Osteria degli Amici",
-    "vat": "CHE-354.422.088",
-    "lat": 45.953927,
-    "lng": 8.905924,
-    "tags": [
-      "food_and_drink"
-    ],
-    "accepted_cryptos": [
-      "BTC",
-      "UST",
-      "LVGA"
-    ],
-    "id": 123
   },
   {
     "address": "Piazza dell'Indipendenza 11 - 6900 Lugano",
@@ -4041,7 +3976,7 @@
     "id": 229
   },
   {
-    "address": "Piazza Riforma 1 - 6900 Lugano",
+    "address": "Via Magatti 6, 6900 Lugano",
     "phone": "+41 58 220 65 06",
     "logo_url": "",
     "website": "https://www.luganoregion.com/it",
@@ -4049,8 +3984,8 @@
     "gocryptoId": null,
     "title": "Ente Turistico del Luganese Lugano Region",
     "vat": "CHE-490.858.625",
-    "lat": 46.0033459,
-    "lng": 8.9515097,
+    "lat": 46.0048185920987,
+    "lng": 8.951758078768131,
     "tags": [
       "sports_and_leisure"
     ],
@@ -7789,5 +7724,104 @@
       "LVGA"
     ],
     "id": 431
+  },
+  {
+    "address": "Corso Elvezia 27 - 6900 Lugano",
+    "phone": "41 78 659 81 73",
+    "logo_url": "",
+    "website": "https://leplaw.co.uk/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "LepLaw CH",
+    "vat": "",
+    "lat": "46.0089777143599",
+    "lng": "8.955770806568582",
+    "tags": [
+      "service"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 432
+  },
+  {
+    "address": "Viale Franscini 27 - 6900 Lugano",
+    "phone": "41 79 666 60 00",
+    "logo_url": "",
+    "website": "https://www.studioantonini.info/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Studio Antonini",
+    "vat": "",
+    "lat": "46.01093139417544",
+    "lng": "8.954392111263163",
+    "tags": [
+      "service"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 433
+  },
+  {
+    "address": "Via alla Vetta 40 - 6979 Brè",
+    "phone": "41 91 971 20 45",
+    "logo_url": "",
+    "website": "https://www.vetta.ch/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Ristorante Vetta Monte Brè",
+    "vat": "",
+    "lat": "46.00848579354871",
+    "lng": "8.984636264202555",
+    "tags": [
+      "food_and_drink"
+    ],
+    "accepted_cryptos": [
+      "BTC",
+      "UST",
+      "LVGA"
+    ],
+    "id": 434
+  },
+  {
+    "address": "Via Boschina 8 - 6963 Pregassona",
+    "phone": "41 76 398 62 90",
+    "logo_url": "",
+    "website": "https://ticishot.ch/",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Ticishot Agenzia fotografica",
+    "vat": "",
+    "lat": "46.01834486658105",
+    "lng": "8.96380468617535",
+    "tags": [
+      "service"
+    ],
+    "accepted_cryptos": [
+      "LVGA"
+    ],
+    "id": 435
+  },
+  {
+    "address": "Piazza Manzoni",
+    "phone": "",
+    "logo_url": "",
+    "website": "",
+    "description": "",
+    "gocryptoId": "",
+    "title": "Buvette",
+    "vat": "",
+    "lat": "46.0035560",
+    "lng": "8.9521757",
+    "tags": [],
+    "accepted_cryptos": [
+      "LVGA"
+    ],
+    "id": 436
   }
 ]
