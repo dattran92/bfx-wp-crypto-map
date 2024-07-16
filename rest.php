@@ -3,17 +3,10 @@
 // TODO: use wp_remote_get when the backend fix query params
 // TODO: recursive get until no more data
 function request_merchants() {
-  $url = 'https://api.bitfinex.com/v2/ext/merchant/map/locations/list';
-  $data = array(
-    "page" => 1,
-    "limit"  => 500
-  );
-  $postdata = json_encode($data);
+  $url = 'https://api.bitfinex.com/v2/ext/merchant/map/locations/list?page=1&pageSize=500';
   $ch = curl_init($url);
   curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
-  curl_setopt($ch, CURLOPT_POSTFIELDS, $postdata);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-  curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
   $result = curl_exec($ch);
   curl_close($ch);
 
