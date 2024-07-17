@@ -269,7 +269,6 @@ BfxCryptoMap.prototype.renderMarkers = function(data) {
     minWidth: 340,
     closeButton: false,
   };
-
   const markers = data
     .filter(function(merchant) {
       return merchant.lat && merchant.lng;
@@ -299,10 +298,11 @@ BfxCryptoMap.prototype.renderMarkers = function(data) {
 BfxCryptoMap.prototype.fetchData = function() {
   const self = this;
   jQuery
-    .ajax({ url: this.merchantDataUrl })
+    .ajax({ method: 'POST', url: this.merchantDataUrl })
     .done(function(data) {
-      self.MERCHANT_DATA = data;
-      self.renderMarkers(data);
+      const items = data.items;
+      self.MERCHANT_DATA = items;
+      self.renderMarkers(items);
     });
 }
 

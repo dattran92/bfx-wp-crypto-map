@@ -3,13 +3,14 @@
 Plugin Name: BFX crypto map
 Plugin URI: https://bitfinex.com
 description: BFX crypto map
-Version: 1.3.13
+Version: 1.4.2
 Author: BFX
 Author URI: https://bitfinex.com
 License: GPL2
 */
 
 include_once(plugin_dir_path( __FILE__ ) . './translations.php');
+include_once(plugin_dir_path( __FILE__ ) . './rest.php');
 
 function bfx_crypto_map_version() {
   if(!function_exists('get_plugin_data') ){
@@ -36,7 +37,7 @@ function bfx_crypto_map_handler( $atts ) {
   $lang = $mapped_atts['lang'];
   $map_mobile_w = $mapped_atts['mobile_width'];
   $map_mobile_h = $mapped_atts['mobile_height'];
-  $merchants_data_url = plugin_dir_url(__FILE__) . 'assets/merchants.json?ver=' . $plugin_version;
+  $merchants_data_url = '/wp-json/bfx-crypto-map/v1/merchants';
   $asset_url = plugin_dir_url(__FILE__) . 'assets';
 
   $translator = new BfxTranslations($lang);
