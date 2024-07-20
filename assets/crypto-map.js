@@ -388,7 +388,13 @@ BfxCryptoMap.prototype.setPopupContent = function(e, content) {
 }
 
 BfxCryptoMap.prototype.getFilterData = function() {
-  const searchValue = jQuery('#bfx-crypto-search-input').val().toLowerCase().trim();
+  // ignore accent in search
+  const searchValue = jQuery('#bfx-crypto-search-input')
+    .val()
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '')
+    .trim();
   const formValues = jQuery('#bfx-crypto-filter-form').serializeArray();
   const categories = formValues
     .filter(function (item) {
@@ -408,7 +414,11 @@ BfxCryptoMap.prototype.getFilterData = function() {
   const numberOfFilter = categories.length + acceptedCryptos.length;
 
   const filteredData = this.MERCHANT_DATA.filter(function (merchant) {
-    const matchedSearch = !searchValue || searchValue === '' || merchant.title.toLowerCase().includes(searchValue);
+    const merchantTitle = merchant.title
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/\p{Diacritic}/gu, '');
+    const matchedSearch = !searchValue || searchValue === '' || merchantTitle.includes(searchValue);
     const hasCategory = categories.length === 0 || categories.some(function (category) {
       return (merchant.tags || []).includes(category);
     });
