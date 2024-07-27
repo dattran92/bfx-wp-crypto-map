@@ -389,12 +389,9 @@ BfxCryptoMap.prototype.setPopupContent = function(e, content) {
 
 BfxCryptoMap.prototype.getFilterData = function() {
   // ignore accent in search
-  const searchValue = jQuery('#bfx-crypto-search-input')
-    .val()
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/\p{Diacritic}/gu, '')
-    .trim();
+  const searchValue = BfxCryptoMap.utils.normalizeWord(
+    jQuery('#bfx-crypto-search-input').val()
+  );
   const formValues = jQuery('#bfx-crypto-filter-form').serializeArray();
   const categories = formValues
     .filter(function (item) {
@@ -414,10 +411,7 @@ BfxCryptoMap.prototype.getFilterData = function() {
   const numberOfFilter = categories.length + acceptedCryptos.length;
 
   const filteredData = this.MERCHANT_DATA.filter(function (merchant) {
-    const merchantTitle = merchant.title
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/\p{Diacritic}/gu, '');
+    const merchantTitle = BfxCryptoMap.utils.normalizeWord(merchant.title);
     const matchedSearch = !searchValue || searchValue === '' || merchantTitle.includes(searchValue);
     const hasCategory = categories.length === 0 || categories.some(function (category) {
       return (merchant.tags || []).includes(category);
@@ -574,4 +568,26 @@ BfxCryptoMap.hideAllBfxCryptoPopup = function() {
 BfxCryptoMap.showBfxCryptoPopup = function(selector, left = '', right = '') {
   jQuery(selector).addClass('active').css('left', left).css('right', right);
   jQuery('#bfx-crypto-popup-overlay').addClass('active');
+}
+
+BfxCryptoMap.utils = {
+  normalizeWord: function(w) {
+    const iMap = {
+      'ð': 'd',
+      'ı': 'i',
+      'Ł': 'L',
+      'ł': 'l',
+      'ø': 'o',
+      'ß': 'ss',
+      'ü': 'ue'
+    };
+    const iRegex = new RegExp(Object.keys(iMap).join('|'), 'g')
+
+    return w
+      .toLowerCase()
+      .replace(iRegex, (m) => iMap[m])
+      .normalize('NFD')
+      .replace(/\p{Diacritic}/gu, '')
+      .trim();
+  }
 }
