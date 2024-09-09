@@ -173,6 +173,10 @@ BfxCryptoMap.prototype.setup = function() {
 
   L.control.currentPosition({ position: 'bottomright' }).addTo(map);
 
+
+  // graphic-scale
+  L.control.graphicScale().addTo(map);
+
   this.map = map;
   this.gl = gl;
   this.markerGroup = markerGroup;
