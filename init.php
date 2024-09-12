@@ -298,11 +298,13 @@ function bfx_crypto_map_shortcode_scripts() {
     wp_enqueue_script('leaflet-marker-cluster', 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js', array('leaflet'), null);
     wp_enqueue_script('mapbox-gl', 'https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js', array(), null);
     wp_enqueue_script('mapbox-gl-leaflet', plugin_dir_url(__FILE__) . 'assets/mapbox-gl-leaflet.js', array('leaflet', 'mapbox-gl'), null);
+    wp_enqueue_script('leaflet-graphicscale', plugin_dir_url(__FILE__) . 'assets/Leaflet.GraphicScale.min.js', array('leaflet', 'mapbox-gl'), null);
     wp_enqueue_script('bfx-crypto-map', plugin_dir_url(__FILE__) . 'assets/crypto-map.js', array('mapbox-gl-leaflet'), $plugin_version);
     wp_enqueue_style( 'leaflet', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css', array(), null);
     wp_enqueue_style( 'leaflet-marker-cluster', 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css', array('leaflet'), null);
     wp_enqueue_style( 'leaflet-marker-cluster-default', 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css', array('leaflet', 'leaflet-marker-cluster'), null);
     wp_enqueue_style( 'mapbox-gl', 'https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css', array('leaflet'), null);
+    wp_enqueue_style( 'leaflet-graphicscale', plugin_dir_url(__FILE__) . 'assets/Leaflet.GraphicScale.min.css', array('leaflet'), $plugin_version);
     wp_enqueue_style( 'leaflet-custom', plugin_dir_url(__FILE__) . 'assets/styles.css', array('leaflet'), $plugin_version);
   }
 }
