@@ -583,7 +583,7 @@ BfxCryptoMap.utils = {
       'ł': 'l',
       'ø': 'o',
       'ß': 'ss',
-      'ü': 'ue'
+      'ü': 'u'
     };
     const iRegex = new RegExp(Object.keys(iMap).join('|'), 'g')
 
