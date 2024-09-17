@@ -311,13 +311,18 @@ BfxCryptoMap.prototype.fetchData = function() {
     .ajax({ method: 'POST', url: this.merchantDataUrl })
     .done(function(data) {
       const items = data.items;
-      self.MERCHANT_DATA = items.map((item) => ({
-        ...item,
-        accepted_cryptos: [
-          ...item.accepted_cryptos,
-          'NAKA',
-        ]
-      }));
+
+      self.MERCHANT_DATA = items.map((item) => {
+        let acceptedCryptos = item.accepted_cryptos || [];
+        if (acceptedCryptos.includes('BTC') && acceptedCryptos.includes('UST')) {
+          acceptedCryptos.push('NAKA');
+        }
+        return {
+          ...item,
+          accepted_cryptos: acceptedCryptos
+        }
+      });
+
       self.renderMarkers(items);
     });
 }
