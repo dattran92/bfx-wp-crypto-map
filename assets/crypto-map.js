@@ -77,6 +77,12 @@ function BfxCryptoMap(configuration) {
       height: 22,
       icon: assetUrl + '/LVGA.png',
     },
+    NAKA: {
+      name: 'NAKA Card',
+      width: 22,
+      height: 22,
+      icon: assetUrl + '/NAKA.png',
+    },
   };
 
   this.activeStyle = localStorage.getItem(BfxCryptoConstants.localstorageStyleKey) || BfxCryptoConstants.availableStyles[0].id
@@ -305,7 +311,13 @@ BfxCryptoMap.prototype.fetchData = function() {
     .ajax({ method: 'POST', url: this.merchantDataUrl })
     .done(function(data) {
       const items = data.items;
-      self.MERCHANT_DATA = items;
+      self.MERCHANT_DATA = items.map((item) => ({
+        ...item,
+        accepted_cryptos: [
+          ...item.accepted_cryptos,
+          'NAKA',
+        ]
+      }));
       self.renderMarkers(items);
     });
 }
@@ -337,19 +349,26 @@ BfxCryptoMap.prototype.onMarkerClick = function(e) {
     const logo = '<img src="' + logoUrl + '" width="44" height="44" />';
     const titleStr = merchant.title || '';
     const title = '<h3>' + titleStr + '</h3>' + tags;
-    const description = merchant.address ? '<p>' + merchant.address + '</p>' : '';
+    const phoneDesc = merchant.phone ? '<p>' + merchant.phone + '</p>' : '';
+    const addressDesc = merchant.address ? '<p>' + BfxCryptoMap.utils.displayAddress(merchant.address) + '</p>' : '';
+    const cityDesc = '<p>' + merchant.city + ', ' + BfxCryptoMap.utils.displayCountry(merchant.country) + '</p>';
+    const description = phoneDesc + addressDesc + cityDesc;
     const website = merchant.website
-      ? '<a href="' + merchant.website + '" target="_blank"><img src="' + self.assetUrl + '/globe.png" /></a>'
+      ? '<a href="' + merchant.website + '" target="_blank"><img src="' + self.assetUrl + '/globe.png" height="24" /></a>'
       : '';
 
+    const phone = self.isMobile && merchant.phone
+      ? '<a href="tel:' + merchant.phone  + '"><img src="' + self.assetUrl + '/phone.png" height="24" /></a>'
+      : ''
+
     const latLng = merchant.lat + ',' + merchant.lng;
-    const direction = '<a href="https://maps.google.com/?q=' + latLng +'" target="_blank"><img src="' + self.assetUrl + '/direction.png" /></a>';
-    const websiteInner = website + direction;
+    const direction = '<a href="https://maps.google.com/?q=' + latLng +'" target="_blank"><img src="' + self.assetUrl + '/direction.png" height="24" /></a>';
+    const websiteInner = phone + website + direction;
 
     const popupTemplate = document.getElementById('bfx-crypto-popup-template');
     popupTemplate.querySelector('.logo').innerHTML = logo;
-    popupTemplate.querySelector('.title').innerHTML = title;
-    popupTemplate.querySelector('.description').innerHTML = description;
+    popupTemplate.querySelector('.bfx-marker-title').innerHTML = title;
+    popupTemplate.querySelector('.bfx-marker-description').innerHTML = description;
     popupTemplate.querySelector('.tokens').innerHTML = tokens;
     popupTemplate.querySelector('.website').innerHTML = websiteInner;
 
@@ -371,7 +390,7 @@ BfxCryptoMap.prototype.setPopupContent = function(e, content) {
     return markerPopup.setContent(content);
   }
 
-  const width = this.map.getSize().x - 60; // 60 is the padding of the popup
+  const width = this.map.getSize().x - 36; // 30 is the padding of the popup
   const bounds = this.map.getBounds();
   const center = bounds.getCenter();
   const south = bounds.getSouth();
@@ -593,5 +612,18 @@ BfxCryptoMap.utils = {
       .normalize('NFD')
       .replace(/\p{Diacritic}/gu, '')
       .trim();
+  },
+
+  // work around to hide irrelevant info
+  displayAddress: function(address) {
+    return address ? address.replace('- 6900 Lugano', '') : '';
+  },
+
+  displayCountry: function(code) {
+    if (code === 'CH') {
+      return 'Switzerland';
+    }
+
+    return code;
   }
 }

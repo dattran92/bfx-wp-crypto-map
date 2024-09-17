@@ -14,17 +14,19 @@
   height: 44px;
 }
 
-.bfx-marker-popup .title h3 {
+.bfx-marker-popup .bfx-marker-title h3 {
   font-weight: 500;
   font-size: 18px;
   margin-bottom: 0;
   display: inline-block;
   margin-right: 10px;
+  margin-top: 0;
+  line-height: 20px;
 }
 
-.bfx-marker-popup .description {
+.bfx-marker-popup .bfx-marker-description {
   opacity: 0.5;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .bfx-marker-popup .footer {
@@ -51,6 +53,7 @@
 
 .bfx-marker-popup .tokens {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
@@ -58,14 +61,19 @@
   color: #C85263;
   background: rgba(205, 188, 190, 0.16);
   border-radius: 10px;
-  padding: 3px;
+  padding: 3px 6px;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
+.bfx-marker-popup .website {
+  display: flex;
+  gap: 5px;
+}
+
 .bfx-mobile-popup {
-  margin-bottom: 30px;
+  margin-bottom: 72px;
 }
 
 /* start filter */
@@ -357,6 +365,20 @@
   width: 40px;
   padding: 0 9px;
 }
+
+.bfx-crypto-filter-popup .filter-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.bfx-crypto-filter-popup .filter-list .filter-checkbox,
+.bfx-crypto-filter-popup .filter-list .filter-checkbox label
+{
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
 /* end filter */
 
 /* start store list */
@@ -438,6 +460,11 @@
 /* start leaflet reset */
 .leaflet-popup-tip-container {
   display: none;
+}
+
+
+.leaflet-popup-content {
+  margin: 15px;
 }
 
 .leaflet-popup-content p {

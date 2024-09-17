@@ -19,7 +19,7 @@ class BfxTranslations
       'toys' => 'Toys',
       'other' => 'Other',
       'accepts' => 'Accepts',
-      'accepted_tokens' => 'Accepted Tokens',
+      'accepted_payment_methods' => 'Accepted Payment Methods',
       'clear_filters' => 'Clear Filters',
       'store_list' => 'Store List',
       'no_store' => 'No store found'
@@ -40,7 +40,7 @@ class BfxTranslations
       'toys' => 'Giocattoli e prodotti per bambini',
       'other' => 'Altro',
       'accepts' => 'Accetta',
-      'accepted_tokens' => 'Token accettati'
+      'accepted_payment_methods' => 'Accepted Payment Methods'
     ],
   ];
 
