@@ -179,7 +179,6 @@ BfxCryptoMap.prototype.setup = function() {
 
   L.control.currentPosition({ position: 'bottomright' }).addTo(map);
 
-
   // graphic-scale
   L.control.graphicScale().addTo(map);
 
@@ -377,7 +376,15 @@ BfxCryptoMap.prototype.onMarkerClick = function(e) {
     popupTemplate.querySelector('.tokens').innerHTML = tokens;
     popupTemplate.querySelector('.website').innerHTML = websiteInner;
 
-    const popup = self.setPopupContent(e, popupTemplate.innerHTML);
+    const divPopup = L.DomUtil.create('div', 'bfx-marker-popup');
+    divPopup.innerHTML = popupTemplate.innerHTML;
+    const popup = self.setPopupContent(e, divPopup);
+
+    if (!self.isMobile) {
+      jQuery(divPopup).on('click', function() {
+        self.map.flyTo([merchant.lat, merchant.lng], 17);
+      })
+    }
 
     popup.on('remove', function () {
       // silly work-around to avoid race-condition made by leaflet marker cluster
