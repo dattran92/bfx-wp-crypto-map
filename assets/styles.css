@@ -70,6 +70,7 @@
 .bfx-marker-popup .website {
   display: flex;
   gap: 5px;
+  height: 24px;
 }
 
 .bfx-mobile-popup {
