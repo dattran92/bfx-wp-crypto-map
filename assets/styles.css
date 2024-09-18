@@ -71,6 +71,7 @@
   display: flex;
   gap: 5px;
   height: 24px;
+  flex-shrink: 0;
 }
 
 .bfx-mobile-popup {
