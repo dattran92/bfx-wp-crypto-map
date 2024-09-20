@@ -40,7 +40,7 @@ class BfxTranslations
       'toys' => 'Giocattoli e prodotti per bambini',
       'other' => 'Altro',
       'accepts' => 'Accetta',
-      'accepted_payment_methods' => 'Accepted Payment Methods'
+      'accepted_payment_methods' => 'Metodi di pagamento accettati'
     ],
   ];
 
