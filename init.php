@@ -20,6 +20,56 @@ function bfx_crypto_map_version() {
   return $plugin_data['Version'];
 }
 
+function bfx_gen_tag_filter_list($translator) {
+  $available_tags = [
+    'restaurant',
+    'take_away',
+    'boutique',
+    'hair_stylist',
+    'bar_and_cafe',
+    'electronics',
+    'entertainment',
+    'sports_and_leisure',
+    'jewelry',
+    'pharmacy',
+    'kiosk',
+    'flower_shop',
+    'service_provider',
+    'book_shop',
+    'optician',
+    'art_gallery',
+    'stationary_shop',
+    'beauty_salon',
+    'education',
+    'grocery_store',
+    'hotel',
+    'taxi',
+    'auto_and_moto',
+    'retail',
+    'home_and_garden',
+    'local_food_products'
+  ];
+
+  $tag_filter_list = [];
+
+  for ($i = 0; $i < count($available_tags); $i++) {
+    array_push($tag_filter_list, bfx_gen_tag_filter_item($available_tags[$i], $translator));
+  }
+
+  $tag_filter_html = join('', $tag_filter_list);
+  return $tag_filter_html;
+}
+
+function bfx_gen_tag_filter_item($tag, $translator) {
+  $label = $translator->translate($tag);
+  return <<<HTML
+    <div class="filter-checkbox">
+      <input type="checkbox" id="bfx_filter_$tag" name="category" value="$tag" />
+      <label for="bfx_filter_$tag">$label</label>
+    </div>
+  HTML;
+}
+
 // [bfx_crypto_map width="100%" height="100%" mode="desktop"]
 function bfx_crypto_map_handler( $atts ) {
   $plugin_version = bfx_crypto_map_version();
@@ -32,7 +82,6 @@ function bfx_crypto_map_handler( $atts ) {
     'env' => 'production'
   ), $atts);
 
-
   $map_w = $mapped_atts['width'];
   $map_h = $mapped_atts['height'];
   $lang = $mapped_atts['lang'];
@@ -43,6 +92,7 @@ function bfx_crypto_map_handler( $atts ) {
   $asset_url = plugin_dir_url(__FILE__) . 'assets';
 
   $translator = new BfxTranslations($lang);
+  $tag_filter_html = bfx_gen_tag_filter_list($translator);
 
   $html = <<<HTML
   <div class="bfx-crypto-container">
@@ -108,18 +158,6 @@ function bfx_crypto_map_handler( $atts ) {
           <form id="bfx-crypto-layer-form">
             <div class="filter-list">
               <div class="filter-content">
-                <div class="filter-checkbox">
-                  <img width="18" height="18" src="$asset_url/radio-inactive.png" />
-                  <label>{$translator->translate('sports_and_leisure')}</label>
-                </div>
-                <div class="filter-checkbox">
-                  <img width="18" height="18" src="$asset_url/radio-inactive.png" />
-                  <label>{$translator->translate('sports_and_leisure')}</label>
-                </div>
-                <div class="filter-checkbox">
-                  <img width="18" height="18" src="$asset_url/radio-inactive.png" />
-                  <label>{$translator->translate('sports_and_leisure')}</label>
-                </div>
               </div>
             </div>
           </form>
@@ -131,50 +169,7 @@ function bfx_crypto_map_handler( $atts ) {
             <div class="filter-list">
               <div class="filter-title">{$translator->translate('category')}</div>
               <div class="filter-content">
-                <div class="filter-checkbox">
-                  <input type="checkbox" id="bfx_filter_sports_and_leisure" name="category" value="sports_and_leisure" />
-                  <label for="bfx_filter_sports_and_leisure">{$translator->translate('sports_and_leisure')}</label>
-                </div>
-                <div class="filter-checkbox">
-                  <input type="checkbox" id="bfx_filter_services" name="category" value="services" />
-                  <label for="bfx_filter_services">{$translator->translate('services')}</label>
-                </div>
-                <div class="filter-checkbox">
-                  <input type="checkbox" id="bfx_filter_food_and_drink" name="category" value="food_and_drink" />
-                  <label for="bfx_filter_food_and_drink">{$translator->translate('food_and_drink')}</label>
-                </div>
-                <div class="filter-checkbox">
-                  <input type="checkbox" id="bfx_filter_fashion" name="category" value="fashion" />
-                  <label for="bfx_filter_fashion">{$translator->translate('fashion')}</label>
-                </div>
-                <div class="filter-checkbox">
-                  <input type="checkbox" id="bfx_filter_entertainment" name="category" value="entertainment" />
-                  <label for="bfx_filter_entertainment">{$translator->translate('entertainment')}</label>
-                </div>
-                <div class="filter-checkbox">
-                  <input type="checkbox" id="bfx_filter_home_and_garden" name="category" value="home_and_garden" />
-                  <label for="bfx_filter_home_and_garden">{$translator->translate('home_and_garden')}</label>
-                </div>
-                <div class="filter-checkbox">
-                  <input type="checkbox" id="bfx_filter_electronics" name="category" value="electronics" />
-                  <label for="bfx_filter_electronics">{$translator->translate('electronics')}</label>
-                </div>
-                <div class="filter-checkbox">
-                  <input type="checkbox" id="bfx_filter_retail" name="category" value="retail" />
-                  <label for="bfx_filter_retail">{$translator->translate('retail')}</label>
-                </div>
-                <div class="filter-checkbox">
-                  <input type="checkbox" id="bfx_filter_auto_and_moto" name="category" value="auto_and_moto" />
-                  <label for="bfx_filter_auto_and_moto">{$translator->translate('auto_and_moto')}</label>
-                </div>
-                <div class="filter-checkbox">
-                  <input type="checkbox" id="bfx_filter_toys" name="category" value="toys" />
-                  <label for="bfx_filter_toys">{$translator->translate('toys')}</label>
-                </div>
-                <div class="filter-checkbox">
-                  <input type="checkbox" id="bfx_filter_other" name="category" value="other" />
-                  <label for="bfx_filter_other">{$translator->translate('other')}</label>
-                </div>
+                $tag_filter_html
               </div>
             </div>
             <div class="filter-list">
