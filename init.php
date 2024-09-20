@@ -29,15 +29,17 @@ function bfx_crypto_map_handler( $atts ) {
     'mobile_width' => '100%',
     'mobile_height' => 'calc(100vh - 100px)',
     'lang' => 'en',
+    'env' => 'production'
   ), $atts);
 
 
   $map_w = $mapped_atts['width'];
   $map_h = $mapped_atts['height'];
   $lang = $mapped_atts['lang'];
+  $env = $mapped_atts['env'];
   $map_mobile_w = $mapped_atts['mobile_width'];
   $map_mobile_h = $mapped_atts['mobile_height'];
-  $merchants_data_url = '/wp-json/bfx-crypto-map/v1/merchants';
+  $merchants_data_url = '/wp-json/bfx-crypto-map/v1/merchants?env=' . $env;
   $asset_url = plugin_dir_url(__FILE__) . 'assets';
 
   $translator = new BfxTranslations($lang);

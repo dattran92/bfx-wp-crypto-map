@@ -77,7 +77,7 @@ function BfxCryptoMap(configuration) {
       height: 22,
       icon: assetUrl + '/LVGA.png',
     },
-    NAKA: {
+    NAKA_CARD: {
       name: 'NAKA Card',
       width: 22,
       height: 22,
@@ -311,17 +311,7 @@ BfxCryptoMap.prototype.fetchData = function() {
     .done(function(data) {
       const items = data.items;
 
-      self.MERCHANT_DATA = items.map((item) => {
-        let acceptedCryptos = item.accepted_cryptos || [];
-        if (acceptedCryptos.includes('BTC') && acceptedCryptos.includes('UST')) {
-          acceptedCryptos.push('NAKA');
-        }
-        return {
-          ...item,
-          accepted_cryptos: acceptedCryptos
-        }
-      });
-
+      self.MERCHANT_DATA = items;
       self.renderMarkers(items);
     });
 }
@@ -626,9 +616,9 @@ BfxCryptoMap.utils = {
       .trim();
   },
 
-  // work around to hide irrelevant info
+  // Could add more decoration in the future
   displayAddress: function(address) {
-    return address ? address.replace('- 6900 Lugano', '') : '';
+    return address;
   },
 
   displayCountry: function(code) {
