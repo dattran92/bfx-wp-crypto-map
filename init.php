@@ -197,7 +197,7 @@ function bfx_crypto_map_handler( $atts ) {
                   </label>
                 </div>
                 <div class="filter-checkbox">
-                  <input type="checkbox" id="bfx_filter_NAKA" name="accepted_cryptos" value="NAKA" />
+                  <input type="checkbox" id="bfx_filter_NAKA" name="accepted_cryptos" value="NAKA_CARD" />
                   <label for="bfx_filter_NAKA">
                     <img src="$asset_url/NAKA.png" width="22" height="22" />
                     NAKA Card
