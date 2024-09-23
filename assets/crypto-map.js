@@ -343,7 +343,8 @@ BfxCryptoMap.prototype.onMarkerClick = function(e) {
     const logo = '<img src="' + logoUrl + '" width="70" height="70" />';
     const titleStr = merchant.title || '';
     const title = '<h3>' + titleStr + '</h3>';
-    const phoneDesc = merchant.phone ? '<p>' + merchant.phone + '</p>' : '';
+    const phoneValue = merchant.phone || '<br />';
+    const phoneDesc = '<p>' + phoneValue + '</p>';
     const addressDesc = merchant.address ? '<p>' + BfxCryptoMap.utils.displayAddress(merchant.address, merchant.zip_code) + '</p>' : '';
     const cityDesc = '<p>' + merchant.city + ', ' + BfxCryptoMap.utils.displayCountry(merchant.country) + '</p>';
     const description = phoneDesc + addressDesc + cityDesc;
