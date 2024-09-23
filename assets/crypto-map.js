@@ -340,11 +340,11 @@ BfxCryptoMap.prototype.onMarkerClick = function(e) {
     }).join('');
 
     const logoUrl = merchant.logo_url || self.logoPlaceholder;
-    const logo = '<img src="' + logoUrl + '" width="44" height="44" />';
+    const logo = '<img src="' + logoUrl + '" width="70" height="70" />';
     const titleStr = merchant.title || '';
-    const title = '<h3>' + titleStr + '</h3>' + tags;
+    const title = '<h3>' + titleStr + '</h3>';
     const phoneDesc = merchant.phone ? '<p>' + merchant.phone + '</p>' : '';
-    const addressDesc = merchant.address ? '<p>' + BfxCryptoMap.utils.displayAddress(merchant.address) + '</p>' : '';
+    const addressDesc = merchant.address ? '<p>' + BfxCryptoMap.utils.displayAddress(merchant.address, merchant.zip_code) + '</p>' : '';
     const cityDesc = '<p>' + merchant.city + ', ' + BfxCryptoMap.utils.displayCountry(merchant.country) + '</p>';
     const description = phoneDesc + addressDesc + cityDesc;
     const website = merchant.website
@@ -363,6 +363,7 @@ BfxCryptoMap.prototype.onMarkerClick = function(e) {
     popupTemplate.querySelector('.logo').innerHTML = logo;
     popupTemplate.querySelector('.bfx-marker-title').innerHTML = title;
     popupTemplate.querySelector('.bfx-marker-description').innerHTML = description;
+    popupTemplate.querySelector('.bfx-marker-tags').innerHTML = tags;
     popupTemplate.querySelector('.tokens').innerHTML = tokens;
     popupTemplate.querySelector('.website').innerHTML = websiteInner;
 
@@ -486,7 +487,10 @@ BfxCryptoMap.prototype.showStoreList = function(filteredData) {
     const logoUrl = merchant.logo_url || self.logoPlaceholder;
     const logo = '<img src="' + logoUrl + '" width="32" height="32" />';
     const titleStr = '<div class="bfx-crypto-title">' + merchant.title + '</div>';
-    const description = merchant.address ? '<p>' + merchant.address + '</p>' : '';
+    const address = merchant.address
+      ? BfxCryptoMap.utils.displayAddress(merchant.address, merchant.zip_code, merchant.city)
+      : null
+    const description = address ? '<p>' + address + '</p>' : '';
     const right = '<div>' + titleStr + description + '</div>';
     const inner = logo + right;
     return '<li class="merchant-item" data-merchant-id="' + merchant.id + '">' + inner +'</li>';
@@ -617,8 +621,20 @@ BfxCryptoMap.utils = {
   },
 
   // Could add more decoration in the future
-  displayAddress: function(address) {
-    return address;
+  displayAddress: function(address, zipCode, city) {
+    const afterPart = [
+      zipCode,
+      city,
+    ]
+      .filter((v) => !!v)
+      .join(' ');
+
+    return [
+      address,
+      afterPart,
+    ]
+      .filter((v) => !!v)
+      .join(', ');
   },
 
   displayCountry: function(code) {
