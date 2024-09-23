@@ -3,7 +3,7 @@
 Plugin Name: BFX crypto map
 Plugin URI: https://bitfinex.com
 description: BFX crypto map
-Version: 1.4.2
+Version: 1.4.12
 Author: BFX
 Author URI: https://bitfinex.com
 License: GPL2
@@ -20,6 +20,56 @@ function bfx_crypto_map_version() {
   return $plugin_data['Version'];
 }
 
+function bfx_gen_tag_filter_list($translator) {
+  $available_tags = [
+    'restaurant',
+    'take_away',
+    'boutique',
+    'hair_stylist',
+    'bar_and_cafe',
+    'electronics',
+    'entertainment',
+    'sports_and_leisure',
+    'jewelry',
+    'pharmacy',
+    'kiosk',
+    'flower_shop',
+    'service_provider',
+    'book_shop',
+    'optician',
+    'art_gallery',
+    'stationary_shop',
+    'beauty_salon',
+    'education',
+    'grocery_store',
+    'hotel',
+    'taxi',
+    'auto_and_moto',
+    'retail',
+    'home_and_garden',
+    'local_food_products'
+  ];
+
+  $tag_filter_list = [];
+
+  for ($i = 0; $i < count($available_tags); $i++) {
+    array_push($tag_filter_list, bfx_gen_tag_filter_item($available_tags[$i], $translator));
+  }
+
+  $tag_filter_html = join('', $tag_filter_list);
+  return $tag_filter_html;
+}
+
+function bfx_gen_tag_filter_item($tag, $translator) {
+  $label = $translator->translate($tag);
+  return <<<HTML
+    <div class="filter-checkbox">
+      <input type="checkbox" id="bfx_filter_$tag" name="category" value="$tag" />
+      <label for="bfx_filter_$tag">$label</label>
+    </div>
+  HTML;
+}
+
 // [bfx_crypto_map width="100%" height="100%" mode="desktop"]
 function bfx_crypto_map_handler( $atts ) {
   $plugin_version = bfx_crypto_map_version();
@@ -29,18 +79,20 @@ function bfx_crypto_map_handler( $atts ) {
     'mobile_width' => '100%',
     'mobile_height' => 'calc(100vh - 100px)',
     'lang' => 'en',
+    'env' => 'production'
   ), $atts);
-
 
   $map_w = $mapped_atts['width'];
   $map_h = $mapped_atts['height'];
   $lang = $mapped_atts['lang'];
+  $env = $mapped_atts['env'];
   $map_mobile_w = $mapped_atts['mobile_width'];
   $map_mobile_h = $mapped_atts['mobile_height'];
-  $merchants_data_url = '/wp-json/bfx-crypto-map/v1/merchants';
+  $merchants_data_url = '/wp-json/bfx-crypto-map/v1/merchants?env=' . $env;
   $asset_url = plugin_dir_url(__FILE__) . 'assets';
 
   $translator = new BfxTranslations($lang);
+  $tag_filter_html = bfx_gen_tag_filter_list($translator);
 
   $html = <<<HTML
   <div class="bfx-crypto-container">
@@ -106,18 +158,6 @@ function bfx_crypto_map_handler( $atts ) {
           <form id="bfx-crypto-layer-form">
             <div class="filter-list">
               <div class="filter-content">
-                <div class="filter-checkbox">
-                  <img width="18" height="18" src="$asset_url/radio-inactive.png" />
-                  <label>{$translator->translate('sports_and_leisure')}</label>
-                </div>
-                <div class="filter-checkbox">
-                  <img width="18" height="18" src="$asset_url/radio-inactive.png" />
-                  <label>{$translator->translate('sports_and_leisure')}</label>
-                </div>
-                <div class="filter-checkbox">
-                  <img width="18" height="18" src="$asset_url/radio-inactive.png" />
-                  <label>{$translator->translate('sports_and_leisure')}</label>
-                </div>
               </div>
             </div>
           </form>
@@ -129,50 +169,7 @@ function bfx_crypto_map_handler( $atts ) {
             <div class="filter-list">
               <div class="filter-title">{$translator->translate('category')}</div>
               <div class="filter-content">
-                <div class="filter-checkbox">
-                  <input type="checkbox" id="bfx_filter_sports_and_leisure" name="category" value="sports_and_leisure" />
-                  <label for="bfx_filter_sports_and_leisure">{$translator->translate('sports_and_leisure')}</label>
-                </div>
-                <div class="filter-checkbox">
-                  <input type="checkbox" id="bfx_filter_services" name="category" value="services" />
-                  <label for="bfx_filter_services">{$translator->translate('services')}</label>
-                </div>
-                <div class="filter-checkbox">
-                  <input type="checkbox" id="bfx_filter_food_and_drink" name="category" value="food_and_drink" />
-                  <label for="bfx_filter_food_and_drink">{$translator->translate('food_and_drink')}</label>
-                </div>
-                <div class="filter-checkbox">
-                  <input type="checkbox" id="bfx_filter_fashion" name="category" value="fashion" />
-                  <label for="bfx_filter_fashion">{$translator->translate('fashion')}</label>
-                </div>
-                <div class="filter-checkbox">
-                  <input type="checkbox" id="bfx_filter_entertainment" name="category" value="entertainment" />
-                  <label for="bfx_filter_entertainment">{$translator->translate('entertainment')}</label>
-                </div>
-                <div class="filter-checkbox">
-                  <input type="checkbox" id="bfx_filter_home_and_garden" name="category" value="home_and_garden" />
-                  <label for="bfx_filter_home_and_garden">{$translator->translate('home_and_garden')}</label>
-                </div>
-                <div class="filter-checkbox">
-                  <input type="checkbox" id="bfx_filter_electronics" name="category" value="electronics" />
-                  <label for="bfx_filter_electronics">{$translator->translate('electronics')}</label>
-                </div>
-                <div class="filter-checkbox">
-                  <input type="checkbox" id="bfx_filter_retail" name="category" value="retail" />
-                  <label for="bfx_filter_retail">{$translator->translate('retail')}</label>
-                </div>
-                <div class="filter-checkbox">
-                  <input type="checkbox" id="bfx_filter_auto_and_moto" name="category" value="auto_and_moto" />
-                  <label for="bfx_filter_auto_and_moto">{$translator->translate('auto_and_moto')}</label>
-                </div>
-                <div class="filter-checkbox">
-                  <input type="checkbox" id="bfx_filter_toys" name="category" value="toys" />
-                  <label for="bfx_filter_toys">{$translator->translate('toys')}</label>
-                </div>
-                <div class="filter-checkbox">
-                  <input type="checkbox" id="bfx_filter_other" name="category" value="other" />
-                  <label for="bfx_filter_other">{$translator->translate('other')}</label>
-                </div>
+                $tag_filter_html
               </div>
             </div>
             <div class="filter-list">
@@ -199,6 +196,13 @@ function bfx_crypto_map_handler( $atts ) {
                     LVGA
                   </label>
                 </div>
+                <div class="filter-checkbox">
+                  <input type="checkbox" id="bfx_filter_NAKA" name="accepted_cryptos" value="NAKA" />
+                  <label for="bfx_filter_NAKA">
+                    <img src="$asset_url/NAKA.png" width="22" height="22" />
+                    NAKA Card
+                  </label>
+                </div>
               </div>
             </div>
           </form>
@@ -215,12 +219,12 @@ function bfx_crypto_map_handler( $atts ) {
         <div class="logo">
         </div>
         <div>
-          <div class="title"></div>
-          <div class="description"></div>
+          <div class="bfx-marker-title"></div>
+          <div class="bfx-marker-description"></div>
         </div>
       </div>
       <div class="footer">
-        <div class="label">{$translator->translate('accepted_tokens')}</div>
+        <div class="label">{$translator->translate('accepted_payment_methods')}</div>
         <div class="footer-container">
           <div class="tokens">
           </div>
@@ -298,11 +302,13 @@ function bfx_crypto_map_shortcode_scripts() {
     wp_enqueue_script('leaflet-marker-cluster', 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js', array('leaflet'), null);
     wp_enqueue_script('mapbox-gl', 'https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js', array(), null);
     wp_enqueue_script('mapbox-gl-leaflet', plugin_dir_url(__FILE__) . 'assets/mapbox-gl-leaflet.js', array('leaflet', 'mapbox-gl'), null);
+    wp_enqueue_script('leaflet-graphicscale', plugin_dir_url(__FILE__) . 'assets/Leaflet.GraphicScale.min.js', array('leaflet', 'mapbox-gl'), null);
     wp_enqueue_script('bfx-crypto-map', plugin_dir_url(__FILE__) . 'assets/crypto-map.js', array('mapbox-gl-leaflet'), $plugin_version);
     wp_enqueue_style( 'leaflet', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css', array(), null);
     wp_enqueue_style( 'leaflet-marker-cluster', 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css', array('leaflet'), null);
     wp_enqueue_style( 'leaflet-marker-cluster-default', 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css', array('leaflet', 'leaflet-marker-cluster'), null);
     wp_enqueue_style( 'mapbox-gl', 'https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css', array('leaflet'), null);
+    wp_enqueue_style( 'leaflet-graphicscale', plugin_dir_url(__FILE__) . 'assets/Leaflet.GraphicScale.min.css', array('leaflet'), $plugin_version);
     wp_enqueue_style( 'leaflet-custom', plugin_dir_url(__FILE__) . 'assets/styles.css', array('leaflet'), $plugin_version);
   }
 }

@@ -77,6 +77,12 @@ function BfxCryptoMap(configuration) {
       height: 22,
       icon: assetUrl + '/LVGA.png',
     },
+    NAKA_CARD: {
+      name: 'NAKA Card',
+      width: 22,
+      height: 22,
+      icon: assetUrl + '/NAKA.png',
+    },
   };
 
   this.activeStyle = localStorage.getItem(BfxCryptoConstants.localstorageStyleKey) || BfxCryptoConstants.availableStyles[0].id
@@ -172,6 +178,9 @@ BfxCryptoMap.prototype.setup = function() {
   }
 
   L.control.currentPosition({ position: 'bottomright' }).addTo(map);
+
+  // graphic-scale
+  L.control.graphicScale().addTo(map);
 
   this.map = map;
   this.gl = gl;
@@ -301,6 +310,7 @@ BfxCryptoMap.prototype.fetchData = function() {
     .ajax({ method: 'POST', url: this.merchantDataUrl })
     .done(function(data) {
       const items = data.items;
+
       self.MERCHANT_DATA = items;
       self.renderMarkers(items);
     });
@@ -333,23 +343,38 @@ BfxCryptoMap.prototype.onMarkerClick = function(e) {
     const logo = '<img src="' + logoUrl + '" width="44" height="44" />';
     const titleStr = merchant.title || '';
     const title = '<h3>' + titleStr + '</h3>' + tags;
-    const description = merchant.address ? '<p>' + merchant.address + '</p>' : '';
+    const phoneDesc = merchant.phone ? '<p>' + merchant.phone + '</p>' : '';
+    const addressDesc = merchant.address ? '<p>' + BfxCryptoMap.utils.displayAddress(merchant.address) + '</p>' : '';
+    const cityDesc = '<p>' + merchant.city + ', ' + BfxCryptoMap.utils.displayCountry(merchant.country) + '</p>';
+    const description = phoneDesc + addressDesc + cityDesc;
     const website = merchant.website
-      ? '<a href="' + merchant.website + '" target="_blank"><img src="' + self.assetUrl + '/globe.png" /></a>'
+      ? '<a href="' + merchant.website + '" target="_blank"><img src="' + self.assetUrl + '/globe.png" height="24" /></a>'
       : '';
 
+    const phone = self.isMobile && merchant.phone
+      ? '<a href="tel:' + merchant.phone  + '"><img src="' + self.assetUrl + '/phone.png" height="24" /></a>'
+      : ''
+
     const latLng = merchant.lat + ',' + merchant.lng;
-    const direction = '<a href="https://maps.google.com/?q=' + latLng +'" target="_blank"><img src="' + self.assetUrl + '/direction.png" /></a>';
-    const websiteInner = website + direction;
+    const direction = '<a href="https://maps.google.com/?q=' + latLng +'" target="_blank"><img src="' + self.assetUrl + '/direction.png" height="24" /></a>';
+    const websiteInner = phone + website + direction;
 
     const popupTemplate = document.getElementById('bfx-crypto-popup-template');
     popupTemplate.querySelector('.logo').innerHTML = logo;
-    popupTemplate.querySelector('.title').innerHTML = title;
-    popupTemplate.querySelector('.description').innerHTML = description;
+    popupTemplate.querySelector('.bfx-marker-title').innerHTML = title;
+    popupTemplate.querySelector('.bfx-marker-description').innerHTML = description;
     popupTemplate.querySelector('.tokens').innerHTML = tokens;
     popupTemplate.querySelector('.website').innerHTML = websiteInner;
 
-    const popup = self.setPopupContent(e, popupTemplate.innerHTML);
+    const divPopup = L.DomUtil.create('div', 'bfx-marker-popup');
+    divPopup.innerHTML = popupTemplate.innerHTML;
+    const popup = self.setPopupContent(e, divPopup);
+
+    if (!self.isMobile) {
+      jQuery(divPopup).on('click', function() {
+        self.map.flyTo([merchant.lat, merchant.lng], 17);
+      })
+    }
 
     popup.on('remove', function () {
       // silly work-around to avoid race-condition made by leaflet marker cluster
@@ -367,7 +392,7 @@ BfxCryptoMap.prototype.setPopupContent = function(e, content) {
     return markerPopup.setContent(content);
   }
 
-  const width = this.map.getSize().x - 60; // 60 is the padding of the popup
+  const width = this.map.getSize().x - 36; // 30 is the padding of the popup
   const bounds = this.map.getBounds();
   const center = bounds.getCenter();
   const south = bounds.getSouth();
@@ -388,7 +413,10 @@ BfxCryptoMap.prototype.setPopupContent = function(e, content) {
 }
 
 BfxCryptoMap.prototype.getFilterData = function() {
-  const searchValue = jQuery('#bfx-crypto-search-input').val().toLowerCase().trim();
+  // ignore accent in search
+  const searchValue = BfxCryptoMap.utils.normalizeWord(
+    jQuery('#bfx-crypto-search-input').val()
+  );
   const formValues = jQuery('#bfx-crypto-filter-form').serializeArray();
   const categories = formValues
     .filter(function (item) {
@@ -408,7 +436,8 @@ BfxCryptoMap.prototype.getFilterData = function() {
   const numberOfFilter = categories.length + acceptedCryptos.length;
 
   const filteredData = this.MERCHANT_DATA.filter(function (merchant) {
-    const matchedSearch = !searchValue || searchValue === '' || merchant.title.toLowerCase().includes(searchValue);
+    const merchantTitle = BfxCryptoMap.utils.normalizeWord(merchant.title);
+    const matchedSearch = !searchValue || searchValue === '' || merchantTitle.includes(searchValue);
     const hasCategory = categories.length === 0 || categories.some(function (category) {
       return (merchant.tags || []).includes(category);
     });
@@ -564,4 +593,39 @@ BfxCryptoMap.hideAllBfxCryptoPopup = function() {
 BfxCryptoMap.showBfxCryptoPopup = function(selector, left = '', right = '') {
   jQuery(selector).addClass('active').css('left', left).css('right', right);
   jQuery('#bfx-crypto-popup-overlay').addClass('active');
+}
+
+BfxCryptoMap.utils = {
+  normalizeWord: function(w) {
+    const iMap = {
+      'ð': 'd',
+      'ı': 'i',
+      'Ł': 'L',
+      'ł': 'l',
+      'ø': 'o',
+      'ß': 'ss',
+      'ü': 'u'
+    };
+    const iRegex = new RegExp(Object.keys(iMap).join('|'), 'g')
+
+    return w
+      .toLowerCase()
+      .replace(iRegex, (m) => iMap[m])
+      .normalize('NFD')
+      .replace(/\p{Diacritic}/gu, '')
+      .trim();
+  },
+
+  // Could add more decoration in the future
+  displayAddress: function(address) {
+    return address;
+  },
+
+  displayCountry: function(code) {
+    if (code === 'CH') {
+      return 'Switzerland';
+    }
+
+    return code;
+  }
 }
