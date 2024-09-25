@@ -5,13 +5,23 @@
 .bfx-marker-popup .header {
   display: flex;
   gap: 12px;
+  width: 100%;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.bfx-marker-popup .bfx-marker-left-col {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+  max-width: 100%;
 }
 
 .bfx-marker-popup .logo {
-  flex-basis: 44px;
-  width: 44px;
-  min-width: 44px;
-  height: 44px;
+  flex-basis: 70px;
+  width: 70px;
+  min-width: 70px;
+  height: 70px;
 }
 
 .bfx-marker-popup .bfx-marker-title h3 {
@@ -27,6 +37,16 @@
 .bfx-marker-popup .bfx-marker-description {
   opacity: 0.5;
   margin-top: 5px;
+}
+
+.bfx-marker-popup .bfx-marker-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.bfx-marker-popup .tag {
+  height: fit-content;
 }
 
 .bfx-marker-popup .footer {
@@ -49,12 +69,14 @@
   background: rgba(205, 188, 190, 0.16);
   border-radius: 6px;
   padding: 3px 9px;
+  white-space: nowrap;
 }
 
 .bfx-marker-popup .tokens {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  max-width: 250px;
 }
 
 .bfx-marker-popup .token {

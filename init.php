@@ -3,7 +3,7 @@
 Plugin Name: BFX crypto map
 Plugin URI: https://bitfinex.com
 description: BFX crypto map
-Version: 1.4.12
+Version: 1.4.14
 Author: BFX
 Author URI: https://bitfinex.com
 License: GPL2
@@ -197,7 +197,7 @@ function bfx_crypto_map_handler( $atts ) {
                   </label>
                 </div>
                 <div class="filter-checkbox">
-                  <input type="checkbox" id="bfx_filter_NAKA" name="accepted_cryptos" value="NAKA" />
+                  <input type="checkbox" id="bfx_filter_NAKA" name="accepted_cryptos" value="NAKA_CARD" />
                   <label for="bfx_filter_NAKA">
                     <img src="$asset_url/NAKA.png" width="22" height="22" />
                     NAKA Card
@@ -216,12 +216,14 @@ function bfx_crypto_map_handler( $atts ) {
   <div id="bfx-crypto-popup-template" style="display: none">
     <div class="bfx-marker-popup">
       <div class="header">
-        <div class="logo">
+        <div class="bfx-marker-left-col">
+          <div class="logo"></div>
+          <div>
+            <div class="bfx-marker-title"></div>
+            <div class="bfx-marker-description"></div>
+          </div>
         </div>
-        <div>
-          <div class="bfx-marker-title"></div>
-          <div class="bfx-marker-description"></div>
-        </div>
+        <div class="bfx-marker-tags"></div>
       </div>
       <div class="footer">
         <div class="label">{$translator->translate('accepted_payment_methods')}</div>
