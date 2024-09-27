@@ -98,7 +98,7 @@ BfxCryptoMap.prototype.setup = function() {
     .map(this.containerId, {
       zoomControl: false,
       maxZoom: 19,
-      minZoom: 10,
+      minZoom: 5,
     })
     .setView([46.005314, 8.953802], 17);
 
