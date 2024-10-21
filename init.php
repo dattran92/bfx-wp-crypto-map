@@ -3,7 +3,7 @@
 Plugin Name: BFX crypto map
 Plugin URI: https://bitfinex.com
 description: BFX crypto map
-Version: 1.4.15
+Version: 1.4.16
 Author: BFX
 Author URI: https://bitfinex.com
 License: GPL2
@@ -178,28 +178,28 @@ function bfx_crypto_map_handler( $atts ) {
                 <div class="filter-checkbox">
                   <input type="checkbox" id="bfx_filter_BTC" name="accepted_cryptos" value="BTC" />
                   <label for="bfx_filter_BTC">
-                    <img src="$asset_url/BTC.png" width="25" height="22" />
+                    <img src="$asset_url/BTC.svg" width="25" height="22" />
                     BTC Lightning
                   </label>
                 </div>
                 <div class="filter-checkbox">
                   <input type="checkbox" id="bfx_filter_UST" name="accepted_cryptos" value="UST" />
                   <label for="bfx_filter_UST">
-                    <img src="$asset_url/UST.png" width="22" height="22" />
+                    <img src="$asset_url/UST.svg" width="22" height="22" />
                     USDt
                   </label>
                 </div>
                 <div class="filter-checkbox">
                   <input type="checkbox" id="bfx_filter_LVGA" name="accepted_cryptos" value="LVGA" />
                   <label for="bfx_filter_LVGA">
-                    <img src="$asset_url/LVGA.png" width="22" height="22" />
+                    <img src="$asset_url/LVGA.svg" width="22" height="22" />
                     LVGA
                   </label>
                 </div>
                 <div class="filter-checkbox">
                   <input type="checkbox" id="bfx_filter_NAKA" name="accepted_cryptos" value="NAKA_CARD" />
                   <label for="bfx_filter_NAKA">
-                    <img src="$asset_url/NAKA.png" width="22" height="22" />
+                    <img src="$asset_url/NAKA.svg" width="22" height="22" />
                     NAKA Card
                   </label>
                 </div>
