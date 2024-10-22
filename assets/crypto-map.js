@@ -63,25 +63,25 @@ function BfxCryptoMap(configuration) {
       name: 'BTC Lightning',
       width: 25,
       height: 22,
-      icon: assetUrl + '/BTC.png',
+      icon: assetUrl + '/BTC.svg',
     },
     UST: {
       name: 'USDt',
       width: 22,
       height: 22,
-      icon: assetUrl + '/UST.png',
+      icon: assetUrl + '/UST.svg',
     },
     LVGA: {
       name: 'LVGA',
       width: 22,
       height: 22,
-      icon: assetUrl + '/LVGA.png',
+      icon: assetUrl + '/LVGA.svg',
     },
     NAKA_CARD: {
       name: 'NAKA Card',
       width: 22,
       height: 22,
-      icon: assetUrl + '/NAKA.png',
+      icon: assetUrl + '/NAKA.svg',
     },
   };
 
@@ -98,6 +98,7 @@ BfxCryptoMap.prototype.setup = function() {
     .map(this.containerId, {
       zoomControl: false,
       maxZoom: 19,
+      minZoom: 5,
     })
     .setView([46.005314, 8.953802], 17);
 
@@ -349,15 +350,15 @@ BfxCryptoMap.prototype.onMarkerClick = function(e) {
     const cityDesc = '<p>' + merchant.city + ', ' + BfxCryptoMap.utils.displayCountry(merchant.country) + '</p>';
     const description = phoneDesc + addressDesc + cityDesc;
     const website = merchant.website
-      ? '<a href="' + merchant.website + '" target="_blank"><img src="' + self.assetUrl + '/globe.png" height="24" /></a>'
+      ? '<a href="' + merchant.website + '" target="_blank"><img src="' + self.assetUrl + '/globe.svg" height="24" /></a>'
       : '';
 
     const phone = self.isMobile && merchant.phone
-      ? '<a href="tel:' + merchant.phone  + '"><img src="' + self.assetUrl + '/phone.png" height="24" /></a>'
+      ? '<a href="tel:' + merchant.phone  + '"><img src="' + self.assetUrl + '/phone.svg" height="24" /></a>'
       : ''
 
     const latLng = merchant.lat + ',' + merchant.lng;
-    const direction = '<a href="https://maps.google.com/?q=' + latLng +'" target="_blank"><img src="' + self.assetUrl + '/direction.png" height="24" /></a>';
+    const direction = '<a href="https://maps.google.com/?q=' + latLng +'" target="_blank"><img src="' + self.assetUrl + '/direction.svg" height="24" /></a>';
     const websiteInner = phone + website + direction;
 
     const popupTemplate = document.getElementById('bfx-crypto-popup-template');
