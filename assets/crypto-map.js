@@ -44,6 +44,10 @@ function BfxCryptoMap(configuration) {
     merchantDataUrl,
     containerId = 'bfx-crypto-map',
     translations,
+    region,
+    theme,
+    defaultLat,
+    defaultLng,
   } = configuration;
 
   this.mapboxUsername = mapboxUsername
@@ -53,6 +57,10 @@ function BfxCryptoMap(configuration) {
   this.merchantDataUrl = merchantDataUrl;
   this.containerId = containerId;
   this.translations = translations;
+  this.region = region;
+  this.theme = theme;
+  this.defaultLat = defaultLat ? parseFloat(defaultLat) : 46.005314
+  this.defaultLng = defaultLng ? parseFloat(defaultLng) : 8.953802
 
   this.currentPin = null;
   this.needRelocate = false;
@@ -81,7 +89,7 @@ function BfxCryptoMap(configuration) {
       name: 'NAKA Card',
       width: 22,
       height: 22,
-      icon: assetUrl + '/NAKA.svg',
+      icon: assetUrl + '/NAKA_CARD.svg',
     },
   };
 
@@ -100,7 +108,7 @@ BfxCryptoMap.prototype.setup = function() {
       maxZoom: 19,
       minZoom: 5,
     })
-    .setView([46.005314, 8.953802], 17);
+    .setView([self.defaultLat, self.defaultLng], 17);
 
   map.attributionControl.setPrefix('© <a href="https://www.mapbox.com/feedback/">Mapbox</a> © <a href="https://leafletjs.com" title="A JavaScript library for interactive maps">Leaflet</a>');
 
@@ -308,7 +316,11 @@ BfxCryptoMap.prototype.renderMarkers = function(data) {
 BfxCryptoMap.prototype.fetchData = function() {
   const self = this;
   jQuery
-    .ajax({ method: 'POST', url: this.merchantDataUrl })
+    .ajax({
+      method: 'POST',
+      url: this.merchantDataUrl,
+      data: { region: self.region }
+    })
     .done(function(data) {
       const items = data.items;
 

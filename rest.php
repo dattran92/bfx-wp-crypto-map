@@ -19,9 +19,15 @@ function request_merchants($env) {
 
 function list_merchants(WP_REST_Request $request) {
   $env = $request->get_param('env');
+  $body = $request->get_body_params();
+  $region = $body['region'];
   $cache_key = 'bfx-crypto-map.merchant_list.' . $env;
   $exp_seconds = 60 * 10; // 10 mins
 
+  if ($region === 'sv') {
+    $result = wp_json_file_decode(plugin_dir_path( __FILE__ ) . './sv_merchants.json');
+    return new WP_REST_Response((array("items" => $result)), 200);
+  }
 
   try {
     $result = get_transient($cache_key);

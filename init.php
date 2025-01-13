@@ -60,6 +60,17 @@ function bfx_gen_tag_filter_list($translator) {
   return $tag_filter_html;
 }
 
+function bfx_ccy_name($ccy) {
+  $names = [
+    'BTC' => 'BTC Lightning',
+    'UST' => 'USDt',
+    'LVGA' => 'LVGA',
+    'NAKA_CARD' => 'NAKA Card',
+  ];
+
+  return $names[$ccy];
+}
+
 function bfx_gen_tag_filter_item($tag, $translator) {
   $label = $translator->translate($tag);
   return <<<HTML
@@ -68,6 +79,34 @@ function bfx_gen_tag_filter_item($tag, $translator) {
       <label for="bfx_filter_$tag">$label</label>
     </div>
   HTML;
+}
+
+function bfx_get_ccy_list($str) {
+  if (!$str) {
+    return [];
+  }
+
+  return explode(',', $str);
+}
+
+function bfx_gen_filter_checkbox_item($ccy, $asset_url) {
+  $name = bfx_ccy_name($ccy);
+  return <<<HTML
+    <div class="filter-checkbox">
+      <input type="checkbox" id="bfx_filter_$ccy" name="accepted_cryptos" value="$ccy" />
+      <label for="bfx_filter_$ccy">
+        <img src="$asset_url/$ccy.svg" width="25" height="22" />
+        $name
+      </label>
+    </div>
+  HTML;
+}
+
+function bfx_gen_filter_checkbox_list($arr, $asset_url) {
+  $list_item = array_map(function($item) use ($asset_url) {
+    return bfx_gen_filter_checkbox_item($item, $asset_url);
+  }, $arr);
+  return join(' ', $list_item);
 }
 
 // [bfx_crypto_map width="100%" height="100%" mode="desktop"]
@@ -79,7 +118,12 @@ function bfx_crypto_map_handler( $atts ) {
     'mobile_width' => '100%',
     'mobile_height' => 'calc(100vh - 100px)',
     'lang' => 'en',
-    'env' => 'production'
+    'env' => 'production',
+    'ccy_list' => 'BTC,UST,LVGA,NAKA_CARD',
+    'region' => '',
+    'theme' => 'default',
+    'default_lat' => '',
+    'default_lng' => ''
   ), $atts);
 
   $map_w = $mapped_atts['width'];
@@ -88,14 +132,21 @@ function bfx_crypto_map_handler( $atts ) {
   $env = $mapped_atts['env'];
   $map_mobile_w = $mapped_atts['mobile_width'];
   $map_mobile_h = $mapped_atts['mobile_height'];
+  $ccy_list = bfx_get_ccy_list($mapped_atts['ccy_list']);
+  $map_region = $mapped_atts['region'];
+  $theme = $mapped_atts['theme'];
+  $default_lat = $mapped_atts['default_lat'];
+  $default_lng = $mapped_atts['default_lng'];
   $merchants_data_url = '/wp-json/bfx-crypto-map/v1/merchants?env=' . $env;
   $asset_url = plugin_dir_url(__FILE__) . 'assets';
 
+
   $translator = new BfxTranslations($lang);
   $tag_filter_html = bfx_gen_tag_filter_list($translator);
+  $filter_checkbox_list_html = bfx_gen_filter_checkbox_list($ccy_list, $asset_url);
 
   $html = <<<HTML
-  <div class="bfx-crypto-container">
+  <div class="bfx-crypto-container bfx-crypto-theme-$theme">
     <div class="bfx-crypto-filter-container">
       <div class="bfx-crypto-filter bfx-crypto-filter-left">
         <div class="bfx-crypto-filter-store-list bfx-crypto-filter-box">
@@ -175,34 +226,7 @@ function bfx_crypto_map_handler( $atts ) {
             <div class="filter-list">
               <div class="filter-title">{$translator->translate('accepts')}</div>
               <div class="filter-content">
-                <div class="filter-checkbox">
-                  <input type="checkbox" id="bfx_filter_BTC" name="accepted_cryptos" value="BTC" />
-                  <label for="bfx_filter_BTC">
-                    <img src="$asset_url/BTC.svg" width="25" height="22" />
-                    BTC Lightning
-                  </label>
-                </div>
-                <div class="filter-checkbox">
-                  <input type="checkbox" id="bfx_filter_UST" name="accepted_cryptos" value="UST" />
-                  <label for="bfx_filter_UST">
-                    <img src="$asset_url/UST.svg" width="22" height="22" />
-                    USDt
-                  </label>
-                </div>
-                <div class="filter-checkbox">
-                  <input type="checkbox" id="bfx_filter_LVGA" name="accepted_cryptos" value="LVGA" />
-                  <label for="bfx_filter_LVGA">
-                    <img src="$asset_url/LVGA.svg" width="22" height="22" />
-                    LVGA
-                  </label>
-                </div>
-                <div class="filter-checkbox">
-                  <input type="checkbox" id="bfx_filter_NAKA" name="accepted_cryptos" value="NAKA_CARD" />
-                  <label for="bfx_filter_NAKA">
-                    <img src="$asset_url/NAKA.svg" width="22" height="22" />
-                    NAKA Card
-                  </label>
-                </div>
+                $filter_checkbox_list_html
               </div>
             </div>
           </form>
@@ -267,7 +291,11 @@ function bfx_crypto_map_handler( $atts ) {
         merchantDataUrl: '$merchants_data_url',
         translations: {
           no_store: "{$translator->translate('no_store')}",
-        }
+        },
+        theme: '$theme',
+        region: '$map_region',
+        defaultLat: '$default_lat',
+        defaultLng: '$default_lng',
       });
 
       bfxCryptoMap.setup();
