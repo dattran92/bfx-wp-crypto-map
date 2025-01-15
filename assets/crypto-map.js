@@ -39,6 +39,7 @@ function BfxCryptoMap(configuration) {
   const {
     isMobile,
     assetUrl,
+    themeAssetUrl,
     mapboxKey,
     mapboxUsername,
     merchantDataUrl,
@@ -48,11 +49,13 @@ function BfxCryptoMap(configuration) {
     theme,
     defaultLat,
     defaultLng,
+
   } = configuration;
 
   this.mapboxUsername = mapboxUsername
   this.isMobile = isMobile;
   this.assetUrl = assetUrl;
+  this.themeAssetUrl = themeAssetUrl;
   this.mapboxKey = mapboxKey;
   this.merchantDataUrl = merchantDataUrl;
   this.containerId = containerId;
@@ -65,7 +68,7 @@ function BfxCryptoMap(configuration) {
   this.currentPin = null;
   this.needRelocate = false;
   this.MERCHANT_DATA = [];
-  this.logoPlaceholder = assetUrl + '/placeholder.png';
+  this.logoPlaceholder = themeAssetUrl + '/placeholder.png';
   this.tokenMap = {
     BTC: {
       name: 'BTC Lightning',
@@ -136,7 +139,7 @@ BfxCryptoMap.prototype.setup = function() {
   });
 
   const currentPinIcon = L.icon({
-    iconUrl: this.assetUrl + '/current-pin.png',
+    iconUrl: this.themeAssetUrl + '/current-pin.png',
     iconSize: [32, 32],
     iconAnchor: [16, 16],
   });
@@ -165,7 +168,7 @@ BfxCryptoMap.prototype.setup = function() {
         },
       );
 
-      img.src = self.assetUrl + '/location.png';
+      img.src = self.themeAssetUrl + '/location.png';
       img.style.width = '18px';
       img.style.height = '18px';
 
@@ -362,15 +365,15 @@ BfxCryptoMap.prototype.onMarkerClick = function(e) {
     const cityDesc = '<p>' + merchant.city + ', ' + BfxCryptoMap.utils.displayCountry(merchant.country) + '</p>';
     const description = phoneDesc + addressDesc + cityDesc;
     const website = merchant.website
-      ? '<a href="' + merchant.website + '" target="_blank"><img src="' + self.assetUrl + '/globe.svg" height="24" /></a>'
+      ? '<a href="' + merchant.website + '" target="_blank"><img src="' + self.themeAssetUrl + '/globe.svg" height="24" /></a>'
       : '';
 
     const phone = self.isMobile && merchant.phone
-      ? '<a href="tel:' + merchant.phone  + '"><img src="' + self.assetUrl + '/phone.svg" height="24" /></a>'
+      ? '<a href="tel:' + merchant.phone  + '"><img src="' + self.themeAssetUrl + '/phone.svg" height="24" /></a>'
       : ''
 
     const latLng = merchant.lat + ',' + merchant.lng;
-    const direction = '<a href="https://maps.google.com/?q=' + latLng +'" target="_blank"><img src="' + self.assetUrl + '/direction.svg" height="24" /></a>';
+    const direction = '<a href="https://maps.google.com/?q=' + latLng +'" target="_blank"><img src="' + self.themeAssetUrl + '/direction.svg" height="24" /></a>';
     const websiteInner = phone + website + direction;
 
     const popupTemplate = document.getElementById('bfx-crypto-popup-template');

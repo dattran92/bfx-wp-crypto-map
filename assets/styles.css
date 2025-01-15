@@ -1,5 +1,10 @@
 .bfx-crypto-container {
   position: relative;
+  --bfx-crypto-main-color: 200, 82, 99;
+}
+
+.bfx-crypto-container.bfx-crypto-theme-blue {
+  --bfx-crypto-main-color: 46, 77, 161;
 }
 
 .bfx-marker-popup .header {
@@ -65,7 +70,7 @@
 }
 
 .bfx-marker-popup .tag {
-  color: #C85263;
+  color: rgb(var(--bfx-crypto-main-color));
   background: rgba(205, 188, 190, 0.16);
   border-radius: 6px;
   padding: 3px 9px;
@@ -80,7 +85,7 @@
 }
 
 .bfx-marker-popup .token {
-  color: #C85263;
+  color: rgb(var(--bfx-crypto-main-color));
   background: rgba(205, 188, 190, 0.16);
   border-radius: 10px;
   padding: 3px 6px;
@@ -146,7 +151,7 @@
 #bfx-crypto-clear-filter-btn {
   font-weight: 700;
   font-size: 13px;
-  color: #C85263;
+  color: rgb(var(--bfx-crypto-main-color));
   gap: 8px;
   padding-left: 12px;
   padding-right: 12px;
@@ -306,7 +311,7 @@
   width: 14px;
   height: 14px;
   border-radius: 8px;
-  background: #C85263;
+  background: rgb(var(--bfx-crypto-main-color));
   color: #fff;
   font-size: 9px;
   line-height: 14px;
@@ -324,7 +329,7 @@
   padding: 12px;
   box-sizing: border-box;
   gap: 5px;
-  background: rgba(200, 82, 99, 0.06);
+  background: rgba(var(--bfx-crypto-main-color), 0.06);
   border-radius: 6px;
   height: 40px;
 }
@@ -350,8 +355,8 @@
 }
 
 .bfx-crypto-filter .filter-btn {
-  background: rgba(200, 82, 99, 0.06);
-  color: rgba(200, 82, 99, 1);
+  background: rgba(var(--bfx-crypto-main-color), 0.06);
+  color: rgba(var(--bfx-crypto-main-color), 1);
   border: 0;
   border-radius: 6px;
   height: 40px;
@@ -498,27 +503,27 @@
 
 /* start customize leaflet marker cluster */
 .marker-cluster-small {
-	background-color: rgba(200, 82, 99, 0.3);
+	background-color: rgba(var(--bfx-crypto-main-color), 0.3);
 }
 
 .marker-cluster-small div {
-	background-color: rgba(200, 82, 99, 0.4);
+	background-color: rgba(var(--bfx-crypto-main-color), 0.4);
 }
 
 .marker-cluster-medium {
-	background-color: rgba(200, 82, 99, 0.3);
+	background-color: rgba(var(--bfx-crypto-main-color), 0.3);
 }
 
 .marker-cluster-medium div {
-	background-color: rgba(200, 82, 99, 0.6);
+	background-color: rgba(var(--bfx-crypto-main-color), 0.6);
 }
 
 .marker-cluster-large {
-	background-color: rgba(200, 82, 99, 0.3);
+	background-color: rgba(var(--bfx-crypto-main-color), 0.3);
 }
 
 .marker-cluster-large div {
-	background-color: rgba(200, 82, 99, 1);
+	background-color: rgba(var(--bfx-crypto-main-color), 1);
 }
 
 .marker-cluster div {
@@ -533,7 +538,7 @@
 }
 
 #bfx-crypto-map .leaflet-control-zoom span {
-  color: rgba(200, 82, 99, 1);
+  color: rgba(var(--bfx-crypto-main-color), 1);
 }
 
 #bfx-crypto-map .leaflet-control-zoom .leaflet-control-zoom-in {

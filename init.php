@@ -3,7 +3,7 @@
 Plugin Name: BFX crypto map
 Plugin URI: https://bitfinex.com
 description: BFX crypto map
-Version: 1.5.0
+Version: 1.5.1
 Author: BFX
 Author URI: https://bitfinex.com
 License: GPL2
@@ -123,7 +123,9 @@ function bfx_crypto_map_handler( $atts ) {
     'region' => '',
     'theme' => 'default',
     'default_lat' => '',
-    'default_lng' => ''
+    'default_lng' => '',
+    'mapbox_key' => 'pk.eyJ1IjoicGxhbmJtYXAiLCJhIjoiY2xvNGd2ZnJqMDF2ZTJsbzJua3dyNzJ2YSJ9.tbgNNQ5wehycZSJyeSRCuA',
+    'mapbox_username' => 'planbmap'
   ), $atts);
 
   $map_w = $mapped_atts['width'];
@@ -137,8 +139,11 @@ function bfx_crypto_map_handler( $atts ) {
   $theme = $mapped_atts['theme'];
   $default_lat = $mapped_atts['default_lat'];
   $default_lng = $mapped_atts['default_lng'];
+  $mapbox_key = $mapped_atts['mapbox_key'];
+  $mapbox_username = $mapped_atts['mapbox_username'];
   $merchants_data_url = '/wp-json/bfx-crypto-map/v1/merchants?env=' . $env;
   $asset_url = plugin_dir_url(__FILE__) . 'assets';
+  $theme_asset_url = $theme === 'default' ? $asset_url : $asset_url . '/blue_theme';
 
 
   $translator = new BfxTranslations($lang);
@@ -151,7 +156,7 @@ function bfx_crypto_map_handler( $atts ) {
       <div class="bfx-crypto-filter bfx-crypto-filter-left">
         <div class="bfx-crypto-filter-store-list bfx-crypto-filter-box">
           <button type="button" class="filter-btn" id="bfx-crypto-store-list-btn">
-            <img src="$asset_url/list-icon.png" />
+            <img src="$theme_asset_url/list-icon.png" />
             <span>{$translator->translate('store_list')}</span>
             <div class="arrow">
               <img src="$asset_url/arrow-down.png" />
@@ -164,11 +169,11 @@ function bfx_crypto_map_handler( $atts ) {
             <input id="bfx-crypto-search-input" type="search" placeholder="{$translator->translate('search')}" />
           </div>
           <button type="button" class="filter-btn" id="bfx-crypto-store-list-mobile-btn">
-            <img src="$asset_url/list-icon.png" />
+            <img src="$theme_asset_url/list-icon.png" />
           </button>
           <button type="button" class="filter-btn" id="bfx-crypto-filter-btn">
             <div class="filter-icon-wrapper">
-              <img src="$asset_url/filter.png" />
+              <img src="$theme_asset_url/filter.png" />
               <div id="filter-number"></div>
             </div>
             <span>{$translator->translate('filter_by')}</span>
@@ -178,14 +183,14 @@ function bfx_crypto_map_handler( $atts ) {
           </button>
           <button type="button" class="filter-btn" id="bfx-crypto-layer-select-mobile-btn">
             <div class="filter-icon-wrapper">
-              <img src="$asset_url/layer.png" />
+              <img src="$theme_asset_url/layer.png" />
             </div>
           </button>
         </div>
         <div class="bfx-crypto-filter-clear-all bfx-crypto-filter-box hidden">
           <button type="button" class="filter-btn" id="bfx-crypto-clear-filter-btn">
             <div class="filter-icon-wrapper">
-              <img src="$asset_url/delete.png" />
+              <img src="$theme_asset_url/delete.png" />
             </div>
             <span>{$translator->translate('clear_filters')}</span>
           </button>
@@ -195,7 +200,7 @@ function bfx_crypto_map_handler( $atts ) {
         <div class="bfx-crypto-filter-layer-select bfx-crypto-filter-box">
           <button type="button" class="filter-btn" id="bfx-crypto-layer-select-btn">
             <div class="filter-icon-wrapper">
-              <img src="$asset_url/layer.png" />
+              <img src="$theme_asset_url/layer.png" />
             </div>
           </button>
         </div>
@@ -280,12 +285,13 @@ function bfx_crypto_map_handler( $atts ) {
   <script>
     jQuery(function() {
       const isMobile = document.body.clientWidth < 768;
-      const mapboxKey = 'pk.eyJ1IjoicGxhbmJtYXAiLCJhIjoiY2xvNGd2ZnJqMDF2ZTJsbzJua3dyNzJ2YSJ9.tbgNNQ5wehycZSJyeSRCuA';
-      const mapboxUsername = 'planbmap'
+      const mapboxKey = '$mapbox_key';
+      const mapboxUsername = '$mapbox_username'
 
       const bfxCryptoMap = new BfxCryptoMap({
         isMobile: isMobile,
         assetUrl: '$asset_url',
+        themeAssetUrl: '$theme_asset_url',
         mapboxKey: mapboxKey,
         mapboxUsername: mapboxUsername,
         merchantDataUrl: '$merchants_data_url',
