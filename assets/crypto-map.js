@@ -49,7 +49,7 @@ function BfxCryptoMap(configuration) {
     theme,
     defaultLat,
     defaultLng,
-
+    defaultZoomLevel,
   } = configuration;
 
   this.mapboxUsername = mapboxUsername
@@ -62,8 +62,9 @@ function BfxCryptoMap(configuration) {
   this.translations = translations;
   this.region = region;
   this.theme = theme;
-  this.defaultLat = defaultLat ? parseFloat(defaultLat) : 46.005314
-  this.defaultLng = defaultLng ? parseFloat(defaultLng) : 8.953802
+  this.defaultLat = defaultLat ? parseFloat(defaultLat) : 46.005314;
+  this.defaultLng = defaultLng ? parseFloat(defaultLng) : 8.953802;
+  this.defaultZoomLevel = defaultZoomLevel ? parseInt(defaultZoomLevel) : 17;
 
   this.currentPin = null;
   this.needRelocate = false;
@@ -111,7 +112,7 @@ BfxCryptoMap.prototype.setup = function() {
       maxZoom: 19,
       minZoom: 5,
     })
-    .setView([self.defaultLat, self.defaultLng], 17);
+    .setView([self.defaultLat, self.defaultLng], self.defaultZoomLevel);
 
   map.attributionControl.setPrefix('© <a href="https://www.mapbox.com/feedback/">Mapbox</a> © <a href="https://leafletjs.com" title="A JavaScript library for interactive maps">Leaflet</a>');
 

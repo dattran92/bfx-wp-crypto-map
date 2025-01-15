@@ -3,7 +3,7 @@
 Plugin Name: BFX crypto map
 Plugin URI: https://bitfinex.com
 description: BFX crypto map
-Version: 1.5.2
+Version: 1.5.3
 Author: BFX
 Author URI: https://bitfinex.com
 License: GPL2
@@ -125,7 +125,8 @@ function bfx_crypto_map_handler( $atts ) {
     'default_lat' => '',
     'default_lng' => '',
     'mapbox_key' => 'pk.eyJ1IjoicGxhbmJtYXAiLCJhIjoiY2xvNGd2ZnJqMDF2ZTJsbzJua3dyNzJ2YSJ9.tbgNNQ5wehycZSJyeSRCuA',
-    'mapbox_username' => 'planbmap'
+    'mapbox_username' => 'planbmap',
+    'default_zoom_level' => '17'
   ), $atts);
 
   $map_w = $mapped_atts['width'];
@@ -141,10 +142,10 @@ function bfx_crypto_map_handler( $atts ) {
   $default_lng = $mapped_atts['default_lng'];
   $mapbox_key = $mapped_atts['mapbox_key'];
   $mapbox_username = $mapped_atts['mapbox_username'];
+  $default_zoom_level = $mapped_atts['default_zoom_level'];
   $merchants_data_url = '/wp-json/bfx-crypto-map/v1/merchants?env=' . $env;
   $asset_url = plugin_dir_url(__FILE__) . 'assets';
   $theme_asset_url = $theme === 'default' ? $asset_url : $asset_url . '/blue_theme';
-
 
   $translator = new BfxTranslations($lang);
   $tag_filter_html = bfx_gen_tag_filter_list($translator);
@@ -302,6 +303,7 @@ function bfx_crypto_map_handler( $atts ) {
         region: '$map_region',
         defaultLat: '$default_lat',
         defaultLng: '$default_lng',
+        defaultZoomLevel: '$default_zoom_level',
       });
 
       bfxCryptoMap.setup();
