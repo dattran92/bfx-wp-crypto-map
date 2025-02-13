@@ -20,6 +20,7 @@
   gap: 12px;
   flex-shrink: 0;
   max-width: 100%;
+  align-items: center;
 }
 
 .bfx-marker-popup .logo {
@@ -27,6 +28,8 @@
   width: 70px;
   min-width: 70px;
   height: 70px;
+  display: flex;
+  align-items: center;
 }
 
 .bfx-marker-popup .bfx-marker-title h3 {
