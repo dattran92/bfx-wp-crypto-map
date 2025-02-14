@@ -169,7 +169,7 @@ BfxCryptoMap.prototype.setup = function() {
         },
       );
 
-      img.src = self.themeAssetUrl + '/location.png';
+      img.src = self.themeAssetUrl + '/location.svg';
       img.style.width = '18px';
       img.style.height = '18px';
 

@@ -143,6 +143,12 @@
   height: 52px;
 }
 
+.bfx-crypto-filter-box .filter-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
 .bfx-crypto-filter-bar {
   display: flex;
   gap: 6px;
@@ -245,16 +251,21 @@
   padding-bottom: 5px;
 }
 
-.bfx-crypto-filter .filter-checkbox label:before {
+.bfx-crypto-filter-popup .filter-checkbox input[type="checkbox"] {
+  display: none;
+}
+
+.bfx-crypto-filter-popup .filter-checkbox label:before {
   content: "";
-  background: url('./unchecked.png');
+  background: url('./unchecked.svg');
   display: block;
   width: 18px;
   height: 18px;
+  margin-right: 3px;
 }
 
-.bfx-crypto-filter .filter-checkbox input:checked + label:before {
-  background: url('./checked.png');
+.bfx-crypto-filter-popup .filter-checkbox input:checked + label:before {
+  background: url('./checked.svg');
 }
 
 .bfx-crypto-filter-popup {
@@ -300,10 +311,6 @@
 
 #bfx-crypto-layer-popup .filter-checkbox label {
   cursor: pointer;
-}
-
-.filter-icon-wrapper {
-  position: relative;
 }
 
 #filter-number {
@@ -395,7 +402,7 @@
 
 #bfx-crypto-layer-select-btn {
   width: 40px;
-  padding: 0 9px;
+  padding: 0;
 }
 
 .bfx-crypto-filter-popup .filter-content {
