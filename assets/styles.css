@@ -255,7 +255,7 @@
   display: none;
 }
 
-.bfx-crypto-filter-popup .filter-checkbox label:before {
+#bfx-crypto-filter-form .filter-checkbox label:before {
   content: "";
   background: url('./unchecked.svg');
   display: block;
@@ -264,8 +264,8 @@
   margin-right: 3px;
 }
 
-.bfx-crypto-filter-popup .filter-checkbox input:checked + label:before {
-  background: url('./checked.svg');
+#bfx-crypto-filter-form .filter-checkbox input:checked + label:before {
+  background: url('./blue_theme/checked.svg');
 }
 
 .bfx-crypto-filter-popup {

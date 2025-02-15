@@ -572,8 +572,8 @@ BfxCryptoMap.prototype.showLayersPopup = function() {
   const self = this;
   const activeStyle = this.activeStyle;
   const listItems = BfxCryptoConstants.availableStyles.map(({ id, key }) => {
-    const icon = id === activeStyle ? 'radio-active.png' : 'radio-inactive.png';
-    const img = `<img width="18" height="18" src="${self.assetUrl}/${icon}" />`;
+    const icon = id === activeStyle ? 'radio-active.svg' : 'radio-inactive.svg';
+    const img = `<img width="18" height="18" src="${self.themeAssetUrl}/${icon}" />`;
     const label = `<label>${key}</label>`;
 
     return `
